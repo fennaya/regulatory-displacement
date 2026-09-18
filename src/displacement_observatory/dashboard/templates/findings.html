@@ -5,6 +5,15 @@
 <p class="muted">Displacement events by effect size (post-period coefficient, log points). Every caveat that affects
 whether a finding is headline-eligible is shown on its card, not buried in a detail page.</p>
 
+<div class="callout bad">
+  <strong>Causal-specification repair (see <a href="/specifications">Specifications</a>):</strong> 0 of this
+  project's 5 testable treatment packages are CLEAN — every one overlaps another package's estimation window in
+  the same HS6 code (see the badges below). The event-time coefficients on this page are from the ORIGINAL,
+  unrepaired Stage 3 specification and are kept for continuity, not as the current best estimate. The repaired
+  numbers (triple-difference, matched controls, cluster-robust SEs, and Stage G's power verdict — most packages'
+  plausible effect sizes are below what this instrument can detect at all) are on the Specifications page.
+</div>
+
 <div class="callout">
   <strong>Read this before the list:</strong> none of these effects are statistically significant at 95% —
   every confidence interval below includes zero. Point estimates are directionally consistent with displacement
@@ -18,6 +27,9 @@ whether a finding is headline-eligible is shown on its card, not buried in a det
 <div class="card">
   <a class="title-link" href="/events/{{ c.event.event_id }}"><strong>{{ c.event.substance }}</strong> — {{ c.event.jurisdiction }}, {{ c.event.restriction_type.value }} ({{ c.event.effective_date }})</a>
   <div style="margin-top:6px;">
+    {% if c.classification %}
+      <span class="badge {% if c.classification == 'CLEAN' %}good{% elif c.classification == 'UNTESTABLE' %}neutral{% else %}bad{% endif %}">{{ c.classification }}</span>
+    {% endif %}
     {% if c.result.status != "ok" %}
       <span class="badge neutral">skipped</span> <span class="muted">{{ c.result.reason }}</span>
     {% else %}

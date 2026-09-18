@@ -9,11 +9,14 @@ from dataclasses import dataclass
 
 import duckdb
 
+from displacement_observatory.analysis.comparison import PackageComparison, build_package_comparison
 from displacement_observatory.analysis.competing_explanations import (
     CompetingExplanationsResult,
     run_competing_explanations,
 )
 from displacement_observatory.analysis.diD import EventDiDResult, run_all
+from displacement_observatory.analysis.overlap import PackageAudit, build_overlap_matrix, classify_packages, compute_windows
+from displacement_observatory.analysis.packages import TreatmentPackage, build_treatment_packages
 from displacement_observatory.config import CHEMICAL_HS2_CHAPTERS
 from displacement_observatory.panel_stats import PanelStats, compute_panel_stats
 from displacement_observatory.register.mappings import MappingFile, load_latest_mappings
@@ -32,6 +35,9 @@ class PipelineBundle:
     rediscovery: RediscoverySummary
     forecasts: list[Forecast]
     forecast_scores: list[ScoreResult]
+    packages: list[TreatmentPackage]
+    package_audits: dict[str, PackageAudit]
+    package_comparisons: dict[str, PackageComparison]
 
     def did_by_id(self) -> dict[str, EventDiDResult]:
         return {r.event.event_id: r for r in self.did_results}
@@ -62,6 +68,21 @@ def run_pipeline(con: duckdb.DuckDBPyConnection, register_version: int = 1, wind
     forecasts = load_forecasts()
     forecast_scores = [score_forecast(con, f) for f in forecasts]
 
+    did_by_id = {r.event.event_id: r for r in did_results}
+    packages = build_treatment_packages(register)
+    windows = compute_windows(packages, did_by_id)
+    overlap_flags = build_overlap_matrix(packages, windows, did_by_id)
+    package_audits = {a.package_id: a for a in classify_packages(windows, overlap_flags)}
+
+    package_comparisons: dict[str, PackageComparison] = {}
+    for p in packages:
+        r = did_by_id.get(p.event_ids[0])
+        if r is None or r.status != "ok":
+            continue
+        package_comparisons[p.package_id] = build_package_comparison(
+            con, p, package_audits[p.package_id], register, r, control_hs6, overlap_flags,
+        )
+
     return PipelineBundle(
         panel_stats=panel_stats,
         register=register,
@@ -71,4 +92,7 @@ def run_pipeline(con: duckdb.DuckDBPyConnection, register_version: int = 1, wind
         rediscovery=rediscovery,
         forecasts=forecasts,
         forecast_scores=forecast_scores,
+        packages=packages,
+        package_audits=package_audits,
+        package_comparisons=package_comparisons,
     )

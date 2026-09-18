@@ -1,11 +1,16 @@
 """STEP 7 dashboard: FastAPI + Jinja2 + HTMX + Plotly. No React.
 
-Five views per the project brief:
+Five original views per the project brief, plus one added in the
+causal-specification repair (STAGE H):
   /findings          ranked displacement events by effect size, caveats on the card
   /events/{id}        one event: flows, event-time plot, competing explanations, evidence
   /watchlist          forthcoming restrictions, predicted destinations, forecast date
   /scorecard          forecasts vs what happened -- the credibility of the whole project
   /register           every restriction with its source clause
+  /specifications      every estimator tried per package, side by side, plus the power verdict
+
+The forward watchlist route and its data (data/watchlist/forecasts.jsonl)
+are untouched by the causal-spec repair -- append-only, per project rule.
 """
 
 from __future__ import annotations
@@ -55,6 +60,19 @@ def _headline(study):
     return k, study.coef[k], (study.ci_low[k], study.ci_high[k])
 
 
+def _classification_for_event(bundle: PipelineBundle, event_id: str) -> str | None:
+    pkg = next((p for p in bundle.packages if event_id in p.event_ids), None)
+    if pkg is None:
+        return None
+    audit = bundle.package_audits.get(pkg.package_id)
+    return audit.classification.value if audit else None
+
+
+def _package_id_for_event(bundle: PipelineBundle, event_id: str) -> str | None:
+    pkg = next((p for p in bundle.packages if event_id in p.event_ids), None)
+    return pkg.package_id if pkg else None
+
+
 @app.get("/")
 def root():
     return RedirectResponse(url="/findings")
@@ -77,6 +95,8 @@ def findings(request: Request):
             "eligible": eligible,
             "eligible_reason": eligible_reason,
             "competing": bundle.competing.get(r.event.event_id),
+            "classification": _classification_for_event(bundle, r.event.event_id),
+            "package_id": _package_id_for_event(bundle, r.event.event_id),
         })
     cards.sort(key=lambda c: (c["coef"] if c["coef"] is not None else float("-inf")), reverse=True)
     return templates.TemplateResponse(
@@ -134,6 +154,22 @@ def scorecard(request: Request):
         {
             "rows": rows, "n_scored": n_scored, "n_pending": n_pending,
             "rediscovery": bundle.rediscovery, "active": "scorecard",
+        },
+    )
+
+
+@app.get("/specifications")
+def specifications(request: Request):
+    bundle = get_bundle()
+    packages_with_data = [p for p in bundle.packages if p.package_id in bundle.package_comparisons]
+    return templates.TemplateResponse(
+        request,
+        "specifications.html",
+        {
+            "packages": packages_with_data,
+            "comparisons": bundle.package_comparisons,
+            "audits": bundle.package_audits,
+            "active": "specifications",
         },
     )
 

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Specifications — Displacement Observatory{% endblock %}
+{% block content %}
+<h1>Specifications</h1>
+<p class="muted">Every estimator tried against every testable treatment package, in the order they were built during
+  the causal-specification repair. This page exists because the ORIGINAL Stage 3 numbers on the Ranked Findings
+  page were found to be uninformative — the wrong estimator, the wrong comparison group, and an inflated event
+  count — and re-running the same analysis with a better specification changes the answer, sometimes sharply.</p>
+
+<div class="callout bad">
+  <strong>Headline result of the repair:</strong> once rest-of-world exporter growth is properly netted out as
+  the counterfactual (triple-difference, Stage C) rather than reported as a caveat, 60-93% of every package's
+  original "displacement" estimate disappears. And per Stage G's power analysis, 4 of the 5 testable packages
+  cannot detect a plausible-sized substance-specific effect at all, even under 100% displacement — see each
+  package's power verdict below.
+</div>
+
+{% for p in packages %}
+{% set comp = comparisons[p.package_id] %}
+{% set audit = audits[p.package_id] %}
+<h2>{{ p.substances|join(" + ") }} <span class="badge {% if audit.classification.value == 'CLEAN' %}good{% elif audit.classification.value == 'UNTESTABLE' %}neutral{% else %}bad{% endif %}">{{ audit.classification.value }}</span></h2>
+<p class="muted">HS6 <code>{{ p.hs6 }}</code> · {{ p.jurisdiction }} · effective {{ p.effective_date }}</p>
+
+<table>
+  <tr><th>Method</th><th>Estimand</th><th>Coefficient</th><th>95% CI</th><th>N</th><th>Note</th></tr>
+  {% for row in comp.rows %}
+  <tr>
+    <td>{{ row.method }}</td>
+    <td class="muted">{{ row.estimand }}</td>
+    <td class="mono {% if row.coef > 0 %}badge good{% elif row.coef < 0 %}badge bad{% endif %}">{{ "%.3f"|format(row.coef) if row.coef is not none else "—" }}</td>
+    <td class="mono">{% if row.ci_low is not none %}[{{ "%.3f"|format(row.ci_low) }}, {{ "%.3f"|format(row.ci_high) }}]{% else %}—{% endif %}</td>
+    <td class="mono">{{ "{:,}".format(row.n_obs) if row.n_obs is not none else "—" }}{% if row.n_dropped_zeros %} <span class="muted">({{ "{:,}".format(row.n_dropped_zeros) }} zero cells kept)</span>{% endif %}</td>
+    <td class="muted" style="max-width:320px;">{{ row.note }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% if comp.power_verdict %}
+<div class="callout {% if 'NOT DETECTABLE' in comp.power_verdict %}bad{% elif 'BORDERLINE' in comp.power_verdict %}{% else %}good{% endif %}">
+  <strong>Power verdict (Stage G):</strong> {{ comp.power_verdict }}
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}
