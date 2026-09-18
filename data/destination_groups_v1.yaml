@@ -1,0 +1,105 @@
+# STAGE F pre-registration. Written and committed to git BEFORE any
+# estimation using these groups. Per CLAUDE.md rule 2 and the user's own
+# instruction: "If you estimate before committing, the result is
+# worthless." This file's git history is the proof it wasn't tuned after
+# seeing which grouping produced a bigger effect.
+#
+# METHODOLOGY AND HONESTY ABOUT CONFIDENCE:
+#
+# high_exposure: large agricultural economies where none of this
+# project's 8 register substances are independently restricted on the
+# import side, so a displaced EU export would face no equivalent barrier.
+# Three of these countries (Brazil, Ukraine, South Africa) are directly
+# documented as top recipients of EU-banned pesticides by Unearthed/
+# Public Eye's "Banned in Europe" 2020 investigation (~10,000t, ~5,000t
+# and ~1,700t respectively in 2018) -- see data/register/events/
+# events_v1.yaml's own citations and the Step 5 rediscovery validation.
+# The remaining countries in this group are included on a WEAKER basis:
+# large agricultural import volume plus general knowledge that their
+# pesticide-approval regimes are less stringent than the EU's, but this
+# project has NOT independently verified each one's regulatory stance on
+# these specific 8 substances. That is stated here plainly, not implied
+# by inclusion in the list.
+#
+# low_exposure: wealthy, high-income countries whose own pesticide
+# regulatory regimes are broadly comparable in stringency to the EU's
+# (OECD members with independent, well-resourced pesticide review
+# processes), included as the contrast group -- if displacement is real,
+# it should be weaker or absent here, since these destinations plausibly
+# have their own equivalent restrictions or comparably strict review.
+#
+# Countries omitted from both groups (most of the world) are neither
+# asserted to be high- nor low-exposure -- this is a two-group contrast,
+# not a full classification, and the omission is deliberate.
+
+version: 1
+committed_at: "2026-09-18"
+
+high_exposure:
+  - country: "Brazil"
+    iso3: "BRA"
+    reasoning: "Documented: 2nd-largest global recipient of EU-banned pesticides, ~10,000t in 2018 (Unearthed/Public Eye, 'Banned in Europe' 2020)."
+    confidence: "high (directly documented for this exact phenomenon)"
+  - country: "Ukraine"
+    iso3: "UKR"
+    reasoning: "Documented: 3rd-largest recipient, ~5,000t across 6 agrochemicals in 2018 (same source). Also a major cereal producer, relevant to the atrazine/flufenacet herbicide substances specifically."
+    confidence: "high (directly documented)"
+  - country: "South Africa"
+    iso3: "ZAF"
+    reasoning: "Documented: received 1,700t of banned pesticides in 2018, diverse substance types (same source)."
+    confidence: "high (directly documented)"
+  - country: "Viet Nam"
+    iso3: "VNM"
+    reasoning: "Large rice-growing economy; buprofezin (STEP 6 watchlist forecast) is specifically used against rice planthoppers there. Not independently verified against Public Eye-style investigative data for this project's specific substances."
+    confidence: "medium (agronomic reasoning, not directly documented for these substances)"
+  - country: "Thailand"
+    iso3: "THA"
+    reasoning: "Same agronomic reasoning as Viet Nam (rice, cotton pest pressure); large agricultural importer."
+    confidence: "medium (not directly documented)"
+  - country: "India"
+    iso3: "IND"
+    reasoning: "Large agricultural economy, substantial pesticide import volumes, historically less stringent registration timelines than the EU for many active ingredients. Not independently verified per-substance."
+    confidence: "low-medium (general knowledge, not substance-specific verification)"
+  - country: "Indonesia"
+    iso3: "IDN"
+    reasoning: "Large agricultural importer, comparable general reasoning to India/Vietnam/Thailand."
+    confidence: "low-medium (general knowledge, not substance-specific verification)"
+  - country: "Pakistan"
+    iso3: "PAK"
+    reasoning: "Large agricultural economy, cotton/cereal production relevant to this register's herbicide/insecticide substances."
+    confidence: "low-medium (general knowledge, not substance-specific verification)"
+
+low_exposure:
+  - country: "Switzerland"
+    iso3: "CHE"
+    reasoning: "High-income OECD member, pesticide approval regime closely aligned with (and historically influenced by) EU standards; not itself EU/Rotterdam-bound but comparably strict in practice."
+    confidence: "medium (regulatory-alignment reasoning, not directly documented)"
+  - country: "Norway"
+    iso3: "NOR"
+    reasoning: "EEA member, applies EU pesticide law directly."
+    confidence: "high (EEA legal alignment is a matter of public record, not an assumption)"
+  - country: "Japan"
+    iso3: "JPN"
+    reasoning: "High-income OECD member with an independent, well-resourced pesticide registration authority; comparable stringency to the EU on many substances, though not identical rules."
+    confidence: "medium"
+  - country: "Korea, Rep."
+    iso3: "KOR"
+    reasoning: "Same reasoning as Japan: high-income OECD member, independent stringent review."
+    confidence: "medium"
+  - country: "Canada"
+    iso3: "CAN"
+    reasoning: "High-income OECD member, Pest Management Regulatory Agency conducts independent, well-resourced review broadly comparable to EU/US standards."
+    confidence: "medium"
+  - country: "Australia"
+    iso3: "AUS"
+    reasoning: "High-income OECD member, APVMA conducts independent stringent review; also a large agricultural economy (unlike most of this group), making it a useful contrast to the high-exposure group's agricultural-scale confound."
+    confidence: "medium"
+  - country: "New Zealand"
+    iso3: "NZL"
+    reasoning: "High-income OECD member, comparably strict independent review (EPA)."
+    confidence: "medium"
+
+# Countries appearing in BOTH the register's own EU-jurisdiction exporter
+# bloc and either group above are impossible by construction (all listed
+# countries are non-EU); no overlap check is needed the way it was for
+# the treatment-package HS6/date collision in analysis/packages.py.
