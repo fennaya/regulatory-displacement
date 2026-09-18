@@ -3,6 +3,9 @@
 Tests one falsifiable claim: when jurisdiction A restricts a product, flows
 of that product into jurisdictions *without* the restriction rise after the
 effective date, relative to control products that were never restricted.
+<!-- falsifiable: displacement-hypothesis -->
+See `falsification.md` for what would make us abandon this claim, and its
+current status (untested, not "weakly supported" — see that file).
 
 Scope, deliberately narrow: **pesticides and hazardous chemicals only** (HS
 chapters 28, 29, 38). Nothing here generalises beyond that until it works
@@ -39,7 +42,11 @@ speak to independently.
   moved, for reasons that include but are not limited to this specific
   package," not as a clean single-event effect.**
 - **HS6 is coarser than a single substance — the second-biggest threat to
-  every finding in this project.** BACI/Comtrade report trade at
+  every finding in this project.**
+  <!-- falsifiable: hs6-too-coarse -->
+  See `falsification.md` for what would falsify this specific claim
+  (Stage G's minimum-detectable-effect vs. basket-share arithmetic, not
+  yet computed). BACI/Comtrade report trade at
   6-digit HS codes; HS heading 3808 has exactly five subheadings
   (insecticides / fungicides / herbicides / disinfectants / rodenticides).
   Every substance in the register shares its HS6 code with every *other*
@@ -131,9 +138,13 @@ recall: 100%. Significant recall: 0%.** See Limitations above.
 2 real, dated forecasts, timestamped 2026-09-18, append-only
 (`data/watchlist/forecasts.jsonl`, enforced in code — no update/delete
 function exists): buprofezin (EU non-approval expected within 2026,
-predicted destinations Brazil/Viet Nam/Thailand) and flufenacet (EU stock
-grace period ends 2026-12-10, predicted destinations Ukraine/Brazil). Both
-still pending as of today.
+predicted destinations Brazil/Viet Nam/Thailand)
+<!-- falsifiable: forecast-buprofezin-2026 -->
+and flufenacet (EU stock
+grace period ends 2026-12-10, predicted destinations Ukraine/Brazil).
+<!-- falsifiable: forecast-flufenacet-2026 -->
+Both still pending as of today. See `falsification.md` for the exact
+thresholds that would falsify each.
 
 ### STEP 7 — dashboard
 FastAPI + Jinja2 + HTMX + Plotly (no React). Five views: Ranked Findings,
