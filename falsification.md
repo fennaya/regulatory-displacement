@@ -59,8 +59,20 @@ basket-share arithmetic's implied effect size — i.e. if a plausible
 export-share-weighted displacement of the restricted substance would
 plausibly move the whole HS6 basket by more than the MDE, the coarseness
 claim is falsified for that package: the instrument CAN see an effect of
-plausible size, even though it's mixed with other products. Not yet
-computed as of this entry (Stage G is not yet run).
+plausible size, even though it's mixed with other products.
+
+**RESOLVED, 2026-09-18 (`analysis/power.py`, Stage G):** NOT falsified for
+4 of 5 testable packages — chlorpyrifos, endosulfan, atrazine, and
+paraquat are all NOT DETECTABLE even at 100% displacement, high end of
+the assumed basket-share range (MDE exceeds the maximum plausible implied
+effect in every case). Neonicotinoids is BORDERLINE (detectable only if
+the true basket share is toward the high end of its assumed 10-30%
+range). Basket-share assumptions are stated per-substance with confidence
+levels in `analysis/power.py`'s `BASKET_SHARE_ASSUMPTIONS` — only
+imidacloprid's is anchored to a real (if inconsistent-across-vendors) web
+search; the rest are explicitly unverified. **This instrument cannot see
+a plausible-sized substance-specific effect for 4 of the 5 packages this
+project can test, and this is arithmetic, not a vibe.**
 
 **Refuses:** "the confidence interval is wide" as sufficient evidence —
 width alone conflates low power (a real problem, separately diagnosed by
