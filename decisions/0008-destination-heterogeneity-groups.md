@@ -1,7 +1,7 @@
 # 0008 — Pre-registered high/low pesticide-exposure destination groups (Stage F)
 
 **Date:** 2026-09-18
-**Status:** decided, code implemented, groups committed in `data/destination_groups_v1.yaml` BEFORE any estimation using them runs — this entry and that file are the pre-registration; the estimation results are a separate, later commit.
+**Status:** implemented and estimated. **Result contradicts the concentration hypothesis this stage was built to test.** Of 5 testable packages, only endosulfan shows high-exposure > low-exposure as predicted (+1.034 vs +0.377); neonicotinoids and paraquat show essentially no difference between groups; chlorpyrifos (+0.184 high vs +0.397 low) and atrazine (+0.114 high vs +0.764 low) show the OPPOSITE pattern, sharply for atrazine. Confidence intervals are extremely wide for every group (restricting to 7-8 destinations sharply cuts the data each estimate rests on). This is reported as a genuine, mixed/negative finding per the "what would make it wrong" section below — not reconciled or explained away.
 
 ## The decision
 
