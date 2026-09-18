@@ -1,0 +1,265 @@
+# Restriction register, version 1. Every event below was verified against
+# a primary source (EUR-Lex regulation/decision text, a Rotterdam
+# Convention decision, or a court judgment) fetched on 2026-09-18. Records
+# without a verifiable citation were not added -- this is a small, real
+# register (9 events, 8 substances), not an exhaustive one, per this
+# project's "narrow scope, work end to end" instruction. hs6_candidates
+# below reference data/register/mappings/chemical_hs6_mappings_v1.yaml.
+
+events:
+  - event_id: "eu-2018-imidacloprid"
+    substance: "Imidacloprid"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: >
+      All outdoor uses banned EU-wide; use restricted to permanent
+      greenhouses only (crop and any treated seed must remain in a
+      permanent greenhouse through the crop's entire life cycle).
+    decision_date: "2018-05-29"
+    effective_date: "2018-12-19"
+    citation:
+      source_document: "Commission Implementing Regulation (EU) 2018/783 of 29 May 2018 amending Implementing Regulation (EU) No 540/2011 as regards the conditions of approval of the active substance imidacloprid"
+      source_clause: "Article 3: Member States shall amend or withdraw existing authorisations for plant protection products containing imidacloprid by 19 September 2018 at the latest; Annex restriction: 'Only uses as insecticide in permanent greenhouses...may be authorised.'"
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32018R0783"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.55
+        reasoning: "Formulated insecticide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides globally; see mappings v1 for full discussion."
+        confirmed: true
+    notes: >
+      19 September 2018 is the deadline for Member States to amend
+      national authorisations; 19 December 2018 is the deadline by which
+      farmers had to stop use under the amended authorisations. We record
+      effective_date as the farmer-facing compliance deadline (the
+      substantive end of legal use) and the earlier authorisation-amendment
+      deadline here as context. This 5-month gap between decision (29 May)
+      and the final compliance deadline (19 Dec) -- over 6 months -- is
+      itself a stockpiling/dumping window worth testing for.
+
+  - event_id: "eu-2018-clothianidin"
+    substance: "Clothianidin"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: >
+      All outdoor uses banned EU-wide; use restricted to permanent
+      greenhouses only, adopted as a companion regulation to the
+      imidacloprid and thiamethoxam bans the same day.
+    decision_date: "2018-05-29"
+    effective_date: "2018-12-19"
+    citation:
+      source_document: "Commission Implementing Regulation (EU) 2018/784 of 29 May 2018 amending Implementing Regulation (EU) No 540/2011 as regards the conditions of approval of the active substance clothianidin"
+      source_clause: "Companion regulation to (EU) 2018/783; same Article 3-style Member State authorisation deadline and permanent-greenhouse-only restriction, per the Official Journal L 132 publication covering all three neonicotinoid regulations together."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/eli/reg_impl/2018/784/oj/eng"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.55
+        reasoning: "Formulated insecticide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides globally, including the other two neonicotinoids banned the same day; see mappings v1."
+        confirmed: true
+    notes: >
+      Full article text of 2018/784 itself was not individually re-fetched
+      (only 2018/783 was fetched in full); dates and restriction scope are
+      corroborated by multiple secondary sources (Phytocontrol, BAES,
+      Science.org, food.ec.europa.eu) describing all three regulations as
+      sharing the same 19 Sep / 19 Dec 2018 timeline. Flagged as
+      lower-certainty sourcing than the directly-fetched imidacloprid record.
+
+  - event_id: "eu-2018-thiamethoxam"
+    substance: "Thiamethoxam"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: >
+      All outdoor uses banned EU-wide; use restricted to permanent
+      greenhouses only, adopted as a companion regulation to the
+      imidacloprid and clothianidin bans the same day.
+    decision_date: "2018-05-29"
+    effective_date: "2018-12-19"
+    citation:
+      source_document: "Commission Implementing Regulation (EU) 2018/785 of 29 May 2018 amending Implementing Regulation (EU) No 540/2011 as regards the conditions of approval of the active substance thiamethoxam"
+      source_clause: "Companion regulation to (EU) 2018/783 and (EU) 2018/784; same Member State authorisation deadline and permanent-greenhouse-only restriction."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/eli/reg_impl/2018/785/oj/eng"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.55
+        reasoning: "Formulated insecticide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides globally, including the other two neonicotinoids banned the same day; see mappings v1."
+        confirmed: true
+    notes: >
+      Same lower-certainty sourcing note as clothianidin: text not
+      individually re-fetched, dates corroborated by secondary sources.
+
+  - event_id: "eu-2020-chlorpyrifos"
+    substance: "Chlorpyrifos"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: "All uses; approval not renewed EU-wide."
+    decision_date: "2020-01-10"
+    effective_date: "2020-02-16"
+    citation:
+      source_document: "Commission Implementing Regulation (EU) 2020/18 of 10 January 2020 concerning the non-renewal of the approval of the active substance chlorpyrifos"
+      source_clause: "Member States required to withdraw authorisations for plant protection products containing chlorpyrifos by 16 February 2020; any grace period for existing stocks to expire by 16 April 2020 at the latest."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/eli/reg_impl/2020/18/oj/eng"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.5
+        reasoning: "Formulated organophosphate insecticide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides, including chlorpyrifos-methyl, non-renewed the same day; see mappings v1."
+        confirmed: true
+    notes: >
+      Grace period for existing stocks (use-up of already-authorised
+      product) runs to 16 April 2020, ~2 months after the authorisation
+      withdrawal date and ~3 months after the decision date -- the
+      decision-to-effective gap here is short (37 days) compared to the
+      neonicotinoid package, worth contrasting in the event-time analysis.
+
+  - event_id: "eu-2020-chlorpyrifos-methyl"
+    substance: "Chlorpyrifos-methyl"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: "All uses; approval not renewed EU-wide."
+    decision_date: "2020-01-10"
+    effective_date: "2020-02-16"
+    citation:
+      source_document: "Commission Implementing Regulation (EU) 2020/17 of 10 January 2020 concerning the non-renewal of the approval of the active substance chlorpyrifos-methyl"
+      source_clause: "Member States required to withdraw authorisations for plant protection products containing chlorpyrifos-methyl by 16 February 2020; grace period for existing stocks to expire by 16 April 2020 at the latest."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/eli/reg_impl/2020/17/oj/eng"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.5
+        reasoning: "Formulated organophosphate insecticide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides, including chlorpyrifos, non-renewed the same day; see mappings v1."
+        confirmed: true
+    notes: "Companion event to eu-2020-chlorpyrifos; same dates, same HS6 code -- cannot be separated in trade data."
+
+  - event_id: "eu-2007-paraquat"
+    substance: "Paraquat"
+    jurisdiction: "EU"
+    restriction_type: "withdrawal"
+    scope: >
+      EU-wide inclusion of paraquat as an approved active substance was
+      judicially annulled; the European Commission's Standing Committee on
+      the Food Chain and Animal Health instructed Member States to remove
+      paraquat from the market and revoke authorisations, with a grace
+      period for existing stocks under Article 4(6) of Directive 91/414/EEC.
+    decision_date: "2007-07-11"
+    effective_date: "2007-07-13"
+    citation:
+      source_document: "Judgment of the Court of First Instance (Second Chamber, Extended Composition), Case T-229/04, Kingdom of Sweden v Commission of the European Communities, 11 July 2007, annulling Commission Directive 2003/112/EC of 1 December 2003"
+      source_clause: "Operative part: annuls Commission Directive 2003/112/EC of 1 December 2003 amending Council Directive 91/414/EEC to include paraquat as an active substance, on the grounds that the assessment procedure failed to satisfy the requirements for the protection of human and animal health."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex:62004TJ0229"
+    hs6_candidates:
+      - hs6: "380830"
+        confidence: 0.55
+        reasoning: "Formulated contact herbicide; only matching HS6 heading."
+        imprecision: "380830 aggregates all formulated herbicides globally, including atrazine, also tracked in this register under the same HS6 code."
+        confirmed: true
+    notes: >
+      NO single Commission-wide withdrawal deadline was set: per the
+      Commission's Standing Committee instruction (12-13 July 2007,
+      reported via PAN Europe's archived timeline,
+      https://www.pan-europe.info/old/Archive/Paraquat/timeline.html),
+      individual Member States set their own withdrawal deadlines, ranging
+      from immediate to December 2007 or mid-2008. This jurisdiction-level
+      heterogeneity in the effective date is itself recorded here rather
+      than papered over with a single assumed date; effective_date above
+      (13 July 2007) is the date of the Commission's instruction to
+      Member States to begin withdrawal, not a harmonised EU-wide deadline.
+      This is a genuinely unusual case (judicial annulment, not an
+      administrative non-renewal) and the least clean-cut event in this
+      register.
+
+  - event_id: "eu-2004-atrazine"
+    substance: "Atrazine"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: >
+      All uses; limited "essential uses" permitted until 30 June 2007
+      under strict conditions per the Annex to the decision.
+    decision_date: "2004-03-10"
+    effective_date: "2004-09-10"
+    citation:
+      source_document: "Commission Decision 2004/248/EC of 10 March 2004 concerning the non-inclusion of atrazine in Annex I to Council Directive 91/414/EEC and the withdrawal of authorisations for plant protection products containing this active substance"
+      source_clause: "Article 2(1): authorisations for plant protection products containing atrazine are withdrawn by 10 September 2004. Article 3: grace period for disposal/use of existing stocks expires not later than 10 September 2005 (30 June 2007 for the limited essential uses permitted under the Annex, with that grace period expiring not later than 31 December 2007)."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32004D0248"
+    hs6_candidates:
+      - hs6: "380830"
+        confidence: 0.55
+        reasoning: "Formulated triazine herbicide; only matching HS6 heading."
+        imprecision: "380830 aggregates all formulated herbicides globally, including paraquat, also tracked in this register under the same HS6 code."
+        confirmed: true
+    notes: >
+      Clean six-month decision-to-effective gap (10 Mar to 10 Sep 2004),
+      plus a much longer tail for essential uses running to end-2007 --
+      the essential-use carve-out is a second, softer effective date worth
+      testing separately if the headline result is sensitive to it.
+
+  - event_id: "eu-2005-endosulfan"
+    substance: "Endosulfan"
+    jurisdiction: "EU"
+    restriction_type: "non-renewal"
+    scope: >
+      All uses; limited essential uses permitted until 30 June 2007 under
+      strict conditions.
+    decision_date: "2005-12-02"
+    effective_date: "2006-06-02"
+    citation:
+      source_document: "Commission Decision of 2 December 2005 concerning the non-inclusion of endosulfan in Annex I to Council Directive 91/414/EEC and the withdrawal of authorisations for plant protection products containing this active substance"
+      source_clause: "Article 2(1): authorisations for plant protection products containing endosulfan are withdrawn by 2 June 2006 (Article 2(3): essential uses listed in the Annex may be maintained until 30 June 2007). Article 3: grace period for stocks expires not later than 2 June 2007 (31 December 2007 for the essential uses)."
+      retrieved_at: "2026-09-18"
+      url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32005D0864"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.5
+        reasoning: "Formulated organochlorine insecticide/acaricide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides globally; see mappings v1."
+        confirmed: true
+    notes: >
+      Six-month decision-to-effective gap, structurally identical to the
+      atrazine case a year earlier -- both use the same Directive
+      91/414/EEC non-inclusion mechanism with the same style of essential-
+      use carve-out. Endosulfan was later also added to the Rotterdam
+      Convention PIC list globally; see event rotterdam-2011-endosulfan for
+      the same substance under a different, non-EU instrument.
+
+  - event_id: "rotterdam-2011-endosulfan"
+    substance: "Endosulfan"
+    jurisdiction: "Global (Rotterdam Convention Parties)"
+    restriction_type: "severe_restriction"
+    scope: >
+      Listed in Annex III of the Rotterdam Convention, subjecting
+      international trade in endosulfan to the Prior Informed Consent
+      (PIC) procedure -- importing Parties must give explicit consent
+      before an exporting Party may ship it; this is an international
+      trade-control instrument, not a domestic use ban.
+    decision_date: "2011-06-24"
+    effective_date: "2011-10-24"
+    citation:
+      source_document: "Rotterdam Convention Conference of the Parties, 5th meeting (COP-5), Decision RC-5/3: listing of endosulfan in Annex III to the Rotterdam Convention"
+      source_clause: "COP-5 (20-24 June 2011) adopted RC-5/3, RC-5/4 and RC-5/5 adding alachlor, aldicarb and endosulfan respectively to Annex III; the resulting amendments to Annex III entered into force on 24 October 2011."
+      retrieved_at: "2026-09-18"
+      url: "https://www.pic.int/Portals/5/COPS/COP4/i9)/English/K0763331%20COP-4-9.pdf"
+    hs6_candidates:
+      - hs6: "380810"
+        confidence: 0.5
+        reasoning: "Formulated organochlorine insecticide/acaricide; only matching HS6 heading."
+        imprecision: "380810 aggregates all formulated insecticides globally; see mappings v1. Additionally, PIC listing constrains export procedure (consent requirement) rather than banning trade outright, so the expected trade-flow signature differs from an EU non-renewal and should not be assumed to produce the same sign/magnitude of effect."
+        confirmed: true
+    notes: >
+      Four-month decision-to-effective gap (24 Jun to 24 Oct 2011) is
+      structurally different from the EU cases: it is the treaty
+      amendment's own entry-into-force delay, not a national
+      implementation grace period. Because this is a PIC consent
+      requirement rather than a ban, "displacement" here would show up as
+      reduced ease of export to non-consenting destinations rather than a
+      destination shift toward non-restricting jurisdictions in the same
+      way an EU non-renewal would -- the competing-explanations step
+      (Step 4) should treat this event's expected signature as distinct
+      from the EU non-renewal events above.

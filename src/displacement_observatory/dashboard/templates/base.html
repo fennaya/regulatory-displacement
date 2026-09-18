@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Displacement Observatory{% endblock %}</title>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1115; --panel: #171a21; --panel2: #1e222b; --border: #2b303b;
+      --text: #e6e8ec; --muted: #9aa2b1; --accent: #5fb3ff; --good: #4caf7d;
+      --bad: #e0637b; --warn: #e0b355;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    header { background:var(--panel); border-bottom:1px solid var(--border); padding: 14px 24px; display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+    header .brand { font-weight:700; font-size:1.1rem; margin-right:12px; }
+    header a { color: var(--muted); text-decoration:none; padding:6px 10px; border-radius:6px; font-size:0.92rem; }
+    header a:hover, header a.active { color: var(--text); background: var(--panel2); }
+    main { max-width: 1080px; margin: 0 auto; padding: 24px; }
+    h1 { font-size:1.4rem; margin-bottom: 4px; }
+    h2 { font-size: 1.1rem; margin-top: 28px; }
+    .muted { color: var(--muted); }
+    .card { background: var(--panel); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:14px; }
+    .card a.title-link { color: var(--text); text-decoration:none; }
+    .card a.title-link:hover { color: var(--accent); }
+    .badge { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size:0.75rem; font-weight:600; margin-right:6px; }
+    .badge.good { background: rgba(76,175,125,0.18); color: var(--good); }
+    .badge.bad { background: rgba(224,99,123,0.18); color: var(--bad); }
+    .badge.warn { background: rgba(224,179,85,0.18); color: var(--warn); }
+    .badge.neutral { background: rgba(154,162,177,0.18); color: var(--muted); }
+    .caveat { font-size:0.85rem; color: var(--warn); margin-top:6px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; }
+    table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    th, td { text-align:left; padding: 8px 10px; border-bottom:1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+    th { color: var(--muted); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.02em; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 16px 0; }
+    .stat { background: var(--panel2); border-radius: 8px; padding: 12px 14px; }
+    .stat .n { font-size:1.4rem; font-weight:700; }
+    .stat .l { font-size:0.78rem; color: var(--muted); }
+    .callout { background: rgba(224,179,85,0.1); border:1px solid rgba(224,179,85,0.35); border-radius: 8px; padding: 12px 14px; margin: 14px 0; font-size: 0.92rem; }
+    .callout.bad { background: rgba(224,99,123,0.1); border-color: rgba(224,99,123,0.35); }
+    .callout.good { background: rgba(76,175,125,0.1); border-color: rgba(76,175,125,0.35); }
+    details { margin-top:8px; }
+    summary { cursor:pointer; color: var(--accent); font-size:0.88rem; }
+    a { color: var(--accent); }
+    code { background: var(--panel2); padding: 1px 5px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="brand">Displacement Observatory</span>
+    <a href="/findings" class="{% if active=='findings' %}active{% endif %}">Ranked Findings</a>
+    <a href="/watchlist" class="{% if active=='watchlist' %}active{% endif %}">Watchlist</a>
+    <a href="/scorecard" class="{% if active=='scorecard' %}active{% endif %}">Scorecard</a>
+    <a href="/register" class="{% if active=='register' %}active{% endif %}">Register</a>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

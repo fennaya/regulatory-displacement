@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Ranked Findings — Displacement Observatory{% endblock %}
+{% block content %}
+<h1>Ranked Findings</h1>
+<p class="muted">Displacement events by effect size (post-period coefficient, log points). Every caveat that affects
+whether a finding is headline-eligible is shown on its card, not buried in a detail page.</p>
+
+<div class="callout">
+  <strong>Read this before the list:</strong> none of these effects are statistically significant at 95% —
+  every confidence interval below includes zero. Point estimates are directionally consistent with displacement
+  in {{ bundle.rediscovery.directional_recall * 100 if bundle.rediscovery.directional_recall is not none else "n/a" }}%
+  of the independently-documented cases this pipeline was checked against (see <a href="/scorecard">Scorecard</a>),
+  but "right direction, not significant" is the honest summary of this version's statistical power, not
+  "displacement confirmed." See each event's competing explanations before treating any of these as a finding.
+</div>
+
+{% for c in cards %}
+<div class="card">
+  <a class="title-link" href="/events/{{ c.event.event_id }}"><strong>{{ c.event.substance }}</strong> — {{ c.event.jurisdiction }}, {{ c.event.restriction_type.value }} ({{ c.event.effective_date }})</a>
+  <div style="margin-top:6px;">
+    {% if c.result.status != "ok" %}
+      <span class="badge neutral">skipped</span> <span class="muted">{{ c.result.reason }}</span>
+    {% else %}
+      <span class="badge {% if c.coef is not none and c.coef > 0 %}good{% elif c.coef is not none %}bad{% else %}neutral{% endif %}">
+        k=+{{ c.k }}: {{ "%.3f"|format(c.coef) }} log pts
+      </span>
+      <span class="badge {% if c.significant %}good{% else %}neutral{% endif %}">
+        {{ "significant" if c.significant else "not significant (95% CI crosses 0)" }}
+      </span>
+      <span class="badge {% if c.result.study.pretrend_flagged %}bad{% else %}good{% endif %}">
+        pre-trend {{ "FLAGGED" if c.result.study.pretrend_flagged else "clean" }}
+      </span>
+      {% if c.result.same_hs6_contaminating_events %}
+        <span class="badge warn">shares HS6 with {{ c.result.same_hs6_contaminating_events|length }} other event(s)</span>
+      {% endif %}
+      <div class="mono muted" style="margin-top:6px;">95% CI [{{ "%.3f"|format(c.ci[0]) }}, {{ "%.3f"|format(c.ci[1]) }}] · HS6 {{ c.result.hs6 }} · {{ c.result.n_control_units }} control products</div>
+      {% if not c.eligible %}
+        <div class="caveat">Not headline-eligible: {{ c.eligible_reason }}</div>
+      {% endif %}
+      {% if c.competing %}
+        <div class="caveat">{{ c.competing.demand_growth_note }}</div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

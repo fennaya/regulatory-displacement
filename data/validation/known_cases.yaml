@@ -1,0 +1,79 @@
+# STEP 5 holdout set: displacement episodes already documented by
+# investigators, independent of this project's own register/statistics.
+# These are NOT derived from our DiD results -- they come from journalistic/
+# NGO investigations that used shipment notifications and customs records,
+# a completely different method from our trade-panel event study. The test
+# is whether our independent statistical pipeline points the same direction
+# they found by other means.
+#
+# Per STEP 5 of the project brief, the reference episodes named are: the
+# China plastic waste import ban leakages, EU banned-pesticide exports, and
+# used vehicle flows. This project's panel is scoped to HS chapters 28/29/38
+# (pesticides and hazardous chemicals) only, per its own deliberately narrow
+# STEP-1 scope decision -- so ONLY the "EU banned-pesticide exports" episode
+# type can be tested at all right now. China plastic waste (HS39) and used
+# vehicles (HS87) are structurally out of reach until the panel is broadened;
+# this is stated here plainly rather than silently skipped.
+
+cases:
+  - case_id: "banned-in-europe-2020-atrazine"
+    substance: "Atrazine"
+    documented_by: "Unearthed (Greenpeace UK) and Public Eye, 'Banned in Europe' investigation, 2020"
+    citation_url: "https://unearthed.greenpeace.org/2020/10/15/eu-banned-pesticide-exports-public-eye/"
+    documented_finding: >
+      Atrazine, non-renewed for EU use in 2004, was among the pesticides
+      identified in the 2020 investigation (based on export notification
+      documents obtained under freedom-of-information requests) as still
+      being exported from the EU in significant volumes after its EU ban,
+      overwhelmingly to non-EU destinations.
+    expected_direction: "positive"
+    matches_register_event_id: "eu-2004-atrazine"
+
+  - case_id: "banned-in-europe-2020-paraquat"
+    substance: "Paraquat"
+    documented_by: "Unearthed (Greenpeace UK) and Public Eye, 'Banned in Europe' investigation, 2020"
+    citation_url: "https://unearthed.greenpeace.org/2020/10/15/eu-banned-pesticide-exports-public-eye/"
+    documented_finding: >
+      Paraquat, withdrawn from EU approval following the 2007 Court
+      judgment, was identified as one of the most commonly exported
+      EU-banned pesticides in the 2020 investigation, manufactured in the
+      UK (Syngenta, Huddersfield) for export outside the EU.
+    expected_direction: "positive"
+    matches_register_event_id: "eu-2007-paraquat"
+
+  - case_id: "banned-in-europe-2020-chlorpyrifos"
+    substance: "Chlorpyrifos"
+    documented_by: "Unearthed (Greenpeace UK) and Public Eye, 'Banned in Europe' investigation, 2020"
+    citation_url: "https://unearthed.greenpeace.org/2020/10/15/eu-banned-pesticide-exports-public-eye/"
+    documented_finding: >
+      Export notification documents obtained by Unearthed and Public Eye
+      showed European companies notifying export of more than 380 tonnes
+      of chlorpyrifos following its EU non-renewal in 2020.
+    expected_direction: "positive"
+    matches_register_event_id: "eu-2020-chlorpyrifos"
+
+  - case_id: "china-plastic-waste-2017-OUT-OF-SCOPE"
+    substance: null
+    documented_by: "Multiple (e.g. Greenpeace, academic literature on China's 2017 'National Sword' policy)"
+    citation_url: null
+    documented_finding: >
+      China's 2017-2018 restriction on plastic waste imports is widely
+      documented to have diverted global plastic scrap flows to Southeast
+      Asian destinations (Malaysia, Vietnam, Thailand). NOT TESTABLE by this
+      project: plastic waste is HS chapter 39, outside this project's
+      chapters 28/29/38 chemical scope. Included here only to record the
+      gap explicitly rather than silently omit it.
+    expected_direction: null
+    matches_register_event_id: null
+
+  - case_id: "used-vehicles-OUT-OF-SCOPE"
+    substance: null
+    documented_by: "Multiple (e.g. UNEP Used Vehicles reports)"
+    citation_url: null
+    documented_finding: >
+      Used-vehicle export flows toward jurisdictions with weaker emissions/
+      safety standards are documented in UNEP and other reporting. NOT
+      TESTABLE by this project: used vehicles are HS chapter 87, outside
+      this project's chapters 28/29/38 chemical scope.
+    expected_direction: null
+    matches_register_event_id: null

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Scorecard — Displacement Observatory{% endblock %}
+{% block content %}
+<h1>Scorecard</h1>
+<p class="muted">This page is the credibility of the whole project: past forecasts versus what happened, and how well
+  the pipeline rediscovers displacement episodes already documented by others through independent methods.</p>
+
+<h2>Validation by rediscovery (STEP 5)</h2>
+<div class="callout {% if rediscovery.directional_recall == 1.0 %}good{% endif %}">
+  <div class="grid">
+    <div class="stat"><div class="n">{{ "%.0f%%"|format(rediscovery.directional_recall * 100) if rediscovery.directional_recall is not none else "n/a" }}</div><div class="l">directional recall</div></div>
+    <div class="stat"><div class="n">{{ "%.0f%%"|format(rediscovery.significant_recall * 100) if rediscovery.significant_recall is not none else "n/a" }}</div><div class="l">significant recall</div></div>
+  </div>
+  <p>The pipeline gets the <em>direction</em> right on every in-scope documented case, but none reach statistical
+    significance at 95%. Read that as: the design is not obviously broken, but this version does not have the
+    statistical power to call any individual case confirmed. Two of the brief's reference episode types (China
+    plastic waste leakage, used vehicle flows) are structurally out of scope for this project's chemicals-only panel
+    and were not tested — see the detail below rather than treating silence on them as a pass.</p>
+</div>
+<table>
+  <tr><th>Case</th><th>In scope</th><th>Result</th></tr>
+  {% for c in rediscovery.checks %}
+  <tr>
+    <td>{{ c.case_id }}</td>
+    <td>{{ "yes" if c.in_scope else "no" }}</td>
+    <td>{{ c.note }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2>Forecast track record (STEP 6)</h2>
+<div class="grid">
+  <div class="stat"><div class="n">{{ n_scored }}</div><div class="l">scored</div></div>
+  <div class="stat"><div class="n">{{ n_pending }}</div><div class="l">pending (date not yet reached, or panel doesn't cover it yet)</div></div>
+</div>
+{% if n_scored == 0 %}
+<div class="callout">No forecasts have reached their predicted effective date yet — this page will fill in as dates
+  pass. That every current forecast is still pending is itself the honest state of this project today, not a gap to
+  hide.</div>
+{% endif %}
+<table>
+  <tr><th>Forecast</th><th>Predicted date</th><th>Status</th><th>Detail</th></tr>
+  {% for f, s in rows %}
+  <tr>
+    <td>{{ f.substance }} &rarr; {{ f.predicted_destinations|join(", ") }}</td>
+    <td>{{ f.predicted_effective_date }}</td>
+    <td><span class="badge {% if s.status=='pending' %}warn{% else %}good{% endif %}">{{ s.status }}</span></td>
+    <td>
+      {{ s.detail }}
+      {% if s.destination_growth_pct %}
+        <div class="mono">{% for dest, g in s.destination_growth_pct.items() %}{{ dest }}: {{ "%.1f%%"|format(g) if g==g else "n/a" }}  {% endfor %}</div>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

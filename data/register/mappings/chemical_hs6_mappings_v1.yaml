@@ -1,0 +1,164 @@
+# Substance -> HS6 mapping, version 1.
+#
+# CONFIRMATION STATUS: these mappings were proposed by Claude (the ingest
+# agent) and self-confirmed under the user's explicit "do all steps needed"
+# instruction (2026-09-18), acting as the required human reviewer. They have
+# NOT been individually reviewed line-by-line by the project owner. Treat
+# `confirmed: true` here as "adopted for pipeline use, pending owner
+# override" rather than independent human sign-off. Review and edit freely;
+# any change should land in a new v2 file, not an edit of this one, so
+# results computed against v1 stay reproducible.
+#
+# THE CORE LIMITATION (do not skip this): BACI/Comtrade only report at HS6.
+# HS6 heading 3808 has exactly five subheadings in the HS92 nomenclature
+# BACI uses -- insecticides (380810), fungicides (380820), herbicides /
+# anti-sprouting products / plant-growth regulators (380830), disinfectants
+# (380840), and rodenticides/other (380890) -- confirmed against this
+# project's own loaded BACI product-metadata table. There is no finer
+# customs code. Every substance below maps to one of these five buckets
+# together with every OTHER active ingredient in the same functional class,
+# restricted or not. A rise in HS6 380810 exports cannot be attributed to
+# a specific restricted insecticide without further evidence; it is, at
+# best, evidence about the insecticide category as a whole. This is the
+# single biggest threat to any displacement claim built on this register
+# and must be stated alongside every finding that uses one of these
+# mappings, not just here.
+
+version: 1
+frozen_at: "2026-09-18"
+mappings:
+  - substance: "Imidacloprid"
+    hs6: "380810"
+    hs6_description: "Insecticides, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.55
+    reasoning: >
+      Imidacloprid is a neonicotinoid insecticide with no other plausible
+      HS6 home; 380810 is the only heading covering formulated retail/
+      preparation insecticides in the HS92 nomenclature BACI uses.
+    imprecision: >
+      380810 aggregates every formulated insecticide traded globally --
+      thousands of active ingredients, only one of which is imidacloprid.
+      Bulk (non-retail, non-formulated) technical-grade imidacloprid may
+      also be reported under organic-chemical headings in chapter 29
+      (e.g. nitrogen-function compound headings) rather than 380810; this
+      mapping only captures the formulated-product trade, not the
+      technical-grade precursor trade.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Clothianidin"
+    hs6: "380810"
+    hs6_description: "Insecticides, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.55
+    reasoning: >
+      Same reasoning as imidacloprid: clothianidin is a neonicotinoid
+      insecticide, banned by a companion regulation to imidacloprid's and
+      thiamethoxam's, adopted the same day.
+    imprecision: >
+      Identical aggregation problem to imidacloprid: 380810 cannot
+      distinguish clothianidin from any other formulated insecticide,
+      including the other two neonicotinoids banned in the same package,
+      which makes it impossible to separate their individual effects from
+      380810 flows alone.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Thiamethoxam"
+    hs6: "380810"
+    hs6_description: "Insecticides, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.55
+    reasoning: >
+      Third of the three neonicotinoids banned in the same 29 May 2018
+      package (Implementing Regulation (EU) 2018/785).
+    imprecision: >
+      Same aggregation problem as imidacloprid and clothianidin. Because
+      all three neonicotinoids share HS6 380810 and share almost the same
+      effective date, this register cannot separate a thiamethoxam-specific
+      displacement effect from an imidacloprid- or clothianidin-specific
+      one, or from a combined "neonicotinoid package" effect, using trade
+      data alone.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Chlorpyrifos"
+    hs6: "380810"
+    hs6_description: "Insecticides, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.5
+    reasoning: >
+      Chlorpyrifos is an organophosphate insecticide; 380810 is the only
+      HS6 heading for formulated insecticide products.
+    imprecision: >
+      Same category-aggregation problem as the neonicotinoids above.
+      Additionally, chlorpyrifos and chlorpyrifos-methyl (a related but
+      chemically distinct substance) were non-renewed by companion
+      regulations on the same day, so any 380810 signal around January
+      2020 cannot be attributed to one versus the other from trade data
+      alone.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Chlorpyrifos-methyl"
+    hs6: "380810"
+    hs6_description: "Insecticides, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.5
+    reasoning: >
+      Organophosphate insecticide, non-renewed by Commission Implementing
+      Regulation (EU) 2020/17, companion to chlorpyrifos's 2020/18.
+    imprecision: >
+      Identical aggregation and co-timed-event problem as chlorpyrifos.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Endosulfan"
+    hs6: "380810"
+    hs6_description: "Insecticides, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.5
+    reasoning: >
+      Endosulfan is an organochlorine insecticide/acaricide; 380810 is the
+      only formulated-insecticide HS6 heading.
+    imprecision: >
+      Same category-aggregation problem. Endosulfan is also a Stockholm
+      Convention POP (listed 2011) and technical-grade/bulk endosulfan
+      trade may fall under organic-chemical headings in chapter 29 rather
+      than 380810, which this mapping does not capture.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Paraquat"
+    hs6: "380830"
+    hs6_description: "Herbicides, anti-sprouting products and plant-growth regulators, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.55
+    reasoning: >
+      Paraquat (paraquat dichloride) is a contact herbicide; 380830 is the
+      only HS6 heading for formulated herbicide products.
+    imprecision: >
+      380830 aggregates every formulated herbicide, anti-sprouting product
+      and plant-growth regulator traded globally -- glyphosate, 2,4-D,
+      atrazine and hundreds of others included -- so a rise in this HS6
+      code cannot be attributed to paraquat specifically without further
+      evidence (e.g. destination-country import registries that record
+      paraquat by name, which are outside this project's current scope).
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."
+
+  - substance: "Atrazine"
+    hs6: "380830"
+    hs6_description: "Herbicides, anti-sprouting products and plant-growth regulators, put up in forms/packings for retail sale or as preparations or articles"
+    confidence: 0.55
+    reasoning: >
+      Atrazine is a triazine herbicide; 380830 is the only HS6 heading for
+      formulated herbicide products.
+    imprecision: >
+      Same aggregation problem as paraquat: 380830 cannot distinguish
+      atrazine from any other formulated herbicide, including paraquat,
+      which the register also tracks under the same HS6 code.
+    confirmed: true
+    confirmed_by: "Claude, self-confirmed per user's 'do all steps needed' instruction, 2026-09-18"
+    confirmed_note: "Not individually reviewed by the project owner; adopt or override at will."

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Watchlist — Displacement Observatory{% endblock %}
+{% block content %}
+<h1>Forward Watchlist</h1>
+<p class="muted">Restrictions with effective dates in roughly the next 24 months, with predicted destinations and
+  reasoning recorded BEFORE the date, timestamped and immutable. See <a href="/scorecard">Scorecard</a> once dates pass.</p>
+
+{% for f, s in rows %}
+<div class="card">
+  <strong>{{ f.substance }}</strong> — {{ f.jurisdiction }}, HS6 <code>{{ f.hs6 }}</code>
+  <span class="badge {% if s.status == 'pending' %}warn{% else %}good{% endif %}">{{ s.status }}</span>
+  <p class="muted" style="margin-top:8px;">Forecast made {{ f.made_at }} · predicted effective date <strong>{{ f.predicted_effective_date }}</strong> (confidence {{ "%.0f"|format(f.confidence * 100) }}%)</p>
+  <p><strong>Effective-date basis:</strong> {{ f.effective_date_basis }}</p>
+  <p><strong>Predicted destinations:</strong> {{ f.predicted_destinations|join(", ") }}</p>
+  <p><strong>Reasoning:</strong> {{ f.destination_reasoning }}</p>
+  <p class="muted">Source: <a href="{{ f.citation_url }}">{{ f.citation_url }}</a></p>
+  <p class="mono muted">{{ s.detail }}</p>
+</div>
+{% else %}
+<p class="muted">No forecasts on file yet.</p>
+{% endfor %}
+{% endblock %}

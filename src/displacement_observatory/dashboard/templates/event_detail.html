@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}{{ event.substance }} — Displacement Observatory{% endblock %}
+{% block content %}
+<p><a href="/findings">&larr; Ranked Findings</a></p>
+<h1>{{ event.substance }} — {{ event.jurisdiction }}</h1>
+<p class="muted">{{ event.restriction_type.value }} · decision {{ event.decision_date }} · effective {{ event.effective_date }}
+  ({{ event.decision_to_effective_days }} day gap) · HS6 <code>{{ result.hs6 }}</code></p>
+
+<h2>Scope &amp; evidence</h2>
+<div class="card">
+  <p>{{ event.scope }}</p>
+  <table>
+    <tr><th>Source document</th><td>{{ event.citation.source_document }}</td></tr>
+    <tr><th>Source clause</th><td>{{ event.citation.source_clause }}</td></tr>
+    <tr><th>Retrieved</th><td>{{ event.citation.retrieved_at }}</td></tr>
+    {% if event.citation.url %}<tr><th>URL</th><td><a href="{{ event.citation.url }}">{{ event.citation.url }}</a></td></tr>{% endif %}
+  </table>
+  {% if event.notes %}<p class="muted" style="margin-top:10px;">{{ event.notes }}</p>{% endif %}
+</div>
+
+{% if result.status != "ok" %}
+<div class="callout bad"><strong>No DiD result:</strong> {{ result.reason }}</div>
+{% else %}
+
+<h2>Event-time effect</h2>
+<div class="card">
+  {% if not eligible %}<div class="caveat">Not headline-eligible: {{ eligible_reason }}</div>{% endif %}
+  <div id="event-chart" style="height:360px;"></div>
+  <p class="muted">Coefficients are the treated-vs-control gap in log(1+export value to non-restricting destinations),
+    relative to k=-1 (the year before the effective date). Shaded band is the 95% CI (classical OLS SE, not clustered
+    — see limitations). Exporter set: {{ result.exporter_codes|length }} BACI country codes resolved as EU members as
+    of the decision date. Control pool: {{ result.n_control_units }} never-restricted HS6 products in chapters 28/29/38.</p>
+  {% if result.same_hs6_contaminating_events %}
+  <div class="caveat">HS6 {{ result.hs6 }} is shared with: {{ result.same_hs6_contaminating_events|join(", ") }}
+    (other register events within the window) — this event's effect cannot be attributed to {{ event.substance }} alone.</div>
+  {% endif %}
+</div>
+
+<h2>Competing explanations (STEP 4)</h2>
+{% if competing %}
+<div class="card">
+  <p><strong>Price vs. quantity:</strong> {{ competing.value_quantity_divergence_note }}</p>
+  <p><strong>Destination demand growth:</strong> {{ competing.demand_growth_note }}</p>
+  <p><strong>Currency:</strong> {{ competing.currency_note }}</p>
+  <p><strong>HS-code switching (adjacent codes in the same heading):</strong> {{ competing.hs_switching_note }}</p>
+</div>
+{% else %}
+<div class="callout">Competing explanations not computed for this event.</div>
+{% endif %}
+
+<h2>HS6 candidate mapping</h2>
+<div class="card">
+  {% for c in event.hs6_candidates %}
+  <p><code>{{ c.hs6 }}</code> (confidence {{ "%.2f"|format(c.confidence) }})<br>
+    <span class="muted">{{ c.reasoning }}</span><br>
+    <span class="caveat">Imprecision: {{ c.imprecision }}</span></p>
+  {% endfor %}
+</div>
+
+<script>
+  const chartData = {{ chart_data|tojson }};
+  if (chartData) {
+    const trace = {
+      x: chartData.x, y: chartData.y, mode: 'lines+markers', name: 'effect',
+      line: {color: '#5fb3ff'}, marker: {color: '#5fb3ff'}
+    };
+    const band = {
+      x: chartData.x.concat([...chartData.x].reverse()),
+      y: chartData.ci_high.concat([...chartData.ci_low].reverse()),
+      fill: 'toself', fillcolor: 'rgba(95,179,255,0.15)', line: {color: 'transparent'},
+      showlegend: false, type: 'scatter', hoverinfo: 'skip'
+    };
+    const zero = {x: [Math.min(...chartData.x), Math.max(...chartData.x)], y: [0,0], mode:'lines', line:{color:'#555', dash:'dot'}, showlegend:false};
+    const eventLine = {x: [-0.5,-0.5], y: [Math.min(...chartData.ci_low), Math.max(...chartData.ci_high)], mode:'lines', line:{color:'#e0b355', dash:'dash'}, showlegend:false, name:'effective date'};
+    Plotly.newPlot('event-chart', [band, trace, zero, eventLine], {
+      paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
+      font: {color: '#e6e8ec'},
+      xaxis: {title: 'years relative to effective date', gridcolor:'#2b303b', zeroline:false},
+      yaxis: {title: 'log points vs k=-1', gridcolor:'#2b303b', zeroline:false},
+      margin: {t:20, r:20, l:55, b:45},
+    }, {displayModeBar:false, responsive:true});
+  }
+</script>
+{% endif %}
+{% endblock %}
