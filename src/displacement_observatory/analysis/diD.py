@@ -68,13 +68,18 @@ def run_event_did(
     source: str = "BACI",
     source_version: str = "202601",
     max_post_year: int | None = None,
+    control_hs6_override: list[str] | None = None,
 ) -> EventDiDResult:
     """max_post_year: STAGE B.4 truncation. When given, additionally caps
     the post-period at this calendar year (e.g. the year before a
     same-HS6 contaminating event's own effective date), on top of the
     normal window_years/panel-coverage clipping. Used to answer "what can
     this package say before another event's window starts contaminating
-    it," at a stated power cost (fewer post-period years)."""
+    it," at a stated power cost (fewer post-period years).
+
+    control_hs6_override: STAGE D. When given, use this control pool
+    (e.g. from analysis.matching.select_matched_controls) instead of
+    every never-restricted HS6 code in scope."""
     if len(event.hs6_candidates) != 1:
         return EventDiDResult(
             event=event, hs6="", status="skipped",
@@ -95,14 +100,17 @@ def run_event_did(
     if not exporter_codes:
         return EventDiDResult(event=event, hs6=hs6, status="skipped", reason="no BACI country codes resolved for this jurisdiction")
 
-    restricted_hs6 = {c.hs6 for e in register.events for c in e.hs6_candidates}
-    control_hs6_rows = con.execute(
-        f"""
-        SELECT DISTINCT hs6 FROM trade_flows
-        WHERE substr(hs6,1,2) IN ({", ".join(f"'{c}'" for c in CHEMICAL_HS2_CHAPTERS)})
-        """
-    ).fetchall()
-    control_hs6 = sorted({r[0] for r in control_hs6_rows} - restricted_hs6)
+    if control_hs6_override is not None:
+        control_hs6 = control_hs6_override
+    else:
+        restricted_hs6 = {c.hs6 for e in register.events for c in e.hs6_candidates}
+        control_hs6_rows = con.execute(
+            f"""
+            SELECT DISTINCT hs6 FROM trade_flows
+            WHERE substr(hs6,1,2) IN ({", ".join(f"'{c}'" for c in CHEMICAL_HS2_CHAPTERS)})
+            """
+        ).fetchall()
+        control_hs6 = sorted({r[0] for r in control_hs6_rows} - restricted_hs6)
 
     effective_year = event.effective_date.year
     panel_min_year, panel_max_year = con.execute("SELECT min(year), max(year) FROM trade_flows").fetchone()

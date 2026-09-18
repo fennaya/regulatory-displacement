@@ -103,6 +103,23 @@ def test_run_event_did_max_post_year_truncates_window(con):
     assert min(result.study.relative_years) == -5  # pre-period untouched
 
 
+def test_run_event_did_control_hs6_override_restricts_pool(con):
+    years = list(range(2010, 2021))
+    control_hs6 = [f"38089{i}" for i in range(5)]
+    treated_hs6 = "380810"
+    _seed_trade_flows(con, years, control_hs6, treated_hs6, effective_year=2015, post_bump=0.5)
+
+    event = _make_event("test-event-override", treated_hs6, 2015)
+    register = RegisterLoadResult(events=[event], dropped=[])
+
+    result = run_event_did(
+        con, event, register, window_years=4, source="BACI", source_version="test",
+        control_hs6_override=control_hs6[:2],
+    )
+    assert result.status == "ok"
+    assert result.n_control_units == 2
+
+
 def test_run_event_did_skips_undefined_jurisdiction(con):
     event = _make_event("test-event-3", "380810", 2015, jurisdiction="Global (some treaty)")
     register = RegisterLoadResult(events=[event], dropped=[])

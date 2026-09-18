@@ -1,7 +1,7 @@
 # 0005 — Narrow the control pool by pre-period volume and trend matching, instead of using all 540+ chemical HS6 codes
 
 **Date:** 2026-09-18
-**Status:** proposed — reasoning established, NOT YET IMPLEMENTED as of this entry. `analysis/diD.py` and `analysis/ppml.py` currently use every never-restricted HS6 code in chapters 28/29/38 as the control pool, unmatched, for every treated package.
+**Status:** implemented (`analysis/matching.py`, thresholds pre-registered in `decisions/0007-*.md` before this run). Result: matching cut every package's control pool from 542 to 20-29 units (same HS2 chapter, ~55 candidates before volume/trend filtering), and standard errors dropped 40-61% across all 5 packages (e.g. neonicotinoids: SE 1.101 -> 0.428; endosulfan: 1.214 -> 0.646). This confirms the mechanism hypothesized below: control-pool heterogeneity was a real, measurable contributor to Stage 3/4's wide confidence intervals, not an inherent property of the data. No package reaches significance even with the tighter matched-pool CIs, but neonicotinoids [-0.521, +1.155] and chlorpyrifos [-1.008, +1.239] are now visibly closer to it than their unmatched counterparts.
 
 ## The decision
 
