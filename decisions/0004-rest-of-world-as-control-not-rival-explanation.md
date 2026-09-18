@@ -1,7 +1,7 @@
 # 0004 — Treat rest-of-world exporter growth as the counterfactual (triple-difference control), not a rival explanation to be reported alongside the estimate
 
 **Date:** 2026-09-18
-**Status:** proposed — reasoning established, NOT YET IMPLEMENTED as of this entry. `analysis/competing_explanations.py`'s `check_destination_demand_growth` currently reports rest-of-world growth as a caveat alongside the DiD estimate; it does not yet subtract it out as a triple-difference term. No code exists for the restructured design in the repo.
+**Status:** implemented (`analysis/triple_diff.py`). Design note: naively pooling EU and RoW rows as extra "control units" in the existing estimator does NOT recover a true triple difference (verified empirically and documented as a dedicated regression test, `test_naive_pooled_design_does_NOT_net_out_the_common_shock`) -- the correct reduction differences EU-minus-RoW value first, per product-year, then runs the same event-study estimator on that differenced series. Result on real data: **60-93% of every package's original double-difference point estimate is explained by rest-of-world growth of the same product into the same destinations.** Paraquat: +0.620 -> +0.078 (87% eaten). Chlorpyrifos: +0.051 -> +0.004 (93% eaten, effectively zero). This is the single largest result of the whole causal-specification repair: most of what looked like "displacement" under the original design was general market growth, not EU-restriction-specific behavior.
 
 ## The decision
 

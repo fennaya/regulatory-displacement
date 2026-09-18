@@ -85,6 +85,24 @@ def test_run_event_did_clips_window_to_panel_coverage(con):
     assert min(result.study.relative_years) == -5  # 2012 - 2017 is available
 
 
+def test_run_event_did_max_post_year_truncates_window(con):
+    years = list(range(2010, 2021))
+    control_hs6 = [f"38089{i}" for i in range(5)]
+    treated_hs6 = "380810"
+    _seed_trade_flows(con, years, control_hs6, treated_hs6, effective_year=2015, post_bump=0.5)
+
+    event = _make_event("test-event-trunc", treated_hs6, 2015)
+    register = RegisterLoadResult(events=[event], dropped=[])
+
+    # window_years=5 would give post-period through 2020; truncate at 2017
+    # (e.g. the year before a same-HS6 contaminating event takes effect).
+    result = run_event_did(con, event, register, window_years=5, source="BACI", source_version="test", max_post_year=2017)
+
+    assert result.status == "ok"
+    assert max(result.study.relative_years) == 2  # 2017 - 2015, not 5
+    assert min(result.study.relative_years) == -5  # pre-period untouched
+
+
 def test_run_event_did_skips_undefined_jurisdiction(con):
     event = _make_event("test-event-3", "380810", 2015, jurisdiction="Global (some treaty)")
     register = RegisterLoadResult(events=[event], dropped=[])

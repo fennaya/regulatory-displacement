@@ -1,7 +1,7 @@
 # 0003 — Use a staggered-adoption-robust estimator (Callaway-Sant'Anna / Sun-Abraham / did2s), not plain TWFE, for the repeated-treatment HS6 codes
 
 **Date:** 2026-09-18
-**Status:** proposed — reasoning established, NOT YET IMPLEMENTED as of this entry. No code exists for this in the repo. Do not cite a result for it until this status changes.
+**Status:** implemented (`analysis/staggered.py`, `pf.event_study(estimator="did2s")` on a cumulative-treatment HS6xyear panel, 1995-2024, time-varying EU membership). Result: did2s (staggered-robust) = +0.664 log points, 95% CI [+0.381, +0.948] -- does NOT cross zero, unlike every per-package Stage 3/B estimate. Naive pooled TWFE on the same panel = +0.681; the gap (0.017 log points) is the empirical answer to decision 0003's own "what would make it wrong" section below: staggered-adoption bias is small here specifically because each treated cohort is a single HS6 code against ~540 never-treated controls, exactly as predicted by the group-size argument, now verified rather than asserted.
 
 ## The decision
 

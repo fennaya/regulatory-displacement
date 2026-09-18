@@ -67,7 +67,14 @@ def run_event_did(
     window_years: int = 5,
     source: str = "BACI",
     source_version: str = "202601",
+    max_post_year: int | None = None,
 ) -> EventDiDResult:
+    """max_post_year: STAGE B.4 truncation. When given, additionally caps
+    the post-period at this calendar year (e.g. the year before a
+    same-HS6 contaminating event's own effective date), on top of the
+    normal window_years/panel-coverage clipping. Used to answer "what can
+    this package say before another event's window starts contaminating
+    it," at a stated power cost (fewer post-period years)."""
     if len(event.hs6_candidates) != 1:
         return EventDiDResult(
             event=event, hs6="", status="skipped",
@@ -101,6 +108,8 @@ def run_event_did(
     panel_min_year, panel_max_year = con.execute("SELECT min(year), max(year) FROM trade_flows").fetchone()
     y0 = max(effective_year - window_years, panel_min_year)
     y1 = min(effective_year + window_years, panel_max_year)
+    if max_post_year is not None:
+        y1 = min(y1, max_post_year)
     if y1 - effective_year < 1 or effective_year - y0 < 1:
         return EventDiDResult(
             event=event, hs6=hs6, status="skipped",
