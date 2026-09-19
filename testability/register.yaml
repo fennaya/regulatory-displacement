@@ -9,6 +9,11 @@
 # 29.06.2026). A second independent official document was searched for and
 # not retrievable in this session: see "unretrieved_leads" at the bottom.
 # Those are NOT candidates until a verbatim, dated quote is in hand.
+#
+# SOURCE STATUS (close-out step 5, 2026-09-19): the primary documents (the
+# Commission's own statement, the Danwatch original carrying it) were searched
+# for and NOT retrieved; see testability/sources/case-001-primary-source-attempts.txt.
+# Every quote here is a secondary transcription.
 
 audits:
   - claim_id: "001-C1-substitution"
@@ -41,9 +46,13 @@ audits:
     evidence_inventory: >
       EXISTS publicly: CEPII BACI / UN Comtrade bilateral trade at HS6, in this repo (BACI 202601,
       1995-2024). Heading 3808 has five HS92 subheadings, so a banned substance is never observed
-      separately. EXISTS but not public as a dataset: EU PIC export notifications, obtained by NGOs by
-      freedom-of-information request (Unearthed/Public Eye); notified (intended) tonnage of mixtures,
-      not recorded shipments. UNVERIFIED LEAD: Eurostat Comext 8-digit CN lines split heading 3808 by
+      separately. EXISTS publicly, EU side only, notified not shipped: Public Eye published the full dataset of its
+      2018 investigation (substance, exporting EU country, destination, notified quantity, year;
+      file EU-banned-pesticide-exports_dataset.xlsx; the page states the full dataset is published; column
+      names not verified here), and Unearthed publish 2024 country aggregates (not verified here beyond
+      the article). This corrects an earlier version of this entry that said notifications 'are not public
+      as a dataset' (decisions/0006-*.md, resolved 2026-09-19). Tonnes of mixtures, intended exports, no
+      importer-side origin mix. UNVERIFIED LEAD: Eurostat Comext 8-digit CN lines split heading 3808 by
       chemical family; not checked. MISSING: substance-level realised exports by destination; importing
       countries' purchases by supplier origin; hazard classification of substitute products. Feasibility
       premise CAN be checked from the panel: non-EU exporters ship 4.7x (2018) and 7.2x (2024) the EU's
@@ -74,10 +83,17 @@ audits:
       period: "2015 to present (covers Swiss 2021, French 2022, Belgian 2023-2025 measures)"
     verdict: "UNTESTABLE WITH PUBLIC DATA"
     verdict_reason: >
-      Testable in principle with substance-level data, not with public HS6 trade data, where even full
-      elimination of the banned-substance trade is about 5 to 13 times below the detection threshold. Nothing in
-      this repo supports or contradicts the claim's magnitude; the feasibility premise (non-EU supply
-      exists at scale) is supported.
+      (1) Testable in principle. (2) The test the wording implies is a supplier-substitution test: do
+      importing countries, after an export ban, buy the same or worse pesticides from non-banning suppliers?
+      That test needs importer-side purchases by substance and supplier origin, and we know of no attempt
+      to run it (our search was limited and is not proof that none exists). (3) The tests that have been
+      attempted, including this repository's, address a different claim: whether EU use restrictions
+      relocated trade in the restricted product to unrestricted destinations. That is neither the
+      Commission's claim nor a test of it. (4) With public HS6 data even full elimination of the
+      banned-substance trade is about 5 to 13 times below the detection threshold (a figure already
+      placebo-derived; unchanged by the Stage G recomputation, decisions/0010-*.md). Nothing in this repo
+      supports or contradicts the claim's magnitude; the feasibility premise (non-EU supply exists at scale)
+      is supported.
 
   - claim_id: "001-C2-no-guarantee"
     status: worked
@@ -125,5 +141,6 @@ candidates:
     kind_reason: "Screening only: an empirical premise about the condition of an industry. Not yet audited."
 
 unretrieved_leads:
-  - "European Parliament written question E-9-2023-001396 (export of pesticides banned in the EU) and the Commission's answer: page did not load in this session."
-  - "Commission Food and Feed Safety Simplification Package (late 2025), rationale for unlimited-period approvals: search summary only, no verbatim quote retrieved."
+  # Both are UNRETRIEVED. They are not candidates and are not to be audited until a verbatim, dated quote is stored.
+  - "UNRETRIEVED: European Parliament written question E-9-2023-001396 (export of pesticides banned in the EU) and the Commission's answer: page did not load in this session."
+  - "UNRETRIEVED: Commission Food and Feed Safety Simplification Package (late 2025), rationale for unlimited-period approvals: search summary only, no verbatim quote retrieved."

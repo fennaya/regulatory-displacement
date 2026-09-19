@@ -66,3 +66,11 @@ dilutes a signal that should concentrate in a few. Pre-specify, in
 writing, before running: a high-exposure group ... and a low-exposure
 group ... Commit the list to git BEFORE estimating so it cannot be tuned
 afterwards."
+
+## Amendment, 2026-09-19 (the entry above is left as written; this note corrects its wording)
+
+**Wording corrected:** the Status line says the result "contradicts the concentration hypothesis" and that two packages show "the OPPOSITE pattern, sharply for atrazine." The accurate statement is: **the hypothesis is not supported, and it is not refuted.** Chlorpyrifos and atrazine have the opposite *ordering of point estimates* (atrazine +0.114 high-exposure vs +0.764 low-exposure), but every group interval spans about ±2 to ±3 log points, so none of the between-group differences is distinguishable from zero.
+
+**Why it changed:** the hostile README review (trade-economist objection 3) pointed out that reading a sign into differences of noisy point estimates overstates what was found; confirmed against the group intervals.
+
+**Where:** `reviews/2026-09-19-readme-review.md` (trade-economist objection 3). The README and `PAPER.md` carry the corrected wording.

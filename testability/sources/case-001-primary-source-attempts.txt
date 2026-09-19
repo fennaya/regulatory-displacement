@@ -1,0 +1,40 @@
+RECORD OF PRIMARY-SOURCE RETRIEVAL ATTEMPTS FOR CASE 001 (2026-09-19)
+Not a source itself. What was tried, what was found, what was not.
+
+FOUND
+1. Danwatch (Danish), article dated 18/05/2026, authors Christina Nordvang Jensen and Sandra Blenner Rasmussen.
+   URL: https://danwatch.dk/danmark-fortsaetter-eksport-af-farlige-pesticider-man-favoriserer-industrien/
+   Retrieved 2026-09-19 through a page-fetch tool. This is the journalist to whom the Commission wrote. It does NOT
+   reproduce or link the Commission's full written statement. It quotes, in Danish:
+     "Derfor vil Kommissionen samarbejde bilateralt med importerende lande inden for rammerne af Rotterdam-, Stockholm- og andre relevante FN-konventioner samt arbejde for at styrke håndhævelsen af reglerne jf. Prior Informed Consent (PIC), REACH og Persistent Organic Pollutants (POPs)"
+   which corresponds to the "Therefore, the Commission will work bilaterally ..." paragraph of the English statement.
+   The fetch tool also reported that the article paraphrases the Commission's reasoning as a concern that unilateral bans could lead
+   third countries to buy "even more dangerous products" outside the EU. The exact Danish wording of that sentence was NOT captured;
+   treat the tool's rendering as unverified.
+   Consequence: the Danwatch article (18 May 2026) pre-dates the CEO transcription (29 June 2026), and the Danish passage above
+   is consistent with the English statement. It does not verify the sentences on substitution or on penalising the EU industry.
+   No date is attached to the Commission's response in the article.
+
+2. Corporate Europe Observatory, 29.06.2026: the transcription used for the quotes (see case-001-ec-statement-to-danwatch.txt).
+   PAN Europe release, 29 June 2026, corroborates and names Danwatch as the source.
+
+NOT FOUND / NOT ATTEMPTED SUCCESSFULLY
+3. The Commission's own statement, letter or reply to Danwatch: not located. The Commission's register of documents was not
+   searchable through the tools available in this session, and a web search returned no Commission-hosted copy. A written reply
+   to a journalist is unlikely to appear in the register of documents in any case.
+4. The Danwatch follow-up article that presumably carries the full statement (the statement opens "As already answered to you on
+   13 May"): not located. The search returned several Danwatch pages; only the 18/05/2026 article was fetched.
+
+SECONDARY SOURCES CHECKED FOR A "PRODUCTION RELOCATION" RESTATEMENT (Step 4b)
+5. OCCRP, 15 Oct 2025: no relocation wording; its one Commission-attributed sentence is a paraphrase about exploring options.
+6. Foodwatch "stop the toxic trade" page: none.
+7. Chemistry World article: the page did not load through the tool.
+8. Euronews, 30 Aug 2023 (https://www.euronews.com/2023/08/30/belgium-france-germany-pesticide-giants-are-exporting-banned-chemicals-through-european-lo):
+   industry argument quoted as SUBSTITUTION: "Pesticide producers argue that banning exports will have no impact on developing countries, as they will continue to ship the chemicals from elsewhere."
+   A Public Eye respondent is then quoted engaging RELOCATION: "It's a powerful argument that will convince a lot of politicians that chemicals require an international solution instead of having the EU move." and that relocating production outside the EU "may also prove too costly for some firms to be worthwhile."
+   This is 2023, concerns industry (not the Commission's 2026 statement), and shows the two claims being run together in debate.
+9. A search-tool summary attributed to the Commission the wording "simply shift production outside the EU while penalising European
+   companies". It could not be traced to any page, and that wording is NOT in the CEO transcription. UNVERIFIED; not to be quoted.
+
+VERDICT ON RETRIEVAL: primary unretrieved. No published secondary source restating the Commission's 2026 statement as production
+relocation was found and verified.

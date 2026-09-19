@@ -74,6 +74,29 @@ def test_case_001_verdict_and_disclosure_request_present():
     assert a["001-C2-no-guarantee"].verdict == Verdict.NOT_AN_EMPIRICAL_CLAIM
 
 
+def test_case_001_verdict_is_sharpened_and_source_status_is_prominent():
+    reg = _register()
+    c1 = next(e for e in reg["audits"] if e["claim_id"] == "001-C1-substitution")
+    reason = " ".join(c1["verdict_reason"].split())
+    assert "testable in principle" in reason.lower()
+    assert "we know of no attempt" in reason
+    assert "address a different claim" in reason
+    assert "reversed" not in reason
+    case = (T / "cases" / "case-001.md").read_text(encoding="utf-8")
+    head = case.split("## 1.")[0]
+    assert "SECONDARY TRANSCRIPTION" in head and "UNRETRIEVED" in head
+    assert "address a different claim" in head
+    # the stale premise that the notification data are not public must not survive
+    assert "not public as a dataset" not in " ".join(c1["evidence_inventory"].split()).replace("'are not public as a dataset'", "")
+
+
+def test_unretrieved_leads_are_labelled_and_not_candidates():
+    reg = _register()
+    assert reg["unretrieved_leads"] and all(x.startswith("UNRETRIEVED") for x in reg["unretrieved_leads"])
+    assert not any("E-9-2023" in e["claim_id"] for e in reg["candidates"])
+    assert (T / "sources" / "case-001-primary-source-attempts.txt").exists()
+
+
 def test_arithmetic_json_matches_the_functions():
     j = json.loads((T / "cases" / "case-001-arithmetic.json").read_text())
     y = j["years"]["2018"]

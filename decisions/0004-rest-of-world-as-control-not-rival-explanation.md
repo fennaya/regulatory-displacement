@@ -60,3 +60,11 @@ is not clean.
 The user's Stage C instruction, verbatim: "Rest-of-world exporters grew
 26-50% into the same destinations over the same windows. The current
 design treats that as a rival explanation. It is the counterfactual."
+
+## Amendment, 2026-09-19 (the entry above is left as written; this note corrects its wording)
+
+**Wording corrected:** the Status line says 60-93% of every package's original double-difference point estimate "is explained by rest-of-world growth", and that "most of what looked like 'displacement' ... was general market growth." That is causal language about point estimates that were themselves not significant (95% intervals of roughly ±2 log points). The accurate statement is: **every package's double-difference point estimate shrinks by 60-93% when rest-of-world exporters are used as the counterfactual**, which says the apparent signal is mostly common to all exporters; it does not show that a precisely measured effect was explained away.
+
+**Why it changed:** a hostile review of the README (trade-economist and journalist referees) flagged the overstatement; it was checked and confirmed. A later attack on the basket-level estimate found the same pattern, with rest-of-world exports rising more than the EU's (`decisions/0009-*.md`).
+
+**Where:** `reviews/2026-09-19-readme-review.md` (journalist objection 1). The README and `PAPER.md` carry the corrected wording.

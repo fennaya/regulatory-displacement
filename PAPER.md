@@ -1,68 +1,110 @@
-# Can public trade data detect regulatory displacement? A null result and an instrument
+# Can public trade data detect regulatory displacement? A null result, its detection threshold, and an audit instrument
 
-*Argument skeleton. Every figure has a pointer to the repo file that produced it. Sections marked TO WRITE are prose still to be drafted; nothing in this file is a claim the repo does not support. References are cited author-year and are not yet checked against the originals.*
+*Full draft, 2026-09-19. Every figure has a pointer to the repository file that produced it, and every statistic was computed by tested code, not by a language model. Literature is cited author-year from memory and has NOT been checked against the originals (section 9 lists what must be verified). The paper states its limitations before its results; sections 2 and 3 come first on purpose.*
 
-## Abstract (draft)
+## Abstract
 
-When the EU bans or restricts a pesticide for use inside the EU, does trade in that product relocate to destinations without the restriction? We build a register of nine cited EU and international restrictions (six independent treatment packages, five testable), a 30-year bilateral trade panel (CEPII BACI, HS chapters 28/29/38, 15.4 million rows), and a pre-specified difference-in-differences test. Every pre-specified test is null. We then show why: at HS6 resolution the restricted substance is one product among many in its basket, and under stated assumptions the substance would have to be roughly 27-45% of its basket, and 100% displaced, before a package-level test reaches 80% power. Public trade data at this resolution therefore cannot confirm or refute substance-level displacement, and claims that a regulatory ban "would only move production elsewhere" are, at this granularity, not falsifiable either way. We report the arithmetic, the disclosure that would make the question testable, and a reusable audit protocol for whether an institution's empirical justification can be tested at all.
+When the EU bans or restricts a pesticide for use inside the EU, does trade in that product relocate to destinations without the restriction? We build a register of nine cited restrictions (six independent treatment packages, five testable), a 30-year bilateral trade panel (CEPII BACI, HS chapters 28/29/38, 15.4 million rows), and a pre-specified difference-in-differences test. Every pre-specified test is null, and we do not read those nulls as evidence of no displacement. The reason is arithmetic. At HS6 resolution the restricted substance is one product among many in its basket; recomputed with placebo-derived standard errors, the minimum detectable effect at 80% power is 0.72 to 1.93 log points, so the substance would have to be roughly 51-86% of its basket, and fully displaced, before a package-level test could see it. Under our stated (mostly unverified) share assumptions none of the five packages is detectable. Public HS6 trade data therefore cannot confirm or refute substance-level displacement. Our contribution is a reproducible instrument, a catalogue of the design traps we fell into, and this detection-threshold arithmetic. We also apply the instrument to one institutional claim and report that the claim is testable in principle but that the test its wording implies has not, to our knowledge, been run, and that ours addresses a different claim.
 
-## 1. Question and claim under test (TO WRITE)
+## 1. Question and claim under test
 
-The claim: when jurisdiction A restricts a product, flows of that product into jurisdictions without the restriction rise after the effective date, relative to never-restricted control products (`README.md`, `falsification.md#displacement-hypothesis`). Status in the repo: **untested**, not weakly supported.
+The claim: when jurisdiction A restricts a product, flows of that product into jurisdictions without the restriction rise after the effective date, relative to never-restricted control products (`README.md`, `falsification.md#displacement-hypothesis`). Status: **untested**, not weakly supported. The scope is pesticides and hazardous chemicals only.
 
 ## 2. Limitations (stated before results)
 
-1. **Resolution.** BACI reports HS6 totals; heading 3808 has five subheadings in the HS92 nomenclature used. The restricted substance's share of its own basket is not observed (`decisions/0009-*.md` section 3; `falsification.md#hs6-too-coarse`).
-2. **Contamination.** At the pre-set ±5-year window no package is CLEAN; four of five are contaminated at every window from ±2 to ±5, endosulfan is clean at ±4 or narrower (`analysis/overlap.py`; `reviews/2026-09-19-readme-review.md`).
-3. **Inference.** With one treated HS6 code per package, no analytic standard error is reliable. Randomization inference over never-restricted codes gives a placebo SD of about 1.4 log points against a reported did2s SE of 0.145 (`data/attack/basket_attack_results.json`). All standard errors elsewhere in this paper should be read as too small; every MDE below is therefore optimistic.
-4. **Basket-share assumptions** used in the power arithmetic are mostly unverified; only imidacloprid's is anchored to a (vendor-inconsistent) market figure (`analysis/power.py`).
-5. **BACI records only positive flows**, so 59-61% of importer-product-year cells are zero-or-unreported and the data cannot say which.
-6. **Register.** HS6 mappings are self-confirmed, not human-reviewed; two of nine events (2018 clothianidin, thiamethoxam) were sourced from secondary reporting; atrazine and endosulfan are Directive 91/414/EEC non-inclusion decisions labelled non-renewal (`data/register/`).
-7. **Validation coverage.** Only the "EU banned-pesticide exports" episode type can be tested with a chemicals panel; plastic-waste and used-vehicle episodes cannot.
-8. **Analysis history.** The original specification came from the brief; the repairs that followed (PPML, staggered estimator, triple difference, matched controls, clustering) were chosen after the first estimates were uninformative and were **not pre-registered**. Only the matching thresholds and the destination groups were committed before estimation (`decisions/0007-*.md`, `0008-*.md`). 48 specifications were estimated across the work (`data/attack/spec_ledger.json`), 7 with a CI excluding zero, in both signs; 2.4 would be expected by chance if all were independent nulls.
+1. **Resolution.** BACI reports HS6 totals; heading 3808 has five subheadings in the HS92 nomenclature used. The restricted substance's share of its own basket is not observed (`decisions/0009-*.md`; `falsification.md#hs6-too-coarse`).
+2. **Contamination, reported as a band, not a count.** Whether a package is free of another same-code restriction inside its estimation window depends on the window. At the pre-set ±5-year window 0 of 5 packages are clean; at ±4, ±3 and ±2, 1 of 5 (EU endosulfan) is clean. The other four are contaminated at every window from ±2 to ±5. We did not choose a window: choosing after seeing which count is more favourable would be selecting on the outcome, and the difference is one package and one partial year (`METHODS.md`, "Why no single window was chosen"; `analysis/overlap.py`; `reviews/2026-09-19-readme-review.md`).
+3. **Inference.** With one treated HS6 code per package no analytic standard error is reliable. Randomization inference over never-restricted codes gives a placebo SD of about 1.4 log points against a reported did2s SE of 0.145 (`data/attack/basket_attack_results.json`). Other standard errors here should be read as too small, which is why the detection thresholds in section 5 were recomputed.
+4. **Basket-share assumptions** in the power arithmetic are mostly unverified; only imidacloprid's is anchored to a (vendor-inconsistent) market figure (`analysis/power.py`). Every "not detectable" verdict below is conditional on them.
+5. **Zero cells.** BACI records only positive flows, so 59-61% of importer-product-year cells are zero-or-unreported and the data cannot say which.
+6. **Register mappings are not independently reviewed.** The substance-to-HS6 mappings were proposed and self-confirmed by the model that built the pipeline; a review file for the project owner exists and is unanswered (`review/hs6-mapping-review.md`, `tests/test_mapping_provenance.py`, which is an expected failure until a human decides). Two of nine events (2018 clothianidin, thiamethoxam) were sourced from secondary reporting; atrazine and endosulfan are Directive 91/414/EEC non-inclusion decisions labelled non-renewal.
+7. **Validation coverage.** Only the "EU banned-pesticide exports" episode type can be tested with a chemicals panel.
+8. **Analysis history.** The original specification came from the brief; the repairs that followed (PPML, staggered estimator, triple difference, matched controls, clustering) were chosen after the first estimates were uninformative and were **not pre-registered**. Only the matching thresholds and the destination groups were committed before estimation (`decisions/0007-*.md`, `0008-*.md`). 48 specifications were estimated, 7 with a CI excluding zero, in both signs; 2.4 would be expected by chance if all were independent nulls (`data/attack/spec_ledger.json`).
+9. **The test we ran is not the test the Commission's wording implies.** The European Commission's official rationale for not proposing an export ban says a unilateral ban "may push these countries to buy the same or worse chemical pesticides from companies outside of the EU." That is a claim about **supplier substitution by importing countries**. Testing it needs importer-side purchases by substance and supplier origin, before and after an export ban. This study never ran that test. It examined whether EU *use* restrictions were followed by trade relocating to unrestricted destinations, in a setting where no EU-wide export ban was in force. Its null therefore says nothing for or against the Commission's claim, and must not be cited as if it did. The quote is a secondary transcription; see section 6.1 for the source status.
+10. **Notified quantity is not customs quantity.** Published notification tonnage (81,600 t in 2018, 122,000 t in 2024) is intended exports of mixtures, not shipments and not tonnes of active substance. It is used only as an order-of-magnitude anchor.
+11. **Prior literature is cited from memory and unchecked** (section 8).
 
-## 3. Data and register (TO WRITE)
+## 3. Data and register
 
 - Panel: CEPII BACI HS92 v202601, 1995-2024, HS 28/29/38: 15,448,188 rows, 234 countries, 544 HS6 codes, 3.0% missing quantity (`scripts/build_panel.py`).
-- Register: nine cited events, eight substances, collapsed to six treatment packages by (jurisdiction, HS6, decision date, effective date); five testable. Unit-of-treatment argument: `decisions/0001-*.md`.
+- Register: nine cited events, eight substances, collapsed to six treatment packages by (jurisdiction, HS6, decision date, effective date); five testable, one (the Rotterdam endosulfan listing) untestable. Unit-of-treatment argument: `decisions/0001-*.md`. Event counts are treatment packages, never substances.
 
 ## 4. Pre-specified design and results
 
-**4.1 Original specification** (two-way fixed effects event study, ~542 controls): all five package estimates positive, every 95% CI roughly ±2 log points, none significant (`analysis/comparison.py`, dashboard `/specifications`).
+**4.1 Original specification** (two-way fixed effects event study, ~542 controls): all five package estimates positive, every 95% CI roughly ±2 log points, none significant (`analysis/comparison.py`).
 
-**4.2 Pre-registered choices, both null.** Matched control pools cut SEs 42-61%, no package significant (`decisions/0007-*.md`, `0005-*.md`). Destination groups fixed before estimation (high-exposure vs low-exposure): no between-group difference distinguishable from zero (`data/destination_groups_v1.yaml`, `decisions/0008-*.md`).
+**4.2 Pre-registered choices, both null.** Matched control pools cut SEs 42-61%; no package significant (`decisions/0007-*.md`, `0005-*.md`). Destination groups fixed before estimation: the high-exposure versus low-exposure difference is neither supported nor refuted; group CIs are about ±2-3 log points (`data/destination_groups_v1.yaml`; `decisions/0008-*.md`, with its 2026-09-19 amendment).
 
-**4.3 Repairs, labelled post hoc.** PPML keeping zero cells: none significant (`analysis/ppml.py`). Triple difference against rest-of-world exporters of the same product: point estimates shrink 60-93% (`analysis/triple_diff.py`). Truncated windows: unstable (atrazine +0.407 to -0.017, both spanning zero).
+**4.3 Repairs, labelled post hoc.** PPML keeping zero cells: none significant (`analysis/ppml.py`). Triple difference against rest-of-world exporters of the same product: point estimates shrink 60-93%, and the originals were not significant to begin with (`analysis/triple_diff.py`; `decisions/0004-*.md` amendment). Truncated windows: unstable (atrazine +0.407 to -0.017, both spanning zero).
 
-**4.4 One exploratory result that did not survive.** A pooled, staggered-robust basket estimate (+0.664 log points, CI [0.381, 0.948]) was found after the package-level tests were null. It is reported here only as a failed check, not as a finding: rest-of-world exports of the same codes rose more (+0.789), the EU-specific triple difference is -0.124, the placebo p-values are 0.28-0.81, and there is no discontinuity at the effective dates (`decisions/0009-*.md`).
+**4.4 One check that failed.** After the package-level tests were null, a pooled staggered-robust basket estimate was tried and initially looked positive. It failed as an EU-restriction effect: rest-of-world exports of the same codes rose more, the EU-specific triple difference is negative, placebo p-values are 0.28-0.81, and there is no discontinuity at the effective dates (`decisions/0009-*.md`). It is reported here as a failed check only, and it is not part of the paper's findings.
 
 **4.5 Rediscovery.** Three documented cases (Unearthed/Public Eye 2020): directional recall 100%, significant recall 0%. Uninformative on direction, since every original estimate was positive.
 
-## 5. The arithmetic (the sentence that matters)
+**How to read these nulls.** They are null under a design that, by section 5, could not have seen an effect of plausible size. They are not evidence of absence.
 
-*What a package-level test at 80% power can and cannot see.* The minimum detectable effect at 80% power and 5% significance is 0.31 to 0.60 log points across the five packages (`analysis/power.py`, computed from Stage E's clustered SEs, which understate the true SE, so the true MDE is larger). Under stated share assumptions, full displacement of a restricted substance that is 10-30% of its basket would move the basket by 0.11-0.36 log points at most; for four of five packages the maximum plausible implied effect lies below the MDE, and the fifth (neonicotinoids) is borderline. **Put in words: the restricted substance would have to make up roughly 27-45% of its HS6 basket, and all of it would have to be displaced, before this instrument could reliably see it; at the shares we can plausibly assume, it cannot. Therefore any claim that EU restrictions did, or did not, cause trade displacement at the level of a single restricted substance is currently unfalsifiable with public HS6 trade data.**
+## 5. The arithmetic: detection thresholds
 
-Package-level shares needed for 80% power under full displacement: endosulfan 45%, paraquat 43%, atrazine 35%, chlorpyrifos 31%, neonicotinoids 27% (computed from the MDEs above; `analysis/power.py`).
+The minimum detectable effect (MDE) at 80% power and 5% significance is (1.96 + 0.84) times the standard error. Stage G first used the cluster-robust SEs of Stage E. Those are too narrow: exporter-product clusters within one treated code share its common shock. We recomputed from placebo-derived SEs: each of the 20-29 members of a package's pre-registered matched pool in turn plays the restricted code, and the SD of those placebo estimates is the SE (`analysis/power_placebo.py`, `scripts/stage_g_placebo.py`, `data/attack/stage_g_placebo.json`, `decisions/0010-*.md`; the same code path reproduces Stage E's coefficient to 1e-6).
 
-## 6. What can and cannot be claimed (TO WRITE)
+| Package | Stage E SE | Placebo SE | MDE (Stage E → placebo) | Share of basket needed, fully displaced (Stage E → placebo) |
+|---|---|---|---|---|
+| Endosulfan | 0.213 | 0.539 | 0.60 → 1.51 | 45% → 78% |
+| Neonicotinoids | 0.112 | 0.255 | 0.31 → 0.72 | 27% → 51% |
+| Chlorpyrifos | 0.130 | 0.475 | 0.36 → 1.33 | 30% → 74% |
+| Atrazine | 0.155 | 0.479 | 0.43 → 1.34 | 35% → 74% |
+| Paraquat | 0.202 | 0.690 | 0.57 → 1.93 | 43% → 86% |
 
-- **Cannot be supported or refuted with public HS6 data:** "a ban would only shift production abroad"; "restrictions did not change trade in the restricted substance."
-- **Can be said:** at the HS6 basket level, nothing distinguishes EU exports from rest-of-world exports after restrictions; an apparent effect in a pooled basket regression is a product-type trend shared by all exporters.
-- **What would make the question testable:** substance-level export data: export notifications under the EU PIC Regulation, or 8-digit customs lines. The Eurostat Comext CN8 split of heading 3808 by chemical family is an **unverified lead**, not checked here.
+The placebo SE is wider than Stage E's for every package (2.3 to 3.7 times), which is the direction we predicted before computing: too-narrow SEs mean wider true intervals, a larger true MDE, and therefore more undetectable packages, not fewer. Under our share assumptions (10-30% for neonicotinoids, 3-20% for the rest), full displacement would move a basket by at most 0.16-0.36 log points. **Before the correction 4 of 5 packages were undetectable (neonicotinoids borderline); after it, 5 of 5 are; at least 4 of 5 under either SE.**
 
-## 7. A method that travels (TO WRITE, links to Part 4)
+**Our detection thresholds are conservative in the wrong direction; correcting the standard errors raises them further and strengthens the conclusion.** (To be exact: "conservative" here means the first thresholds were too generous to the instrument, not too cautious.)
 
-The transferable contribution is the testability audit protocol (`testability/METHOD.md`): extract the empirical claim, specify the test, inventory the evidence, run the power arithmetic, state the disclosure gap, return one of four verdicts including "probably correct." Case 001 applies it to the European Commission's June 2026 rationale for not proposing an export ban.
+*What is established and what is not.* Established by recomputation: the direction and size of the SE correction, and the MDEs. Not established: the basket-share assumptions, which stay flagged as unverified. The placebo SE is a proxy: it assumes the treated code's noise resembles the pool's, and if the treated code is smoother it overstates its own noise, so the truth lies between the two SEs (both are reported). It rests on 20-29 placebos, about 13-16% sampling error, well inside the 2.3-3.7 times gap. The share the substance would need (51-86% of an HS6 basket) is a threshold that holds whatever the assumed shares are, and we judge, without verification, that no single active ingredient plausibly holds that share.
 
-## 8. Discussion and next steps (TO WRITE)
+**Put in words: the restricted substance would have to make up more than half of its HS6 basket, and all of it would have to be displaced, before this instrument could reliably see it. Therefore any claim that EU restrictions did, or did not, cause trade displacement at the level of a single restricted substance is currently unfalsifiable with public HS6 trade data.**
 
-Notes for the draft: the paper's honesty about its own path (section 2.8) is part of the argument, not an aside; a null with a stated detection threshold is a stronger claim than "no significant effect."
+## 6. Applying the instrument: Case 001
+
+### 6.1 The claim, verbatim
+
+The Commission's written statement to Danwatch (as transcribed by Corporate Europe Observatory, 29.06.2026): a unilateral production and export ban in the EU "would not guarantee an improvement in health and environmental protection in affected countries, as it may push these countries to buy the same or worse chemical pesticides from companies outside of the EU" (`testability/cases/case-001.md`, `testability/register.yaml`).
+
+**Source status: secondary transcription; the primary is unretrieved.** We searched for the Commission's own statement and for the Danwatch follow-up carrying it and did not find either. The Danwatch article of 18 May 2026 was found and does not reproduce the statement (`testability/sources/case-001-primary-source-attempts.txt`). The statement's date is unknown (between 13 May and 29 June 2026), and its context and any omissions are unverified.
+
+### 6.2 The official wording and the circulating paraphrase
+
+The official wording is **supplier substitution**: importing countries buy the same or worse products from non-EU companies. A different claim circulates in some secondary discussion: that a ban would simply **move production out of the EU**, that is, production relocation. That is not the Commission's wording. The distinction matters because the two are tested with different data (importer purchases by supplier origin, versus the location of production and investment), and neither implies the other. The closest verified secondary source we found is Euronews, 30 August 2023, which quotes an industry argument in the substitution form ("they will continue to ship the chemicals from elsewhere"). **We did not find a verified secondary source that restates the Commission's 2026 statement as production relocation**; one search-summary phrase to that effect could not be traced to a source and is deliberately not quoted. So this paper cannot cite a restatement; it can only say that the relocation reading is not in the official text.
+
+### 6.3 Verdict
+
+**Testable in principle. The test the wording implies (supplier substitution) has not been attempted by anyone we could find, and our search was limited. The tests that have been attempted, including this paper's, address a different claim.** With public HS6 data the effect that would matter (full elimination of notified banned-pesticide trade, about 11-18% of customs tonnes of heading 3808, 0.12-0.20 log points) is roughly 5 to 13 times below the detection threshold. That range comes from basket-level randomization SEs (0.33-0.54) and was already placebo-derived; the Stage G recomputation does not change it. The feasibility premise is supported: non-EU exporters ship 4.7 times (2018) and 7.2 times (2024) the EU's customs tonnage of heading 3808 into non-EU destinations. That supports the *possibility* of substitution, not its size or hazard.
+
+The public evidence is better than we first wrote. Public Eye published the full dataset of its 2018 investigation (substance, exporting EU country, destination, notified quantity, year), and Unearthed publish 2024 country aggregates (`decisions/0006-*.md`, resolved 2026-09-19, considered and not adopted). It is EU-side only, notified not shipped, and has no importer-side supplier mix, so it cannot test substitution. A concrete disclosure request is in `testability/cases/case-001.md`.
+
+Nothing here shows the Commission is right or wrong.
+
+## 7. What can and cannot be claimed
+
+- **Cannot be supported or refuted with public HS6 data:** "a ban would only shift trade or production abroad"; "restrictions did not change trade in the restricted substance."
+- **Can be said:** at the HS6 basket level nothing distinguishes EU exports from rest-of-world exports after the restrictions; an apparent effect in a pooled basket regression was a product-type trend shared by all exporters.
+- **What would make the question testable:** substance-level data: export notifications under the EU PIC Regulation with shipped quantities, importer-side purchases by supplier origin, or 8-digit customs lines. The Eurostat Comext CN8 split of heading 3808 is an **unverified lead**, not checked.
+
+## 8. Contribution, and what is not new
+
+**What we contribute.** (1) A reproducible instrument: a register, a panel, and a set of estimators, all in tested code, with decisions and falsification criteria committed in the repository. (2) A catalogue of design traps we fell into and documented: unit of treatment (events versus packages), contamination that depends on the window, standard errors that are too narrow with one treated code, an apparent basket effect that was rest-of-world growth, and mappings self-confirmed by the builder. (3) The arithmetic that HS6 aggregation cannot see substance-level displacement at realistic effect sizes. (4) A testability audit protocol (`testability/METHOD.md`) and one worked case.
+
+**What is not new.** The pollution-haven hypothesis and the related trade-diversion literature are established and largely case-based or country-level: Copeland and Taylor (1994) on trade and pollution, Ederington, Levinson and Minier (2005) and Levinson and Taylor (2008) on environmental regulation and trade, and Bown and Crowley on trade deflection. The staggered-adoption and count-data methods we use are those of Callaway and Sant'Anna (2021), Borusyak, Jaravel and Spiess (2024), Gardner (2022) (the did2s family) and Santos Silva and Tenreyro (2006) (PPML). Investigative work by Public Eye, Unearthed and Danwatch on EU exports of banned pesticides is the empirical foundation for the question. We claim none of that. All these citations are from memory, are **unverified**, and were not run through `/priorwork` for this paper; we make no novelty claim beyond the three items above, and even those await a proper literature check.
+
+## 9. To verify before this leaves the repository
+
+The author-year citations in section 8 (titles, years, that each says what we attribute to it); the primary text of the Commission's statement; the Public Eye dataset's columns and the Unearthed 2024 aggregates; the basket-share assumptions; and the substance-to-HS6 mappings (`review/hs6-mapping-review.md`).
 
 ## Provenance of numbers
 
 | Figure | Source |
 |---|---|
 | 15,448,188 rows; 234 countries; 544 HS6 | `scripts/build_panel.py` output; README |
-| Five packages, MDEs, shares | `analysis/power.py`, `analysis/comparison.py` |
+| Five packages, placebo SEs, MDEs, shares | `data/attack/stage_g_placebo.json`, `analysis/power_placebo.py`, `decisions/0010-*.md` |
 | Basket attack, placebo, ledger | `data/attack/*.json` |
 | Overlap at ±2 to ±5 | `analysis/overlap.py`, `reviews/2026-09-19-readme-review.md` |
+| Case 001 arithmetic | `testability/cases/case-001-arithmetic.json`, `scripts/case001_arithmetic.py` |
