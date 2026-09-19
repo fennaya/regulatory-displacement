@@ -76,6 +76,18 @@ search; the rest are explicitly unverified. **This instrument cannot see
 a plausible-sized substance-specific effect for 4 of the 5 packages this
 project can test, and this is arithmetic, not a vibe.**
 
+**UPDATED, 2026-09-19 (`decisions/0010-*.md`, `analysis/power_placebo.py`):** the
+2026-09-18 figures used Stage E's clustered SEs, which are too narrow. Recomputed
+from placebo-derived SEs (SD of in-pool placebo estimates, 20-29 per package), the
+SE is 2.3-3.7x wider, the MDE rises from 0.31-0.60 to 0.72-1.93 log points, and
+the share of its basket the restricted substance would need, fully displaced, to
+reach 80% power rises from 27-45% to 51-86%. **5 of 5 packages are now NOT
+DETECTABLE given the assumed shares** (neonicotinoids moves from borderline to not
+detectable); at least 4 of 5 under either SE. Still NOT falsified. Established:
+the direction and size of the SE correction and the MDEs. Still unverified: the
+basket-share assumptions themselves. The placebo SE is a proxy and may overstate a
+smooth treated code's own noise; the truth lies between the two SEs.
+
 **Refuses:** "the confidence interval is wide" as sufficient evidence —
 width alone conflates low power (a real problem, separately diagnosed by
 the MDE) with genuine coarseness-driven dilution (a different, specific

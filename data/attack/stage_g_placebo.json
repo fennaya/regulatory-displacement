@@ -1,0 +1,128 @@
+{
+  "method": "in-space placebo over the pre-registered matched pool; see analysis/power_placebo.py",
+  "packages": {
+    "eu-2005-endosulfan": {
+      "substances": [
+        "Endosulfan"
+      ],
+      "n_matched_controls": 29,
+      "n_placebos": 29,
+      "real_att": -0.2806810572319666,
+      "stage_e_classical_se": 0.1262849213183635,
+      "stage_e_clustered_se": 0.2133252193190659,
+      "placebo_se": 0.5390009639851219,
+      "placebo_se_over_stage_e_se": 2.5266631189018014,
+      "stage_e_mde": 0.5976487810950021,
+      "placebo_mde": 1.5100571332493582,
+      "placebo_se_is_wider": true,
+      "assumed_share_range": [
+        0.03,
+        0.15
+      ],
+      "max_plausible_implied_effect": 0.16251892949777494,
+      "share_needed_stage_e": 0.4498964694437224,
+      "share_needed_placebo": 0.779102642984937,
+      "verdict_stage_e": "NOT DETECTABLE across the full assumed share range",
+      "verdict_placebo": "NOT DETECTABLE across the full assumed share range"
+    },
+    "pkg-eu-380810-2018-05-29": {
+      "substances": [
+        "Clothianidin",
+        "Imidacloprid",
+        "Thiamethoxam"
+      ],
+      "n_matched_controls": 26,
+      "n_placebos": 26,
+      "real_att": 0.27002520810792385,
+      "stage_e_classical_se": 0.10812297542480705,
+      "stage_e_clustered_se": 0.11217283941288728,
+      "placebo_se": 0.2552295098941341,
+      "placebo_se_over_stage_e_se": 2.275323609797216,
+      "stage_e_mde": 0.31426176877290485,
+      "placebo_mde": 0.7150472221456239,
+      "placebo_se_is_wider": true,
+      "assumed_share_range": [
+        0.1,
+        0.3
+      ],
+      "max_plausible_implied_effect": 0.35667494393873245,
+      "share_needed_stage_e": 0.2696721738837061,
+      "share_needed_placebo": 0.510830988359386,
+      "verdict_stage_e": "BORDERLINE",
+      "verdict_placebo": "NOT DETECTABLE across the full assumed share range"
+    },
+    "pkg-eu-380810-2020-01-10": {
+      "substances": [
+        "Chlorpyrifos",
+        "Chlorpyrifos-methyl"
+      ],
+      "n_matched_controls": 26,
+      "n_placebos": 26,
+      "real_att": 0.1417469727476883,
+      "stage_e_classical_se": 0.11595940697159039,
+      "stage_e_clustered_se": 0.12985422707279567,
+      "placebo_se": 0.4753867545947719,
+      "placebo_se_over_stage_e_se": 3.6609262964406413,
+      "stage_e_mde": 0.36379768307662924,
+      "placebo_mde": 1.3318365045594105,
+      "placebo_se_is_wider": true,
+      "assumed_share_range": [
+        0.05,
+        0.2
+      ],
+      "max_plausible_implied_effect": 0.2231435513142097,
+      "share_needed_stage_e": 0.30496820278584147,
+      "share_needed_placebo": 0.7360080066616111,
+      "verdict_stage_e": "NOT DETECTABLE across the full assumed share range",
+      "verdict_placebo": "NOT DETECTABLE across the full assumed share range"
+    },
+    "eu-2004-atrazine": {
+      "substances": [
+        "Atrazine"
+      ],
+      "n_matched_controls": 20,
+      "n_placebos": 20,
+      "real_att": 0.10660285054110209,
+      "stage_e_classical_se": 0.13159102734014833,
+      "stage_e_clustered_se": 0.15523068476138688,
+      "placebo_se": 0.4792419322471552,
+      "placebo_se_over_stage_e_se": 3.087288656774418,
+      "stage_e_mde": 0.43489199182505556,
+      "placebo_mde": 1.342637113283527,
+      "placebo_se_is_wider": true,
+      "assumed_share_range": [
+        0.05,
+        0.2
+      ],
+      "max_plausible_implied_effect": 0.2231435513142097,
+      "share_needed_stage_e": 0.35266541927101336,
+      "share_needed_placebo": 0.7388439384249759,
+      "verdict_stage_e": "NOT DETECTABLE across the full assumed share range",
+      "verdict_placebo": "NOT DETECTABLE across the full assumed share range"
+    },
+    "eu-2007-paraquat": {
+      "substances": [
+        "Paraquat"
+      ],
+      "n_matched_controls": 25,
+      "n_placebos": 25,
+      "real_att": -0.12460701771190791,
+      "stage_e_classical_se": 0.12559828398381492,
+      "stage_e_clustered_se": 0.2022579467166972,
+      "placebo_se": 0.6902539339192528,
+      "placebo_se_over_stage_e_se": 3.4127407358984607,
+      "stage_e_mde": 0.5666428737673793,
+      "placebo_mde": 1.9338052180125047,
+      "placebo_se_is_wider": true,
+      "assumed_share_range": [
+        0.05,
+        0.2
+      ],
+      "max_plausible_implied_effect": 0.2231435513142097,
+      "share_needed_stage_e": 0.43257283062611196,
+      "share_needed_placebo": 0.8554030725373337,
+      "verdict_stage_e": "NOT DETECTABLE across the full assumed share range",
+      "verdict_placebo": "NOT DETECTABLE across the full assumed share range"
+    }
+  }
+}

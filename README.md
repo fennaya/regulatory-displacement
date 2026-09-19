@@ -37,14 +37,16 @@ end to end. The register holds 9 cited events across 8 substances, but the
 correct unit of treatment is neither: it is **6 treatment packages**
 (companion regulations sharing an HS6, a decision date and an effective
 date collapse to one package — see `analysis/packages.py`), of which only
-**5 are testable**, and **0 of those 5 are CLEAN at the pre-set ±5-year
-window** — every one overlaps another package's estimation window in the
-same HS6 code. That count depends on the window: four packages overlap at
-every window from ±2 to ±5, but EU endosulfan's only overlap at ±5 is the
-last, partial year with the untestable Rotterdam listing, and it is CLEAN at
-±4 or narrower. State the project's size as **"6 packages (5 testable,
-0 clean at ±5; 1 clean at ±4),"** not "9 events" or "8 substances" — both
-overstate what this version can speak to independently.
+**5 are testable**. How many are CLEAN (no overlap with another package's
+estimation window in the same HS6 code) **is a band, not a number: 0 of 5 at
+the ±5-year window, 1 of 5 (EU endosulfan) at ±4, ±3 and ±2.** No single window
+is chosen, on purpose (`METHODS.md`, "Why no single window was chosen"). The
+window-independent part is that four of the five packages overlap at every
+window from ±2 to ±5; endosulfan's only overlap at ±5 is the last, partial year
+with the untestable Rotterdam listing. State the project's size as **"6
+packages, 5 testable, 0-1 clean depending on the window (0 at ±5, 1 at ±4 to
+±2),"** not "9 events" or "8 substances": both overstate what this version can
+speak to independently.
 
 Everything below Step 3 went through a full causal-specification repair
 after the first version's estimates turned out to be uninformative (every
@@ -76,15 +78,24 @@ read it before trusting any single number on the dashboard.
   runs.
 
 - **Given the basket-share assumptions below, this instrument cannot see a
-  plausible-sized substance-specific effect for 4 of the 5 testable
-  packages.** The MDE half is computed from a standard error; the effect-size
+  plausible-sized substance-specific effect for 5 of the 5 testable
+  packages (at least 4 of 5 under either standard error).** The MDE half is computed from a standard error; the effect-size
   half depends on assumed shares, so the conclusion is conditional on them.
-  Stage G's power analysis: at 80% power, the minimum detectable effect
-  (from Stage E's cluster-robust standard errors) exceeds the maximum
-  plausible effect implied by *100% displacement* of the restricted
-  substance's assumed share of its HS6 basket, for chlorpyrifos,
-  endosulfan, atrazine, and paraquat. Neonicotinoids is borderline
-  (detectable only toward the high end of its assumed 10-30% share).
+  Stage G's power analysis, **recomputed 2026-09-19 from placebo-derived
+  standard errors** (`decisions/0010-*.md`): Stage E's cluster-robust SEs
+  were too narrow, the placebo SEs are 2.3-3.7x wider, and the minimum
+  detectable effect at 80% power rises from 0.31-0.60 to 0.72-1.93 log
+  points, so the restricted substance would have to be 51-86% of its HS6
+  basket (was 27-45%), fully displaced, to be seen. It exceeds the maximum
+  plausible effect implied by *100% displacement* of the assumed share for
+  all five packages; neonicotinoids, borderline under Stage E's SE, is now
+  not detectable either. **Our detection thresholds are conservative in the wrong
+  direction; correcting the standard errors raises them further and
+  strengthens the conclusion** ("conservative" here means the first
+  thresholds were too generous to the instrument). The placebo SE is a proxy (it
+  may overstate a smooth treated code's own noise), so the truth lies
+  between the two; both are reported. The "5 to 13 times" figure for Case
+  001 was already basket-level placebo-derived and is unchanged.
   Basket-share assumptions are stated with confidence levels in
   `analysis/power.py` — only imidacloprid's is anchored to an (imprecise,
   vendor-inconsistent) web search; the rest are explicitly unverified.
@@ -184,7 +195,7 @@ reasoning behind each stage, `falsification.md` for what's now resolved.
 
 | Stage | What it did | Headline result |
 |---|---|---|
-| A — overlap audit | Windows each package actually used, checked pairwise for same-HS6 overlap | 0 of 5 testable packages are CLEAN at ±5 years (4 of 5 contaminated at every window; endosulfan clean at ±4) |
+| A — overlap audit | Windows each package actually used, checked pairwise for same-HS6 overlap | Clean packages: a band of 0-1 of 5 (0 at ±5 years; 1, endosulfan, at ±4, ±3 and ±2 years); 4 of 5 contaminated at every window |
 | B.1 — PPML | Levels, importer×product×year FE, keeps zero flows (`analysis/ppml.py`) | 59-61% of cells have no recorded flow (zero or unreported), which the old log spec never saw |
 | B.2/B.3 — staggered-robust | Cumulative-treatment HS6 panel, did2s vs naive pooled TWFE (`analysis/staggered.py`) | +0.664 log pts, CI [+0.381, +0.948], with staggered-adoption bias tiny (0.017). **Then attacked (2026-09-19, `decisions/0009-*.md`) and it FAILS as an EU-restriction effect**: rest-of-world exports of the same codes rose more (+0.789), the EU-specific triple difference is -0.124, and a placebo with random codes gives p = 0.28-0.81 |
 | B.4 — truncated windows | Cut post-period before the contaminating event (`diD.py`'s `max_post_year`) | Atrazine's effect flips sign (+0.407 → -0.017) |
@@ -192,7 +203,7 @@ reasoning behind each stage, `falsification.md` for what's now resolved.
 | D — matched controls | Same chapter, order-of-magnitude volume, trend-matched, pre-registered (`analysis/matching.py`, `decisions/0007-*.md`) | Standard errors down 42-61% |
 | E — clustered SEs | Exporter-product level (`analysis/clustered.py`) | 1.04-1.69x wider than classical; one false-positive-looking result corrected. Still too narrow: treatment varies at the HS6 level, so exporter-product clusters within one treated code share its common shock; with one treated code per package no analytic SE is reliable (placebo in `decisions/0009-*.md`) |
 | F — destination heterogeneity | Pre-registered high/low exposure groups (`data/destination_groups_v1.yaml`, `decisions/0008-*.md`) | Mixed/negative — concentration hypothesis not confirmed |
-| G — power analysis | MDE vs. basket-share arithmetic (`analysis/power.py`) | 4 of 5 packages NOT DETECTABLE even at 100% displacement |
+| G — power analysis | MDE vs. basket-share arithmetic (`analysis/power.py`) | **5 of 5** NOT DETECTABLE even at 100% displacement under placebo-derived SEs (4 of 5 under Stage E's SEs); MDE 0.72-1.93 log pts (`decisions/0010-*.md`) |
 | H — this table + dashboard | `analysis/comparison.py`, `/specifications` view | — |
 
 Full per-package numbers: `/specifications` on the dashboard, or

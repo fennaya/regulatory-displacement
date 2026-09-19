@@ -2,7 +2,9 @@
 
 Machine-checked version: `testability/register.yaml` (quotes verified verbatim against `testability/sources/`). Arithmetic: `testability/cases/case-001-arithmetic.json`, produced by `scripts/case001_arithmetic.py`.
 
-**Verdict: UNTESTABLE WITH PUBLIC DATA** (claim 001-C1). One sub-claim (001-C2) is **NOT AN EMPIRICAL CLAIM** as worded. What is supported: the feasibility premise. A disclosure request is below.
+> **SOURCE STATUS: this case rests on a SECONDARY TRANSCRIPTION; the primary is UNRETRIEVED.** The quoted statement is Corporate Europe Observatory's transcription (29.06.2026) of a written Commission statement to Danwatch. Retrieval of the primary was attempted on 2026-09-19 (`testability/sources/case-001-primary-source-attempts.txt`): the Danwatch article of 18 May 2026 was found but does not reproduce the statement; the Commission's own statement and the Danwatch follow-up were not found. **Limits:** the statement's date is unknown (between 13 May and 29 June 2026); its context and any omitted parts are unverified; the wording could differ from the original. Do not cite the quote as the Commission's without checking the primary.
+
+**Verdict: UNTESTABLE WITH PUBLIC DATA** (claim 001-C1), sharpened: **testable in principle; the test the wording implies (supplier substitution) has not been attempted by anyone we could find; the tests that have been attempted, including this repository's, address a different claim** (whether EU use restrictions relocated trade), not the Commission's. One sub-claim (001-C2) is **NOT AN EMPIRICAL CLAIM** as worded. What is supported: the feasibility premise. A disclosure request is below.
 
 ## Limits stated first
 
@@ -35,7 +37,7 @@ C2 as worded is true of almost any policy and no observation could contradict it
 ## 3. Evidence inventory
 
 - **Public:** CEPII BACI bilateral trade at HS6 (this repository, 1995-2024). Heading 3808 has five HS92 subheadings; a banned substance is never observed separately.
-- **Exists, not public as a dataset:** EU PIC export notifications, obtained by NGOs through freedom-of-information requests; notified, not shipped.
+- **Public, EU side only, notified not shipped:** Public Eye published the full dataset of its 2018 investigation (substance, exporting EU country, destination, notified quantity, year; the page states the full dataset is published; column names not verified here); Unearthed publish 2024 country aggregates. Correction 2026-09-19 (`decisions/0006-*.md`): an earlier version of this section said these notifications were not public as a dataset, which was wrong. They are still tonnes of mixtures, intended exports, and say nothing about which suppliers importing countries then buy from.
 - **Unverified lead (not checked):** Eurostat Comext 8-digit CN lines split heading 3808 by chemical family.
 - **Missing:** realised exports by substance and destination; importers' purchases by supplier origin; hazard classification of substitutes.
 - **Checkable now, and supports the Commission:** non-EU suppliers exist at scale. Non-EU exporters ship 4.7× (2018) and 7.2× (2024) the EU's customs-recorded tonnage of heading 3808 into non-EU destinations. That supports the *feasibility* of substitution. It says nothing about how much would occur or how hazardous it would be.
@@ -57,4 +59,4 @@ Holder: ECHA and Member State designated authorities (PIC export notifications);
 
 ## 6. Verdict
 
-**UNTESTABLE WITH PUBLIC DATA.** The claim is testable in principle, with substance-level data that exists but is not public. Nothing in this repository supports or contradicts the *size* of substitution; the *feasibility* premise is supported. A reader should not take this as the Commission being wrong, or right. The Commission has asserted, as the reason for not acting, something that neither it nor anyone outside it can currently check.
+**UNTESTABLE WITH PUBLIC DATA (HS6 trade), sharpened.** (1) The claim is testable in principle. (2) The test its wording implies, that importing countries would buy the same or worse pesticides from non-EU companies, needs importer-side purchases by substance and supplier origin; we know of no one who has run it (our search was limited). (3) Tests that have been attempted, including this repository's, address a different claim: whether EU use restrictions moved trade in the restricted product to unrestricted destinations. They neither support nor refute the Commission. (4) The size of the effect that would matter is 5 to 13 times below what public HS6 data can detect; that range comes from basket-level placebo SEs and was not changed by the Stage G recomputation. Nothing in this repository supports or contradicts the *size* of substitution; the *feasibility* premise is supported. A reader should not take this as the Commission being wrong, or right. The Commission has asserted, as the reason for not acting, something that neither it nor anyone outside it can currently check.

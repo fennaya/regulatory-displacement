@@ -26,6 +26,7 @@ from displacement_observatory.analysis.overlap import OverlapFlag, PackageAudit
 from displacement_observatory.analysis.packages import TreatmentPackage
 from displacement_observatory.analysis.ppml import build_importer_product_year_panel, fit_ppml_att
 from displacement_observatory.analysis.power import BASKET_SHARE_ASSUMPTIONS, evaluate_package
+from displacement_observatory.analysis.power_placebo import placebo_se
 from displacement_observatory.analysis.triple_diff import run_triple_diff
 from displacement_observatory.register.store import RegisterLoadResult
 
@@ -138,7 +139,18 @@ def build_package_comparison(
 
     assumption = next((a for a in BASKET_SHARE_ASSUMPTIONS if a.package_id == package.package_id), None)
     if assumption:
-        verdict = evaluate_package(package.package_id, clustered.se_clustered, assumption)
-        comparison.power_verdict = verdict.verdict
+        # Close-out step 3: the SE behind the power verdict is placebo-derived. Stage E's cluster-robust SE is
+        # too narrow (the exporter-product clusters inside one treated HS6 code share its common shock), so
+        # the true minimum detectable effect is larger than it implies.
+        if len(match_stats.matched_hs6) >= 3:
+            pl = placebo_se(con, package.hs6, match_stats.matched_hs6, original_result.exporter_codes, y0, y1, eff_year)
+            verdict = evaluate_package(package.package_id, pl.se, assumption)
+            comparison.power_verdict = (
+                f"[placebo SE {pl.se:.3f} from {pl.n_placebos} in-pool placebos vs. Stage E SE {clustered.se_clustered:.3f}] "
+                + verdict.verdict
+            )
+        else:
+            verdict = evaluate_package(package.package_id, clustered.se_clustered, assumption)
+            comparison.power_verdict = "[Stage E SE only: too few matched controls for a placebo distribution] " + verdict.verdict
 
     return comparison

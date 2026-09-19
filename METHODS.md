@@ -72,7 +72,37 @@ consistency check on your own audit code, not an extra finding).
 
 **If zero of your units come out CLEAN, say so before presenting a single
 result** — and say how the count moves with the window, because it is a
-function of that choice (here: 0 of 5 at the pre-set ±5 years, 1 of 5 at ±4).
+function of that choice (here: 0 of 5 at ±5 years, 1 of 5 at ±4, ±3 and ±2;
+see the next section on why no window was chosen).
+
+### Why no single window was chosen
+
+The clean/contaminated count depends on the estimation window: here 0 of 5
+packages are clean at ±5 years and 1 of 5 (EU endosulfan) at ±4 or narrower. This
+project reports the band and does not pick a point in it. Three reasons.
+
+1. **Picking after seeing the count is selecting on the outcome.** The ±5 window
+   was set in Stage 3, before the overlap audit existed, for reasons unrelated to
+   contamination. Moving to ±4 because it produces a clean package, or staying at
+   ±5 because it produces a cleaner-looking headline, would each be a choice made
+   after seeing which window gives the better sentence. That is what pre-commitment
+   is for (`CLAUDE.md` rule 2).
+2. **The difference is fragile.** It comes from one package and one partial year:
+   at ±5 the endosulfan window's last year (2011) contains the Rotterdam listing's
+   effective date (October 2011), and the Rotterdam package is itself untestable.
+   The substantive finding, that four of five packages are contaminated at every
+   window from ±2 to ±5, does not depend on the window.
+3. **A clean package is not a credible one.** Endosulfan is clean at ±4 and is still
+   not detectable at plausible basket shares (Stage G). Cleanliness is a necessary
+   condition for a package-level test, not a sufficient one.
+
+**What would be required to justify choosing a window:** a rule fixed *before* looking
+at contamination counts and tied to something other than the count, for example the
+horizon over which an effect is expected to appear (from theory or prior literature,
+committed to git with the reasoning), or a window set by the panel's coverage
+independently of the register. Absent that, report every window tried, name the window
+beside every count, and let the band stand. A test (`tests/test_window_band.py`) fails if
+any document states a clean count without naming its window.
 
 ## 5. Match the estimator to what the data actually looks like
 
