@@ -1,0 +1,11 @@
+SOURCE RECORD (not the original document)
+Publisher: PAN Europe press release, 29 June 2026 (date per URL path /2026/06/ and prior source record; page date not separately extracted)
+URL: https://www.pan-europe.info/press-releases/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous
+Retrieved: 2026-09-20 by raw HTTP fetch (curl), tags stripped by data/raw/pan_store.py. Both passages below were matched character for character in the raw page text.
+What is NOT verified: this is an NGO page; the Commission's own document was not retrieved.
+------------------------------------------------------------------------
+PASSAGE (a), NGO text reporting the Commission:
+listic platform that revealed this information (see below), a European Commission spokesperson acknowledged that exports of hazardous pesticides remain a concern but argued that an export ban would not necessarily solve the problem. Instead, it could “simply shift production outside the EU while penalising European companies”. Firstly, by using these kinds of arguments the EC once again 
+
+PASSAGE (b), statement reproduced on the page:
+As already answered to you on 13 May, the Commission is aware of and shares the concerns regarding the exports to third countries of EU-banned pesticides. The Commission is committed to addressing this important issue. And, as stated in its Vision for Agriculture and Food, the Commission is assessing the issue of the export of hazardous chemicals, including pesticides, that are banned in the EU. Ensuring a high level of protection for people and the environment, both within the EU and globally, is paramount. However, a unilateral production and export ban in the EU would not guarantee an improvement in health and environmental protection in affected countries, as it may push these countries to buy the same or worse chemical pesticides from companies outside of the EU. Consequently, this would only penalise the EU chemical industry that is already suffering in the current economic climate. Therefore, the Commission will work bilaterally with importing countries in t

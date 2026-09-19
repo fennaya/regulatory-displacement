@@ -31,9 +31,9 @@ For each of the 5 testable packages, in-space placebo over the package's pre-reg
 
 ## The sentence
 
-*The detection thresholds we first reported were too low, that is, too generous to the instrument, because the standard errors behind them were too narrow. Correcting them raises them, from 0.31-0.60 to 0.72-1.93 log points, and strengthens the conclusion that this instrument cannot see substance-level displacement at plausible effect sizes.*
+*Our original detection thresholds were too generous to the instrument: they implied more detection power than existed. Correcting the standard errors raises the thresholds and strengthens the conclusion.*
 
-(The requested sentence, "Our detection thresholds are conservative in the wrong direction; correcting the standard errors raises them further and strengthens the conclusion", is in PAPER.md section 5 and the README, each with a clarification that "conservative" here means too generous to the instrument, since read plainly it suggests the opposite.)
+(Amended 2026-09-20: an earlier wording, "conservative in the wrong direction", was wrong and is withdrawn everywhere; this is the sentence used in PAPER.md section 5 and the README.)
 
 ## What this moves toward Established, and what it does not
 

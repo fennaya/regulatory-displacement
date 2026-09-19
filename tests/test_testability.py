@@ -61,6 +61,21 @@ def test_the_brief_paraphrase_is_not_verbatim_but_its_quoted_fragment_is():
     assert not verify_quote_in_source("shift production", source)
 
 
+def test_pan_europe_reproduces_the_same_statement_and_the_relocation_paraphrase_verbatim():
+    pan = (T / "sources" / "case-001-pan-europe.txt").read_text(encoding="utf-8")
+    ceo = (T / "sources" / "case-001-ec-statement-to-danwatch.txt").read_text(encoding="utf-8")
+    mechanism = ("a unilateral production and export ban in the EU would not guarantee an improvement in health and "
+                 "environmental protection in affected countries, as it may push these countries to buy the same or worse "
+                 "chemical pesticides from companies outside of the EU")
+    assert verify_quote_in_source(mechanism, pan) and verify_quote_in_source(mechanism, ceo)  # two independent sources
+    assert verify_quote_in_source("simply shift production outside the EU while penalising European companies", pan)
+    # the relocation paraphrase is PAN's report; the CEO transcription of the full statement does not contain it
+    assert not verify_quote_in_source("simply shift production", ceo)
+    case = " ".join((T / "cases" / "case-001.md").read_text(encoding="utf-8").split())
+    assert "TWO independent secondary sources" in case.split("## 1.")[0]
+    assert "production is explicitly in scope" in case
+
+
 def test_published_notified_tonnage_figures_are_in_stored_source():
     s = (T / "sources" / "case-001-notified-tonnage-unearthed.txt").read_text(encoding="utf-8")
     assert "122,000 tonnes" in s and "81,600 tonnes" in s and "mixtures" in s

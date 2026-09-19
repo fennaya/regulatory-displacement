@@ -89,10 +89,7 @@ read it before trusting any single number on the dashboard.
   basket (was 27-45%), fully displaced, to be seen. It exceeds the maximum
   plausible effect implied by *100% displacement* of the assumed share for
   all five packages; neonicotinoids, borderline under Stage E's SE, is now
-  not detectable either. **Our detection thresholds are conservative in the wrong
-  direction; correcting the standard errors raises them further and
-  strengthens the conclusion** ("conservative" here means the first
-  thresholds were too generous to the instrument). The placebo SE is a proxy (it
+  not detectable either. **Our original detection thresholds were too generous to the instrument: they implied more detection power than existed. Correcting the standard errors raises the thresholds and strengthens the conclusion.** The placebo SE is a proxy (it
   may overstate a smooth treated code's own noise), so the truth lies
   between the two; both are reported. The "5 to 13 times" figure for Case
   001 was already basket-level placebo-derived and is unchanged.

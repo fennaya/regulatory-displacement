@@ -1,0 +1,42 @@
+# Citation audit of PAPER.md
+
+Audited 2026-09-20. Every author-year citation in `PAPER.md` was written from memory in the previous pass, which is treated as a defect. Each was looked up in a search, and where possible on the publisher, repository or arXiv page. "Checked claim" is what PAPER.md now says the paper shows, compared against the abstract or summary retrieved. Only abstracts and catalogue records were read, not full texts, so the checks establish that each paper exists with these details and that the sentence attributed to it matches its abstract, not that PAPER.md represents every nuance.
+
+Result: **8 citations found; 8 verified in the end; 3 needed corrections to details or to what was claimed (Bown and Crowley: year missing, wrong characterisation of the literature; Gardner: it is a preprint, not a journal article; the Callaway-Sant'Anna and Borusyak-Jaravel-Spiess sentence claimed we used their methods, which we did not); 0 not found, so 0 deleted as invented.** One over-general sentence in the memory version ("largely case-based or country-level") was deleted because the audit contradicts it (Bown and Crowley use about 4,800 products; Levinson and Taylor use 130 industries).
+
+## Machine-read entries
+
+The test `tests/test_citation_audit.py` reads the `CITE:` lines below. A citation in PAPER.md needs a matching line with `FINAL: VERIFIED`.
+
+```
+CITE: Copeland-1994 | FINAL: VERIFIED
+CITE: Ederington-2005 | FINAL: VERIFIED
+CITE: Levinson-2008 | FINAL: VERIFIED
+CITE: Bown-2007 | FINAL: VERIFIED
+CITE: Gardner-2022 | FINAL: VERIFIED
+CITE: Santos-2006 | FINAL: VERIFIED
+CITE: Callaway-2021 | FINAL: VERIFIED
+CITE: Borusyak-2024 | FINAL: VERIFIED
+```
+
+## Entries
+
+| # | As cited in the memory version | Actual paper (title, authors, year, venue, stable link) | Claim it is cited for, and whether the paper says it | Verdict | Action |
+|---|---|---|---|---|---|
+| 1 | Copeland and Taylor (1994) "on trade and pollution" | "North-South Trade and the Environment", Brian R. Copeland and M. Scott Taylor, *Quarterly Journal of Economics* 109(3): 755-787, August 1994. https://doi.org/10.2307/2118421 | Theory of pollution and trade. Abstract: a model linking national income, pollution and trade; the higher-income country chooses stronger environmental protection and specializes in relatively clean goods. Matches. | VERIFIED | Sentence made specific to what the abstract says. |
+| 2 | Ederington, Levinson and Minier (2005) "on environmental regulation and trade" | "Footloose and Pollution-Free", Josh Ederington, Arik Levinson, Jenny Minier, *Review of Economics and Statistics* 87(1): 92-99, 2005. https://doi.org/10.1162/0034653053327658 (NBER w9718) | Abstract: abatement costs are unrelated to trade flows for most industries; the industries with the largest abatement costs are the least footloose; after accounting for this, a significant effect on imports from developing countries in pollution-intensive, footloose industries. Matches, and PAPER.md now states exactly that. | VERIFIED | Sentence made specific. |
+| 3 | Levinson and Taylor (2008) "on environmental regulation and trade" | "Unmasking the Pollution Haven Effect", Arik Levinson and M. Scott Taylor, *International Economic Review* 49(1): 223-254, 2008. https://doi.org/10.1111/j.1468-2354.2008.00478.x | Abstract: US data on regulations and trade with Canada and Mexico, 130 manufacturing industries, 1977-1986; industries whose abatement costs increased most experienced the largest increases in net imports. Matches. | VERIFIED | Sentence made specific. |
+| 4 | "Bown and Crowley on trade deflection" (NO YEAR given; also called "related trade-diversion literature ... largely case-based or country-level") | "Trade deflection and trade depression", Chad P. Bown and Meredith A. Crowley, *Journal of International Economics* 72(1): 176-201, 2007. https://econpapers.repec.org/RePEc:eee:inecon:v:72:y:2007:i:1:p:176-201 | Real paper, but about US antidumping and safeguard restrictions deflecting and depressing Japanese exports (about 4,800 products, 37 countries, 1992-2001). It is trade policy, not environmental regulation, and it is product-level, not case-based. | WRONG DETAILS | Year added; characterised as a trade-policy analogue; "largely case-based or country-level" deleted. |
+| 5 | Gardner (2022) "(the did2s family)" | "Two-stage differences in differences", John Gardner, arXiv:2207.05943 [econ.EM], submitted 13 July 2022. https://arxiv.org/abs/2207.05943 (arXiv page checked directly; no journal reference listed there) | Two-stage estimator for staggered adoption; matches. | WRONG DETAILS (presented as a normal citation; it is a preprint) | Labelled a preprint in PAPER.md. We use this estimator (pyfixest `did2s`). |
+| 6 | Santos Silva and Tenreyro (2006) "(PPML)" | "The Log of Gravity", J. M. C. Santos Silva and Silvana Tenreyro, *Review of Economics and Statistics* 88(4): 641-658, 2006. https://ideas.repec.org/a/tpr/restat/v88y2006i4p641-658.html | Abstract (retrieved): under heteroskedasticity, OLS on log-linearised models gives biased elasticities. That the paper proposes Poisson pseudo-maximum-likelihood was confirmed only through secondary results (follow-up simulation papers and a summary of the paper), because the publisher page returned 403 and the author's PDF did not extract as text. Well-established, but note this weaker check. | VERIFIED (PPML proposal confirmed via secondary sources) | Kept. |
+| 7 | Callaway and Sant'Anna (2021) "the staggered-adoption ... methods we use are those of" | "Difference-in-Differences with multiple time periods", Brantly Callaway and Pedro H. C. Sant'Anna, *Journal of Econometrics* 225(2): 200-230, 2021. https://doi.org/10.1016/j.jeconom.2020.12.001 (RePEc record checked) | The paper exists and is on staggered DiD. But PAPER.md said we used its methods; we did not run it. | WRONG DETAILS (claim, not existence) | Sentence now says it is a related estimator we did not run. |
+| 8 | Borusyak, Jaravel and Spiess (2024) "the staggered-adoption ... methods we use are those of" | "Revisiting Event-Study Designs: Robust and Efficient Estimation", Kirill Borusyak, Xavier Jaravel, Jann Spiess, *Review of Economic Studies* 91(6): 3253-3285, November 2024. https://doi.org/10.1093/restud/rdae007 | The paper exists and is on staggered DiD (imputation estimator). We did not run it. | WRONG DETAILS (claim, not existence) | Same as row 7. |
+
+## Non-academic sources cited in PAPER.md
+
+| Source | Check | Verdict |
+|---|---|---|
+| Euronews, 30 August 2023, "Belgium, France, Germany: Pesticide giants are exporting banned chemicals through European loopholes" | The raw page text contains "Pesticide producers argue that banning exports will have no impact on developing countries, as they will continue to ship the chemicals from elsewhere." | VERIFIED verbatim (raw fetch 2026-09-20) |
+| Unearthed and Public Eye investigation, 10 September 2020 (`data/validation/known_cases.yaml` links the 15 October 2020 article instead, which reports the Commission's promise, not the investigation) | Both articles exist (search results 2026-09-20). Only the investigation's existence and date were checked here, not the three validation cases' numbers. | VERIFIED as an investigation; the validation file's URL points to the follow-up article (left unchanged, noted) |
+| PAN Europe press release, 29 June 2026, and Corporate Europe Observatory, 29 June 2026 | Passages matched verbatim (see `testability/sources/`). | VERIFIED |
+| Public Eye 2018 dataset; Unearthed 2024 aggregates | Owner-sourced; the Public Eye page sentence was verified in the earlier pass but the dataset link and columns were not re-verified in this audit (a direct fetch of the URL used in the second pass did not show the sentence). | NOT re-verified; PAPER.md already lists them under "to verify" |
