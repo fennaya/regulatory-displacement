@@ -135,3 +135,31 @@ this entry's date (2026-09-18) — the forecast is specifically about the
 STOCK-CLEARANCE deadline (2026-12-10, when even grandfathered stock must
 be gone), not the withdrawal date, and trade-flow data for the relevant
 window is not yet fully available.
+
+---
+
+## basket-level-eu-restrictions-moved-trade
+
+**Claim (staggered-robust basket result, Stage B.2/B.3):** the pooled did2s
+estimate of +0.664 log points [0.381, 0.948] for HS6 380810/380830 versus
+542 never-restricted chemical codes, 1995-2024, is evidence that EU
+restrictions moved trade in the affected baskets.
+
+**Status: FALSIFIED as an EU-restriction effect, 2026-09-19**
+(`decisions/0009-attack-on-basket-level-result-verdict.md`; numbers in
+`data/attack/basket_attack_results.json`).
+
+**Would have been abandoned if (criteria applied, all met):** (a) the same
+estimate on rest-of-world exporters of the same codes into the same
+destinations was as large or larger — it was larger (+0.789 vs +0.664) and
+the EU-minus-RoW triple difference was -0.124; (b) assigning the same cohort
+years to randomly chosen never-restricted codes reproduced an ATT this large
+at a rate above 5% — two-sided placebo p was 0.28-0.59 (EU-only) and
+0.68-0.81 (triple difference); (c) event-time coefficients showed no
+movement near the effective date — the divergence began 3-15 years after it.
+
+**Refuses:** re-litigating with a different control pool or window chosen
+after seeing this result; that would be tuning, not a new test (CLAUDE.md
+rule 2). Also refuses reading this as "no displacement occurred": it says
+this basket-level evidence does not support one, and composition (the
+substance's share within its own basket) remains untestable with BACI.

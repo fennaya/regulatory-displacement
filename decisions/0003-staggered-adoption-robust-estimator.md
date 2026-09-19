@@ -68,3 +68,7 @@ than once at different times, plain TWFE is biased. Use Callaway and
 Sant'Anna or Sun and Abraham, with never-treated or not-yet-treated units
 as comparisons, and explicitly exclude already-treated units from the
 control pool."
+
+## Correction, 2026-09-19
+
+The status line above says the staggered estimate does "NOT cross zero, unlike every per-package Stage 3/B estimate." That was overstated: the per-package Stage E clustered neonicotinoid ATT (+0.270, CI [+0.050, +0.490]) and the flow-level log-OLS chlorpyrifos estimate (-0.205, CI [-0.376, -0.033]) also exclude zero (see `data/attack/spec_ledger.json`). More importantly, the staggered +0.664 was then attacked and does not survive as an EU-restriction effect: see `decisions/0009-attack-on-basket-level-result-verdict.md`. The estimator choice itself (did2s over naive TWFE; gap 0.017 log points) is unaffected.

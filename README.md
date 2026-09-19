@@ -29,6 +29,25 @@ read it before trusting any single number on the dashboard.
 
 **On the repaired specification (read these first):**
 
+- **The one basket-level estimate that cleared significance does not survive an attack.**
+  <!-- falsifiable: basket-level-eu-restrictions-moved-trade -->
+  The staggered-robust +0.664 log points (HS6 380810/380830 vs. never-restricted
+  codes, 1995-2024) is not evidence that EU restrictions moved trade in those
+  baskets (`decisions/0009-*.md`, numbers in `data/attack/`): (1) the original
+  specification had no rest-of-world comparison; adding it, rest-of-world
+  exporters of the same codes to the same destinations rose *more* (+0.789)
+  and the EU-specific triple difference is -0.124; (2) assigning the same cohort
+  years to randomly chosen never-restricted codes gives a placebo SD of about 1.4
+  against a reported SE of 0.145, so the real estimate is unremarkable (two-sided
+  placebo p = 0.28-0.59, and 0.68-0.81 for the triple difference); (3) there is
+  no jump at the effective date, the divergence appears 3-15 years later; (4) the
+  size would need about half of each basket fully displaced. Composition (the
+  restricted substance's share of its own basket) cannot be tested with the data
+  here. This is not "the only effect that doesn't cross zero": across Stages A-H,
+  7 of 48 specifications have a CI excluding zero (2.4 expected by chance if all
+  were independent nulls), in both signs, three of them artifacts of discarded
+  runs.
+
 - **This instrument cannot see a plausible-sized substance-specific effect
   for 4 of the 5 testable packages, and this is arithmetic, not a hedge.**
   Stage G's power analysis: at 80% power, the minimum detectable effect
@@ -127,7 +146,7 @@ reasoning behind each stage, `falsification.md` for what's now resolved.
 |---|---|---|
 | A — overlap audit | Windows each package actually used, checked pairwise for same-HS6 overlap | 0 of 5 testable packages are CLEAN |
 | B.1 — PPML | Levels, importer×product×year FE, keeps zero flows (`analysis/ppml.py`) | 59-61% of cells are genuine zeros the old log spec never saw |
-| B.2/B.3 — staggered-robust | Cumulative-treatment HS6 panel, did2s vs naive pooled TWFE (`analysis/staggered.py`) | The ONE effect in this whole project that doesn't cross zero: +0.664 log pts, CI [+0.381, +0.948]; staggered-adoption bias tiny (0.017 log pts) |
+| B.2/B.3 — staggered-robust | Cumulative-treatment HS6 panel, did2s vs naive pooled TWFE (`analysis/staggered.py`) | +0.664 log pts, CI [+0.381, +0.948], with staggered-adoption bias tiny (0.017). **Then attacked (2026-09-19, `decisions/0009-*.md`) and it FAILS as an EU-restriction effect**: rest-of-world exports of the same codes rose more (+0.789), the EU-specific triple difference is -0.124, and a placebo with random codes gives p = 0.28-0.81 |
 | B.4 — truncated windows | Cut post-period before the contaminating event (`diD.py`'s `max_post_year`) | Atrazine's effect flips sign (+0.407 → -0.017) |
 | C — triple difference | EU-minus-RoW value, differenced before estimating (`analysis/triple_diff.py`) | 60-93% of every package's estimate explained by rest-of-world growth |
 | D — matched controls | Same chapter, order-of-magnitude volume, trend-matched, pre-registered (`analysis/matching.py`, `decisions/0007-*.md`) | Standard errors down 40-61% |

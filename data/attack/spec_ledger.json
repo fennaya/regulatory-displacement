@@ -1,0 +1,388 @@
+{
+  "entries": [
+    {
+      "stage": "Stage 3 (bug)",
+      "description": "chlorpyrifos k=+5 in a window that ran past the panel's last year (2025 read as zero trade)",
+      "n_estimates": 1,
+      "n_ci_excludes_zero": 1,
+      "kind": "discarded",
+      "note": "coef -4.51, CI [-7.99, -1.03]; a data artifact, fixed by clipping windows to panel coverage"
+    },
+    {
+      "stage": "Stage B.2 (scale error)",
+      "description": "pooled staggered TWFE and did2s on RAW value_kusd (levels), not log",
+      "n_estimates": 2,
+      "n_ci_excludes_zero": 2,
+      "kind": "discarded",
+      "note": "coef ~ +4.7e5 (thousand USD); not comparable to the log-point specs, redone on log1p"
+    },
+    {
+      "stage": "Stage 3",
+      "description": "Stage 3 original OLS-TWFE, one per package",
+      "n_estimates": 5,
+      "n_ci_excludes_zero": 0,
+      "kind": "live",
+      "note": "clears: none"
+    },
+    {
+      "stage": "Stage B.4",
+      "description": "Stage B.4 truncated window",
+      "n_estimates": 3,
+      "n_ci_excludes_zero": 0,
+      "kind": "live",
+      "note": "clears: none"
+    },
+    {
+      "stage": "Stage C",
+      "description": "Stage C triple difference",
+      "n_estimates": 5,
+      "n_ci_excludes_zero": 0,
+      "kind": "live",
+      "note": "clears: none"
+    },
+    {
+      "stage": "Stage D",
+      "description": "Stage D matched controls",
+      "n_estimates": 5,
+      "n_ci_excludes_zero": 0,
+      "kind": "live",
+      "note": "clears: none"
+    },
+    {
+      "stage": "Stage B.1",
+      "description": "Stage B.1 PPML (levels, keeps zeros)",
+      "n_estimates": 5,
+      "n_ci_excludes_zero": 0,
+      "kind": "live",
+      "note": "clears: none"
+    },
+    {
+      "stage": "Stage E",
+      "description": "Stage E exporter-product clustered SE",
+      "n_estimates": 5,
+      "n_ci_excludes_zero": 1,
+      "kind": "live",
+      "note": "clears: pkg-eu-380810-2018-05-29 (+0.270)"
+    },
+    {
+      "stage": "Stage B.1",
+      "description": "flow-level log-OLS (zeros dropped)",
+      "n_estimates": 5,
+      "n_ci_excludes_zero": 1,
+      "kind": "live",
+      "note": "clears: pkg-eu-380810-2020-01-10 (-0.205)"
+    },
+    {
+      "stage": "Stage B.2/B.3",
+      "description": "staggered pooled TWFE and did2s, log scale (same estimand)",
+      "n_estimates": 2,
+      "n_ci_excludes_zero": 2,
+      "kind": "live",
+      "note": "coefs [0.681, 0.664]"
+    },
+    {
+      "stage": "Stage F",
+      "description": "destination heterogeneity, 5 packages x {high, low}",
+      "n_estimates": 10,
+      "n_ci_excludes_zero": 0,
+      "kind": "live",
+      "note": "clears: none"
+    }
+  ],
+  "summary": {
+    "n_estimates": 48,
+    "n_ci_excludes_zero": 7,
+    "share_clearing": 0.14583333333333334,
+    "expected_chance_clears": 2.4000000000000004,
+    "prob_at_least_observed_if_all_null_independent": 0.009470777828276999,
+    "prob_at_least_one_clear_if_all_null_independent": 0.9147424096656918,
+    "n_live": 45,
+    "n_discarded": 3
+  },
+  "detail": {
+    "OLD OLS-TWFE": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": 0.6619432559614323,
+        "ci": [
+          -1.7177669101500816,
+          3.0416534220729465
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": 0.3412984420180205,
+        "ci": [
+          -1.816892338219469,
+          2.49948922225551
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2020-01-10",
+        "coef": 0.05145901193231506,
+        "ci": [
+          -1.8746765826313,
+          1.9775946064959302
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": 0.40650624308376715,
+        "ci": [
+          -1.582796471235747,
+          2.3958089574032813
+        ]
+      },
+      {
+        "package": "eu-2007-paraquat",
+        "coef": 0.6202618690062534,
+        "ci": [
+          -1.8273557793103627,
+          3.0678795173228695
+        ]
+      }
+    ],
+    "TRUNCATED": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": 0.600745785824933,
+        "ci": [
+          -1.5689335012767707,
+          2.7704250729266366
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": 0.2003382666797795,
+        "ci": [
+          -1.9647955392471999,
+          2.365472072606759
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": -0.017298065711360278,
+        "ci": [
+          -1.5049271514122449,
+          1.4703310199895245
+        ]
+      }
+    ],
+    "TRIPLE-DIFF": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": 0.21213360693490868,
+        "ci": [
+          -1.4032215061360136,
+          1.827488720005831
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": 0.135281894803859,
+        "ci": [
+          -1.7693689171728624,
+          2.03993270678058
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2020-01-10",
+        "coef": 0.003802399853249927,
+        "ci": [
+          -1.6798852116304657,
+          1.6874900113369655
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": 0.046495028227588775,
+        "ci": [
+          -1.4509057688824094,
+          1.5438958253375867
+        ]
+      },
+      {
+        "package": "eu-2007-paraquat",
+        "coef": 0.07840711558889046,
+        "ci": [
+          -1.6173774737740274,
+          1.7741917049518086
+        ]
+      }
+    ],
+    "MATCHED CONTROLS": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": 0.21319350740035103,
+        "ci": [
+          -1.0521339677251602,
+          1.4785209825258623
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": 0.3169930522733917,
+        "ci": [
+          -0.52137567961775,
+          1.1553617841645334
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2020-01-10",
+        "coef": 0.11522356493888708,
+        "ci": [
+          -1.0080770082702744,
+          1.2385241381480485
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": 0.216865040770024,
+        "ci": [
+          -0.8694863621060566,
+          1.3032164436461047
+        ]
+      },
+      {
+        "package": "eu-2007-paraquat",
+        "coef": 0.15998047723289477,
+        "ci": [
+          -1.2054021620865678,
+          1.5253631165523573
+        ]
+      }
+    ],
+    "PPML": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": 0.015923957743406682,
+        "ci": [
+          -0.40269839671469276,
+          0.4345463122015061
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": 0.05638375222619641,
+        "ci": [
+          -0.36069279496638773,
+          0.47346029941878054
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2020-01-10",
+        "coef": 0.1388424664032252,
+        "ci": [
+          -0.2948371092504921,
+          0.5725220420569425
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": -0.016976063043895994,
+        "ci": [
+          -0.37806412155516206,
+          0.3441119954673701
+        ]
+      },
+      {
+        "package": "eu-2007-paraquat",
+        "coef": -0.03758092110923228,
+        "ci": [
+          -0.3897066711578449,
+          0.31454482893938035
+        ]
+      }
+    ],
+    "CLUSTERED SE": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": -0.280681057232103,
+        "ci": [
+          -0.6987984870974722,
+          0.13743637263326614
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": 0.27002520810815317,
+        "ci": [
+          0.05016644285889407,
+          0.4898839733574123
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2020-01-10",
+        "coef": 0.14174697274750375,
+        "ci": [
+          -0.11276731231517578,
+          0.3962612578101833
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": 0.10660285054108265,
+        "ci": [
+          -0.19764929159123568,
+          0.410854992673401
+        ]
+      },
+      {
+        "package": "eu-2007-paraquat",
+        "coef": -0.12460701771186677,
+        "ci": [
+          -0.5210325932765933,
+          0.27181855785285974
+        ]
+      }
+    ],
+    "flow_level_log_ols": [
+      {
+        "package": "eu-2005-endosulfan",
+        "coef": -0.037992755369540554,
+        "ci": [
+          -0.18699175217112093,
+          0.11100624143203983
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2018-05-29",
+        "coef": -0.1399420408742423,
+        "ci": [
+          -0.30212901492408706,
+          0.022244933175602444
+        ]
+      },
+      {
+        "package": "pkg-eu-380810-2020-01-10",
+        "coef": -0.20477663252723116,
+        "ci": [
+          -0.37620161887579695,
+          -0.0333516461786654
+        ]
+      },
+      {
+        "package": "eu-2004-atrazine",
+        "coef": 0.03890352011690142,
+        "ci": [
+          -0.15859737831229895,
+          0.2364044185461018
+        ]
+      },
+      {
+        "package": "eu-2007-paraquat",
+        "coef": -0.15984674913453759,
+        "ci": [
+          -0.37150484303264164,
+          0.05181134476356644
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "Counts are per (package x specification) estimate; substance-level duplicates (3 neonicotinoids, 2 chlorpyrifos) are NOT counted separately.",
+    "Chance arithmetic assumes independent tests; the tests share one BACI panel, so it is a rough guide, not a p-value.",
+    "Discarded entries are reconstructed by hand from the working history; anything tried and not recorded is missing, so n is a lower bound.",
+    "Stage A (overlap audit), Stage G (power) and Stage 4 (competing explanations) produce no significance test and are not counted."
+  ]
+}
