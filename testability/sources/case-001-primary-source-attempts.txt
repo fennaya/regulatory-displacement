@@ -36,5 +36,12 @@ SECONDARY SOURCES CHECKED FOR A "PRODUCTION RELOCATION" RESTATEMENT (Step 4b)
 9. A search-tool summary attributed to the Commission the wording "simply shift production outside the EU while penalising European
    companies". It could not be traced to any page, and that wording is NOT in the CEO transcription. UNVERIFIED; not to be quoted.
 
-VERDICT ON RETRIEVAL: primary unretrieved. No published secondary source restating the Commission's 2026 statement as production
-relocation was found and verified.
+CORRECTION 2026-09-20 (supersedes item 9 and the verdict below): the phrase in item 9 WAS traced. It is on the PAN Europe press
+release (https://www.pan-europe.info/press-releases/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous),
+in quotation marks, reported as what a Commission spokesperson argued: an export ban "could simply shift production outside the EU
+while penalising European companies". Verified character for character on the raw page (testability/sources/case-001-pan-europe.txt).
+The same page also reproduces the fuller statement, which matches the Corporate Europe Observatory transcription. It is not stated
+which Commission document the shorter quoted phrase comes from.
+
+VERDICT ON RETRIEVAL: primary unretrieved. TWO independent secondary sources reproduce the same Commission statement (Corporate
+Europe Observatory, PAN Europe). The relocation paraphrase is found in one of them (PAN Europe).

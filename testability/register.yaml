@@ -4,9 +4,9 @@
 # disclosure request; a "tested" claim must state an evidence direction
 # (which may be "claim probably correct"); a candidate is unworked.
 #
-# All entries below come from ONE official document (the Commission's written
-# statement to Danwatch, as transcribed by Corporate Europe Observatory,
-# 29.06.2026). A second independent official document was searched for and
+# All entries below come from ONE Commission statement (to Danwatch), reproduced by
+# TWO independent secondary sources (Corporate Europe Observatory and PAN Europe,
+# 29.06.2026). A second, different official document was searched for and
 # not retrievable in this session: see "unretrieved_leads" at the bottom.
 # Those are NOT candidates until a verbatim, dated quote is in hand.
 #
@@ -25,7 +25,7 @@ audits:
       source_date: 2026-06-29
       url: "https://corporateeurope.org/en/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous-pesticides"
       retrieved_at: 2026-09-19
-      note: "Page date. The statement's own date is not given; it opens 'As already answered to you on 13 May'. Secondary transcription; the Danwatch original and the Commission document were not retrieved. The brief paraphrased this as production shifting outside the EU; the verbatim claim is about importing countries buying from non-EU companies, and is hedged with 'may'."
+      note: "Page date. The statement's own date is not given; it opens 'As already answered to you on 13 May'. Secondary transcription; the Danwatch original and the Commission document were not retrieved. A second independent secondary source (PAN Europe, testability/sources/case-001-pan-europe.txt) reproduces the same statement. The statement opens 'a unilateral production and export ban', so production is in scope; its stated mechanism is importing countries buying from non-EU companies, hedged with 'may'. PAN Europe also quotes a shorter paraphrase, 'could simply shift production outside the EU while penalising European companies', of unspecified document origin."
     kind: prediction
     kind_reason: "A prediction about a counterfactual policy (a unilateral EU export ban) that has never been in force EU-wide; empirical in form, testable only through analogues."
     test_specification: >

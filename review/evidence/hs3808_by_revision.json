@@ -1,0 +1,54 @@
+{
+ "HS1992": {
+  "3808": "3808 - Insecticides, rodenticides, fungicides, herbicides, anti-sprouting products, plant growth regulators, disinfectants and the like, in forms or packings for retail sale or as preparations or articles",
+  "380810": "380810 - Insecticides; put up in forms or packings for retail sale or as preparations or articles",
+  "380820": "380820 - Fungicides; put up in forms or packings for retail sale or as preparations or articles",
+  "380830": "380830 - Herbicides, anti-sprouting products and plant-growth regulators; put up in forms or packings for retail sale or as preparations or articles",
+  "380840": "380840 - Disinfectants and similar products; in forms, packings or articles for retail sale",
+  "380890": "380890 - Rodenticides and similar products; n.e.s. in heading no. 3808, in forms, packings or articles for retail sale"
+ },
+ "HS2007": {
+  "3808": "3808 - Insecticides, rodenticides, fungicides, herbicides, anti-sprouting products, plant growth regulators, disinfectants and the like, in forms or packings for retail sale or as preparations or articles",
+  "380850": "380850 - Insecticides, rodenticides, fungicides, disinfectants, herbicides and the like; containing one or more substances specified in Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380891": "380891 - Insecticides; not containing substances of 3808.50; put up in forms or packings for retail sale or as preparations or articles",
+  "380892": "380892 - Fungicides; not containing substances of 3808.50; put up in forms or packings for retail sale or as preparations or articles",
+  "380893": "380893 - Herbicides, anti-sprouting products and plant-growth regulators; not containing substances of 3808.50; put up in forms or packings for retail sale or as preparations or articles",
+  "380894": "380894 - Disinfectants and similar products; not containing substances of 3808.50; in forms, packings or articles for retail sale",
+  "380899": "380899 - Rodenticides and similar products; not containing substances of 3808.50; n.e.c. in heading no. 3808.9, in forms, packings or articles for retail sale"
+ },
+ "HS2012": {
+  "3808": "3808 - Insecticides, rodenticides, fungicides, herbicides, anti-sprouting products, plant growth regulators, disinfectants and the like, put up in forms or packings for retail sale or as preparations or articles",
+  "380850": "380850 - Insecticides, rodenticides, fungicides, disinfectants, herbicides and the like; containing goods specified in Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380891": "380891 - Insecticides; other than containing goods specified in Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380892": "380892 - Fungicides; other than containing goods specified in Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380893": "380893 - Herbicides, anti-sprouting products and plant-growth regulators; other than containing goods of Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380894": "380894 - Disinfectants; other than containing goods specified in Subheading Note 1 in this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380899": "380899 - Rodenticides and other similar products n.e.c. in heading no. 3808.9; other than containing goods specified in Subheading Note 1 in this Chapter, put up in forms or packings for retail sale or as preparations or articles"
+ },
+ "HS2017": {
+  "3808": "3808 - Insecticides, rodenticides, fungicides, herbicides, anti-sprouting products, plant growth regulators, disinfectants and the like, put up in forms or packings for retail sale or as preparations or articles",
+  "380852": "380852 - Insecticides and the like; containing goods specified in Subheading Note 1 to this Chapter; for retail sale or as preparations or articles; DDT (ISO) (clofenotane (INN)), in packings of 300g or less",
+  "380859": "380859 - Insecticides, rodenticides, fungicides, disinfectants, herbicides and the like; containing goods specified in Subheading Note 1 to this Chapter; not DDT (ISO) (clofenotane (INN)), put up in forms or packings for retail sale or as preparations or articles",
+  "380861": "380861 - Insecticides and the like; containing goods specified in Subheading Note 2 to this Chapter; in packings of a net weight content not exceeding 300g; for retail sale or as preparations or articles",
+  "380862": "380862 - Insecticides; containing goods specified in Subheading Note 2 to this Chapter; put up in forms or packings for retail sale or as preparations or articles, in packings of a net weight content exceeding 300g but not exceeding 7.5kg",
+  "380869": "380869 - Insecticides; containing goods named in Subheading Note 2 to this Chapter, put up in forms or packings for retail sale or as preparations or articles, in packings of a net weight content exceeding 7.5kg",
+  "380891": "380891 - Insecticides; other than containing goods specified in Subheading Notes 1 & 2 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380892": "380892 - Fungicides; other than containing goods specified in Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380893": "380893 - Herbicides, anti-sprouting products and plant-growth regulators; other than containing goods of Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380894": "380894 - Disinfectants; other than containing goods specified in Subheading Note 1 in this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380899": "380899 - Rodenticides and other similar products n.e.c. in heading no. 3808.9; other than containing goods specified in Subheading Note 1 in this Chapter, put up in forms or packings for retail sale or as preparations or articles"
+ },
+ "HS2022": {
+  "3808": "3808 - Insecticides, rodenticides, fungicides, herbicides, anti-sprouting products, plant growth regulators, disinfectants and the like, put up in forms or packings for retail sale or as preparations or articles",
+  "380852": "380852 - Insecticides and the like; containing goods specified in Subheading Note 1 to this Chapter; for retail sale or as preparations or articles; DDT (ISO) (clofenotane (INN)), in packings of 300g or less",
+  "380859": "380859 - Insecticides, rodenticides, fungicides, disinfectants, herbicides and the like; containing goods specified in Subheading Note 1 to this Chapter; not DDT (ISO) (clofenotane (INN)), put up in forms or packings for retail sale or as preparations or articles",
+  "380861": "380861 - Insecticides and the like; containing goods specified in Subheading Note 2 to this Chapter; in packings of a net weight content not exceeding 300g; for retail sale or as preparations or articles",
+  "380862": "380862 - Insecticides; containing goods specified in Subheading Note 2 to this Chapter; put up in forms or packings for retail sale or as preparations or articles, in packings of a net weight content exceeding 300g but not exceeding 7.5kg",
+  "380869": "380869 - Insecticides; containing goods named in Subheading Note 2 to this Chapter, put up in forms or packings for retail sale or as preparations or articles, in packings of a net weight content exceeding 7.5kg",
+  "380891": "380891 - Insecticides; other than containing goods specified in Subheading Notes 1 & 2 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380892": "380892 - Fungicides; other than containing goods specified in Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380893": "380893 - Herbicides, anti-sprouting products and plant-growth regulators; other than containing goods of Subheading Note 1 to this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380894": "380894 - Disinfectants; other than containing goods specified in Subheading Note 1 in this Chapter; put up in forms or packings for retail sale or as preparations or articles",
+  "380899": "380899 - Rodenticides and other similar products n.e.c. in heading no. 3808.9; other than containing goods specified in Subheading Note 1 in this Chapter, put up in forms or packings for retail sale or as preparations or articles"
+ }
+}
