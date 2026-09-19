@@ -10,7 +10,7 @@ events:
   - event_id: "eu-2018-imidacloprid"
     substance: "Imidacloprid"
     jurisdiction: "EU"
-    restriction_type: "non-renewal"
+    restriction_type: "severe_restriction"
     scope: >
       All outdoor uses banned EU-wide; use restricted to permanent
       greenhouses only (crop and any treated seed must remain in a
@@ -41,7 +41,7 @@ events:
   - event_id: "eu-2018-clothianidin"
     substance: "Clothianidin"
     jurisdiction: "EU"
-    restriction_type: "non-renewal"
+    restriction_type: "severe_restriction"
     scope: >
       All outdoor uses banned EU-wide; use restricted to permanent
       greenhouses only, adopted as a companion regulation to the
@@ -70,7 +70,7 @@ events:
   - event_id: "eu-2018-thiamethoxam"
     substance: "Thiamethoxam"
     jurisdiction: "EU"
-    restriction_type: "non-renewal"
+    restriction_type: "severe_restriction"
     scope: >
       All outdoor uses banned EU-wide; use restricted to permanent
       greenhouses only, adopted as a companion regulation to the

@@ -16,17 +16,19 @@ into jurisdictions without the restriction rise after the effective date,
 relative to control products that were never restricted.
 
 **Current status: UNTESTED, not "weakly supported."** As of Stage A's
-overlap audit, zero of the five testable treatment packages are CLEAN —
-every one is CONTAMINATED by a same-HS6 neighbor package. Every point
+overlap audit, zero of the five testable treatment packages are CLEAN at
+the pre-set ±5-year window (four are contaminated at every window; EU
+endosulfan is clean at ±4 or narrower, and a single clean package is far
+too underpowered to test the hypothesis). Every point
 estimate produced so far (Stage 3's OLS-TWFE, Stage B's PPML re-estimate)
 answers "did this HS6 basket move," not "did this substance's flows
 displace," and neither confirms nor refutes the substance-level claim.
-Treat any headline number reported before a CLEAN package exists, or
-before the staggered-adoption-robust re-estimate (`decisions/0003-*.md`,
-not yet implemented) lands, as not evidence either way.
+The staggered-adoption-robust re-estimate (`decisions/0003-*.md`) has since
+been run and attacked (`decisions/0009-*.md`): it does not support the
+hypothesis either. Treat every basket-level number as not evidence either way.
 
 **Falsified by:** Once (a) the staggered-adoption-robust estimator is
-implemented and run, and (b) Stage G's power analysis is done for each
+implemented and run (done), and (b) Stage G's power analysis is done for each
 package — a plurality of CLEAN or staggered-robust-corrected packages
 returning a point estimate indistinguishable from zero (95% CI containing
 zero) **at a specification with minimum detectable effect (MDE) smaller

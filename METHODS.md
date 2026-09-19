@@ -21,7 +21,7 @@ missing-data share) before doing anything else — `panel_stats.py`.
 would actually show up before you've decided what that dimension is. The
 original version of this project summed trade value across every
 destination before taking logs, which hid the fact that 59-61% of
-individual (destination, product, year) cells are genuine zeros — exactly
+individual (destination, product, year) cells have no recorded flow (zero or unreported; BACI records only positive flows) — exactly
 where a "destination went from zero to positive" signal would live. See
 `analysis/ppml.py`'s module docstring.
 
@@ -71,7 +71,8 @@ assert a CLEAN classification never coexists with a recorded overlap (a
 consistency check on your own audit code, not an extra finding).
 
 **If zero of your units come out CLEAN, say so before presenting a single
-result.** That was this project's actual outcome.
+result** — and say how the count moves with the window, because it is a
+function of that choice (here: 0 of 5 at the pre-set ±5 years, 1 of 5 at ±4).
 
 ## 5. Match the estimator to what the data actually looks like
 
@@ -109,12 +110,14 @@ result.** That was this project's actual outcome.
   numbers. `analysis/matching.py` + `decisions/0007-*.md`.
 - **Standard errors**: classical (i.i.d.-error) SEs on panel data
   systematically understate uncertainty when a unit's residuals are
-  correlated over time, which they usually are. Cluster at whatever level
-  actually varies independently in your design (here: exporter-product,
-  since "exporter" was previously pooled away and needed to be
-  disaggregated specifically to make clustering meaningful —
-  `analysis/clustered.py`). Expect wider intervals; that's the fix
-  working, not a regression.
+  correlated over time, which they usually are. Cluster at the level treatment
+  is *assigned* (here that is the HS6 code, not the exporter-product pair:
+  this project clustered at exporter-product, `analysis/clustered.py`, and
+  that was too narrow, because exporter-product clusters inside one treated
+  code share its common shock). With one or two treated units, no analytic
+  SE is reliable; use randomization inference over never-treated units
+  (`analysis/basket_attack.py`'s placebo) as the yardstick. Expect wider
+  intervals; that is the fix working, not a regression.
 
 ## 6. Pre-register anything you could tune after seeing results
 

@@ -75,3 +75,14 @@ def test_events_by_hs6_groups_correctly():
     grouped = events_by_hs6(result)
     assert len(grouped["380810"]) == 7  # neonicotinoids x3, chlorpyrifos x2, endosulfan x2 (EU + Rotterdam)
     assert len(grouped["380830"]) == 2  # paraquat, atrazine
+
+
+def test_2018_neonicotinoid_regulations_are_restrictions_of_approval_not_non_renewals():
+    # Implementing Regulations (EU) 2018/783-785 amend the *conditions of
+    # approval* (permanent-greenhouse use only); they do not decline renewal.
+    result = load_events(version=1)
+    by_id = {e.event_id: e for e in result.events}
+    for eid in ("eu-2018-imidacloprid", "eu-2018-clothianidin", "eu-2018-thiamethoxam"):
+        assert by_id[eid].restriction_type.value == "severe_restriction", eid
+    # the 2020 chlorpyrifos regulations are titled "non-renewal of the approval"
+    assert by_id["eu-2020-chlorpyrifos"].restriction_type.value == "non-renewal"
