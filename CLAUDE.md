@@ -46,6 +46,10 @@ lives in one conversation's memory.
   (and its tests) should be treated as authoritative.
 - `register/`, `data/register/` — the restriction register and its schema.
   Citations are load-bearing; an uncited field is dropped, not guessed.
+- `testability/` — the audit protocol and its register. Any official
+  justification quoted there must be verbatim, sourced and dated, and is
+  checked against the stored source text by `tests/test_testability.py`.
+  Candidates stay unworked until audited.
 - `decisions/` — one file per methodological decision. Use `/decide` to
   add one.
 - `falsification.md` — what would refute each live claim. Use `/falsify`

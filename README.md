@@ -1,5 +1,29 @@
 # Displacement Observatory
 
+**This repository contains a testability audit protocol, and its first
+application is regulatory displacement in hazardous pesticides.**
+
+Institutions justify decisions with empirical claims (*it would just move
+elsewhere; it would harm competitiveness; it would be circumvented*) and
+almost nobody asks whether those claims can be checked at all. The protocol
+in [`testability/METHOD.md`](testability/METHOD.md) does: quote the claim
+verbatim, specify the test, inventory the evidence, run the power
+arithmetic, name the disclosure that would make it testable, and return one
+of four verdicts. It can return "the institution's claim is probably
+correct"; the code enforces that it can, so it is a method and not
+advocacy. **Case 001**
+([`testability/cases/case-001.md`](testability/cases/case-001.md)) audits the
+European Commission's stated reason for not proposing an export ban on
+EU-banned pesticides. Verdict: **untestable with public data** (even total
+elimination of the banned-substance trade is about 5 to 13 times below what
+public HS6 trade data can detect), with the feasibility premise supported
+and a concrete data request attached. The displacement analysis below is
+the work that produced that arithmetic, and is the reason the protocol
+exists: it tried to test the claim and found it cannot be tested at the
+granularity available to the public. The paper skeleton is `PAPER.md`.
+
+## The displacement study
+
 Tests one falsifiable claim: when jurisdiction A restricts a product, flows
 of that product into jurisdictions *without* the restriction rise after the
 effective date, relative to control products that were never restricted.
@@ -267,6 +291,10 @@ data/
   watchlist/          forecasts.jsonl (append-only, untouched by the repair)
   destination_groups_v1.yaml               STAGE F pre-registration
   raw/, processed/    gitignored (BACI zip, DuckDB file)
+testability/          the audit protocol: METHOD.md, protocol.py (schema + checks),
+                       register.yaml (Case 001 + 2 candidates), cases/, sources/
+reviews/              hostile-referee reviews of the README
+PAPER.md              argument skeleton: a clean null and an instrument
 decisions/            one file per methodological decision (use /decide)
 falsification.md      what would refute each live claim (use /falsify)
 CLAUDE.md             standing rules for every session in this repo

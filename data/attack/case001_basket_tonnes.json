@@ -1,0 +1,22 @@
+{
+ "quantity_tons_2018": {
+  "eu_to_nonEU_all3808": 720664.5200000001,
+  "eu_to_nonEU_pesticides_380810_20_30": 477445.2850000001,
+  "row_all3808": 3355970.0870000003
+ },
+ "quantity_tons_2024": {
+  "eu_to_nonEU_all3808": 686266.3380000001,
+  "eu_to_nonEU_pesticides_380810_20_30": 412574.601,
+  "row_all3808": 4942784.271000001
+ },
+ "value_kusd_2018": {
+  "eu_to_nonEU_all3808": 6004882.175000001,
+  "eu_to_nonEU_pesticides_380810_20_30": 5134095.684,
+  "row_all3808": 18652483.208999995
+ },
+ "value_kusd_2024": {
+  "eu_to_nonEU_all3808": 6112343.119,
+  "eu_to_nonEU_pesticides_380810_20_30": 5135691.039000001,
+  "row_all3808": 24711104.79500001
+ }
+}

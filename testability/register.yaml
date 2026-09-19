@@ -1,0 +1,129 @@
+# Testability register. Each entry is validated by testability/protocol.py
+# (tests/test_testability.py): a quote must be verbatim in the stored source
+# text; a non-empirical claim gets no test spec; "untestable" must carry a
+# disclosure request; a "tested" claim must state an evidence direction
+# (which may be "claim probably correct"); a candidate is unworked.
+#
+# All entries below come from ONE official document (the Commission's written
+# statement to Danwatch, as transcribed by Corporate Europe Observatory,
+# 29.06.2026). A second independent official document was searched for and
+# not retrievable in this session: see "unretrieved_leads" at the bottom.
+# Those are NOT candidates until a verbatim, dated quote is in hand.
+
+audits:
+  - claim_id: "001-C1-substitution"
+    status: worked
+    quote:
+      text: "it may push these countries to buy the same or worse chemical pesticides from companies outside of the EU"
+      speaker: "European Commission spokesperson (unnamed); written statement to Danwatch"
+      source: "Corporate Europe Observatory, 'European Commission backtracks on promise to end EU exports of banned and dangerous pesticides' (full written statement by the EC to Danwatch), stored in testability/sources/case-001-ec-statement-to-danwatch.txt"
+      source_date: 2026-06-29
+      url: "https://corporateeurope.org/en/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous-pesticides"
+      retrieved_at: 2026-09-19
+      note: "Page date. The statement's own date is not given; it opens 'As already answered to you on 13 May'. Secondary transcription; the Danwatch original and the Commission document were not retrieved. The brief paraphrased this as production shifting outside the EU; the verbatim claim is about importing countries buying from non-EU companies, and is hedged with 'may'."
+    kind: prediction
+    kind_reason: "A prediction about a counterfactual policy (a unilateral EU export ban) that has never been in force EU-wide; empirical in form, testable only through analogues."
+    test_specification: >
+      Unit: importing country x banned active substance x year. Outcome: tonnes of that substance
+      imported from (a) suppliers in the banning jurisdiction and (b) suppliers elsewhere. Comparison:
+      the same destinations' imports of substances not subject to an export ban, and exporters not
+      subject to the ban. Natural experiments: national export bans reported for France (in force
+      January 2022), Belgium (Royal Decree June 2023, effective date reported as May 2025) and
+      Switzerland (five pesticides since 2021); these dates come from search summaries and are NOT
+      checked against the legal texts. Quantity of interest: leakage L = increase in non-banning-supplier
+      tonnage divided by decrease in banning-supplier tonnage, plus a hazard comparison of substitutes
+      for the 'same or worse' part.
+    decision_relevant_effect: >
+      Leakage L. As an ASSUMPTION for illustration (the decision-maker's value judgement, not a fact):
+      L near 1 (substitution nearly complete) supports the Commission's claim in tonnage terms; L below
+      about 0.5 means a ban removes at least half of the exports. Hazard: whether substitutes are 'the
+      same or worse' needs active-substance-level toxicity data; none is assessed here.
+    evidence_inventory: >
+      EXISTS publicly: CEPII BACI / UN Comtrade bilateral trade at HS6, in this repo (BACI 202601,
+      1995-2024). Heading 3808 has five HS92 subheadings, so a banned substance is never observed
+      separately. EXISTS but not public as a dataset: EU PIC export notifications, obtained by NGOs by
+      freedom-of-information request (Unearthed/Public Eye); notified (intended) tonnage of mixtures,
+      not recorded shipments. UNVERIFIED LEAD: Eurostat Comext 8-digit CN lines split heading 3808 by
+      chemical family; not checked. MISSING: substance-level realised exports by destination; importing
+      countries' purchases by supplier origin; hazard classification of substitute products. Feasibility
+      premise CAN be checked from the panel: non-EU exporters ship 4.7x (2018) and 7.2x (2024) the EU's
+      tonnage of heading 3808 into non-EU destinations (case-001-arithmetic.json), so non-EU suppliers
+      exist at scale. That supports feasibility of substitution, not its size or hazard.
+    power_verdict: >
+      Notified banned-pesticide tonnage is 81,600 t (2018) and 122,000 t (2024) (Unearthed, 22.09.2025;
+      tonnes of mixtures, notified) against 720,665 t and 686,266 t of EU customs-recorded exports of
+      heading 3808 to non-EU destinations: 11.3% and 17.8% (different instruments; order of magnitude
+      only). If all of it vanished, the heading-level total would fall by 0.12 to 0.20 log points. A design
+      like this repo's has a randomization-based standard error of 0.33 (chapter 38 placebo) to 0.54 (all
+      codes) for the EU-minus-rest-of-world contrast, i.e. an 80%-power detection threshold of 0.93 to
+      1.51 log points, needing 60% to 78% of the basket to vanish. So the effect that would matter is
+      about 5 to 13 times too small for public HS6 data to see, even at 100% elimination. Numbers:
+      testability/cases/case-001-arithmetic.json (scripts/case001_arithmetic.py).
+    disclosure_request:
+      holder: "ECHA and Member State designated authorities (PIC Regulation export notifications); customs authorities of France, Belgium and Switzerland; Eurostat (Comext, CN8)"
+      fields:
+        - "exporting country"
+        - "importing country"
+        - "active substance (CAS number) and mixture concentration"
+        - "tonnes notified"
+        - "tonnes actually exported (customs export declaration)"
+        - "month"
+        - "flag: notified vs shipped"
+        - "for importing countries: tonnes imported by active substance and supplier country"
+      granularity: "active substance x exporting country x importing country x month"
+      period: "2015 to present (covers Swiss 2021, French 2022, Belgian 2023-2025 measures)"
+    verdict: "UNTESTABLE WITH PUBLIC DATA"
+    verdict_reason: >
+      Testable in principle with substance-level data, not with public HS6 trade data, where even full
+      elimination of the banned-substance trade is about 5 to 13 times below the detection threshold. Nothing in
+      this repo supports or contradicts the claim's magnitude; the feasibility premise (non-EU supply
+      exists at scale) is supported.
+
+  - claim_id: "001-C2-no-guarantee"
+    status: worked
+    quote:
+      text: "a unilateral production and export ban in the EU would not guarantee an improvement in health and environmental protection in affected countries"
+      speaker: "European Commission spokesperson (unnamed); written statement to Danwatch"
+      source: "Corporate Europe Observatory, same page and stored source as 001-C1-substitution"
+      source_date: 2026-06-29
+      url: "https://corporateeurope.org/en/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous-pesticides"
+      retrieved_at: 2026-09-19
+    kind: empirical
+    kind_reason: "Phrased as an empirical statement but hedged to 'would not guarantee'."
+    verdict: "NOT AN EMPIRICAL CLAIM"
+    verdict_reason: >
+      As worded it is true of almost any policy (no policy guarantees an outcome) and no observation could
+      contradict it. Its testable content is the claim in 001-C1 (how much substitution, of what hazard),
+      which is where the audit continues. Classing this as not empirical is a statement about the wording,
+      not a finding that the Commission is wrong.
+
+candidates:
+  - claim_id: "002-consumer-exposure"
+    status: candidate
+    quote:
+      text: "Such measures will also improve the level playing field for EU farmers and further reduce the risk that EU consumers are exposed to hazardous chemicals through food."
+      speaker: "European Commission spokesperson (unnamed); written statement to Danwatch"
+      source: "Corporate Europe Observatory, same page and stored source as Case 001"
+      source_date: 2026-06-29
+      url: "https://corporateeurope.org/en/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous-pesticides"
+      retrieved_at: 2026-09-19
+      note: "CANDIDATE, unworked. 'Such measures' refers to bilateral work under UN Conventions and better PIC/REACH/POPs enforcement. Screening question for step 1: is this a prediction with a measurable outcome (residues in imported food) or an aspiration?"
+    kind: prediction
+    kind_reason: "Screening only: a prediction about the effect of the Commission's chosen alternative measures on residue exposure. Not yet audited."
+
+  - claim_id: "003-industry-condition"
+    status: candidate
+    quote:
+      text: "the EU chemical industry that is already suffering in the current economic climate"
+      speaker: "European Commission spokesperson (unnamed); written statement to Danwatch"
+      source: "Corporate Europe Observatory, same page and stored source as Case 001"
+      source_date: 2026-06-29
+      url: "https://corporateeurope.org/en/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous-pesticides"
+      retrieved_at: 2026-09-19
+      note: "CANDIDATE, unworked. A factual premise inside the incidence argument, split out of the sentence audited in Case 001. Expected to be checkable with public statistics (this is the contrast case: the protocol should be able to find such a premise true or false). Whether it is, and what 'suffering' would have to mean, is for the audit to say; no view is taken here."
+    kind: empirical
+    kind_reason: "Screening only: an empirical premise about the condition of an industry. Not yet audited."
+
+unretrieved_leads:
+  - "European Parliament written question E-9-2023-001396 (export of pesticides banned in the EU) and the Commission's answer: page did not load in this session."
+  - "Commission Food and Feed Safety Simplification Package (late 2025), rationale for unlimited-period approvals: search summary only, no verbatim quote retrieved."

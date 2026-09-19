@@ -1,0 +1,38 @@
+{
+  "notified_tonnes": {
+    "2018": 81600.0,
+    "2024": 122000.0
+  },
+  "placebo_sd_triple_difference": {
+    "chapter38_never_treated": 0.33130866241622275,
+    "all_never_treated": 0.539895498725666
+  },
+  "years": {
+    "2018": {
+      "customs_tonnes_eu_to_non_eu_heading_3808": 720664.5200000001,
+      "customs_tonnes_row_to_non_eu_heading_3808": 3355970.0870000003,
+      "row_over_eu_tonnage_ratio": 4.656771623778564,
+      "notified_share_of_eu_customs_tonnes": 0.11322882941427447,
+      "log_point_change_if_all_notified_tonnage_vanished": -0.12016831125678194
+    },
+    "2024": {
+      "customs_tonnes_eu_to_non_eu_heading_3808": 686266.3380000001,
+      "customs_tonnes_row_to_non_eu_heading_3808": 4942784.271000001,
+      "row_over_eu_tonnage_ratio": 7.202428557700873,
+      "notified_share_of_eu_customs_tonnes": 0.17777354540738086,
+      "log_point_change_if_all_notified_tonnage_vanished": -0.1957394296618338
+    }
+  },
+  "detection": {
+    "chapter38_never_treated": {
+      "se_proxy": 0.33130866241622275,
+      "mde_80pct_power_log_points": 0.9281894512580694,
+      "share_needed_for_detection": 0.6047312838233521
+    },
+    "all_never_treated": {
+      "se_proxy": 0.539895498725666,
+      "mde_80pct_power_log_points": 1.5125632485555551,
+      "share_needed_for_detection": 0.7796555441260649
+    }
+  }
+}
