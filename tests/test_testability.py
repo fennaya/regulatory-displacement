@@ -76,6 +76,15 @@ def test_pan_europe_reproduces_the_same_statement_and_the_relocation_paraphrase_
     assert "production is explicitly in scope" in case
 
 
+def test_croplife_relocation_sentence_is_verbatim_in_stored_source_and_euronews_is_no_longer_cited():
+    s = (T / "sources" / "case-001-croplife-europe-2023.txt").read_text(encoding="utf-8")
+    assert verify_quote_in_source("Such a ban would likely result in manufacturing being exported from Europe to other regions in the world", s)
+    assert "8, 2023" in s
+    for f in ("PAPER.md", "PAPER-testability.md"):
+        assert "Euronews" not in (ROOT / f).read_text(encoding="utf-8"), f
+    assert "CropLife Europe" in (ROOT / "PAPER-testability.md").read_text(encoding="utf-8")
+
+
 def test_published_notified_tonnage_figures_are_in_stored_source():
     s = (T / "sources" / "case-001-notified-tonnage-unearthed.txt").read_text(encoding="utf-8")
     assert "122,000 tonnes" in s and "81,600 tonnes" in s and "mixtures" in s

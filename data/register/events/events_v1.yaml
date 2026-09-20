@@ -242,10 +242,10 @@ events:
     decision_date: "2011-06-24"
     effective_date: "2011-10-24"
     citation:
-      source_document: "Rotterdam Convention Conference of the Parties, 5th meeting (COP-5), Decision RC-5/3: listing of endosulfan in Annex III to the Rotterdam Convention"
-      source_clause: "COP-5 (20-24 June 2011) adopted RC-5/3, RC-5/4 and RC-5/5 adding alachlor, aldicarb and endosulfan respectively to Annex III; the resulting amendments to Annex III entered into force on 24 October 2011."
-      retrieved_at: "2026-09-18"
-      url: "https://www.pic.int/Portals/5/COPS/COP4/i9)/English/K0763331%20COP-4-9.pdf"
+      source_document: "Rotterdam Convention, Conference of the Parties decisions RC-5/3, RC-5/4 and RC-5/5 of 24 June 2011 (fifth meeting, Geneva, 20-24 June 2011), adding alachlor, aldicarb and endosulfan to Annex III; cited via the Secretariat's 'Rotterdam Convention texts and annexes (revised in 2017)', footnote to the Annex III chemicals table and the Convention's history section. The decision documents themselves (UNEP/FAO/RC/COP.5 series) were NOT retrieved, so their document numbers are not given here."
+      source_clause: "Secretariat text: 'The fifth meeting of the Conference of the Parties (COP-5) was held from 20 to 24 June 2011 resulting in the addition of the following chemicals in Annex III alachlor, aldicarb and endosulfan in the pesticide category (decisions RC-5/3, RC-5/4 and RC-5/5). These amendments to Annex III entered into force on 24 October 2011.' Footnote: 'RC-5/3, RC-5/4 and RC-5/5 of 24 June 2011'. The fourth meeting (COP-4, 27-31 October 2008) is described there as adding tributyltin compounds only (RC-4/5); the earlier citation here (UNEP/FAO/RC/COP.4/9) was the Secretariat's DRAFT proposal, with a bracketed entry-into-force date, that COP-4 did not adopt, and did not support a listing. CORRECTED 2026-09-20; the dates below were already 2011 and are unchanged."
+      retrieved_at: "2026-09-20"
+      url: "http://www.pic.int/Portals/5/ConventionText/UNEP-FAO-RC-CONVTEXT-2017.English.pdf"
     hs6_candidates:
       - hs6: "380810"
         confidence: 0.5
