@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 CHECKED = [
-    "README.md", "PAPER.md", "METHODS.md", "falsification.md", "CLAUDE.md",
+    "README.md", "PAPER.md", "PAPER-testability.md", "METHODS.md", "falsification.md", "CLAUDE.md",
 ]
 CHECKED_GLOBS = ["src/displacement_observatory/dashboard/templates/*.html", "testability/*.md", "testability/cases/*.md"]
 

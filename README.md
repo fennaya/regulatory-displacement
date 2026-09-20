@@ -20,7 +20,11 @@ public HS6 trade data can detect), with the feasibility premise supported
 and a concrete data request attached. The displacement analysis below is
 the work that produced that arithmetic, and is the reason the protocol
 exists: it tried to test the claim and found it cannot be tested at the
-granularity available to the public. The paper skeleton is `PAPER.md`.
+granularity available to the public. The main paper, on the detection-
+threshold arithmetic, is `PAPER.md`; the protocol and Case 001 write-up is a
+separate, unfinished piece, `PAPER-testability.md`. Case 001 rests on two
+secondary transcriptions of the Commission's statement; the primary is
+unretrieved.
 
 ## The displacement study
 
@@ -56,7 +60,45 @@ read it before trusting any single number on the dashboard.
 
 ## Limitations (read this before the results below)
 
-**On the repaired specification (read these first):**
+**The panel and the register (mirrors `PAPER.md` section 2; read these first):**
+
+- **The panel is a backward conversion, and a basket may not be the same
+  object across years.** The panel is the HS92 file of BACI 202601 for all
+  years 1995-2024. CEPII says trade reported in newer nomenclature
+  revisions is converted to older ones, that this "reduces the number of
+  products present in the data" and "leads to some inaccuracies", and its
+  pages do not describe the conversion procedure. Heading 3808 was
+  restructured in **HS2007** (3808.50 for goods containing substances named
+  in Subheading Note 1, plus 3808.91-.99 by function); goods in 3808.50
+  span several functions, so converting them back to HS92 requires an
+  allocation CEPII does not document. Endosulfan is an instance (the
+  WCO's HS2017 notes name it in a substance-based subheading; the other
+  seven substances are not named). The composition of basket 380810 in
+  2018 is therefore not guaranteed to match 2004, and every long-window
+  estimate assumes it does. This threatens the panel, not only the
+  register. Nothing here corrects for it.
+- **Mappings await owner sign-off.** The eight substance-to-HS6 mappings
+  were proposed and self-confirmed by Claude. External evidence has since
+  been attached (`review/hs6-mapping-review.md`): 6 agree with the
+  function-to-subheading mapping, 2 are unclear (chlorpyrifos-methyl,
+  endosulfan), none contradict it. Sign-off by the owner is still pending
+  and the provenance test is an expected failure until then.
+- **Analysis history.** The repairs (PPML, staggered estimator, triple
+  difference, matched controls, clustering) were chosen after the first
+  estimates were uninformative and were **not pre-registered**; only the
+  matching thresholds and destination groups were committed before
+  estimation. 48 specifications were tried, 7 with a CI excluding zero, in
+  both signs (2.4 expected by chance).
+- **This null must not be cited for or against the European Commission.**
+  The Commission's stated mechanism is supplier substitution by importing
+  countries; this study tested whether EU use restrictions moved trade to
+  unrestricted destinations, a different claim. Case 001's quote comes from
+  two secondary sources; the primary is unretrieved. Published notified
+  tonnage is intended exports of mixtures, not customs quantity.
+- **No systematic literature search** was run; citations in `PAPER.md` are
+  audited (`reviews/citation-audit.md`) but few.
+
+**On the repaired specification:**
 
 - **The one basket-level estimate that cleared significance does not survive an attack.**
   <!-- falsifiable: basket-level-eu-restrictions-moved-trade -->
@@ -144,7 +186,8 @@ read it before trusting any single number on the dashboard.
   class, restricted or not, and with other restricted substances in this
   same register. This is *why* Stage G's power analysis matters more than
   a confidence interval's width alone — see `falsification.md`, now
-  resolved (not falsified) for 4 of 5 packages.
+  resolved (not falsified): 5 of 5 packages not detectable with
+  placebo-derived standard errors, at least 4 of 5 under either.
 
 **Inherited and structural limitations:**
 
@@ -176,11 +219,15 @@ read it before trusting any single number on the dashboard.
 - **Two of nine register events (the 2018 neonicotinoid companions) were
   sourced from secondary reporting**, not independently re-fetched from
   EUR-Lex text, flagged as such in the register itself.
-- **HS6 mappings are self-confirmed by Claude**, not individually reviewed
-  by a human — see the mapping file's header.
-- **One decision in `decisions/` (0006, export-notification data as
-  primary outcome) has REASONING: UNKNOWN** — no evidence it was ever
-  actually decided was found in the repo. Flagged, not silently dropped.
+- **The endosulfan Rotterdam event's citation was corrected** (2026-09-20):
+  it pointed to a COP-4 (2008) draft proposal that was not adopted. The
+  register dates (24 June and 24 October 2011, decisions RC-5/3 to RC-5/5)
+  were right, and a test now asserts that register dates equal the dates
+  the overlap audit uses, for every event.
+- **Decision 0006** (export-notification data as primary outcome) is
+  resolved: considered and not adopted, because a structured dataset does
+  exist (Public Eye 2018; Unearthed 2024 aggregates). It is EU-side only,
+  notified not shipped, so it cannot test importer-side substitution.
 
 ## The causal-specification repair (Stages A-H)
 
@@ -302,7 +349,8 @@ data/
 testability/          the audit protocol: METHOD.md, protocol.py (schema + checks),
                        register.yaml (Case 001 + 2 candidates), cases/, sources/
 reviews/              hostile-referee reviews of the README
-PAPER.md              argument skeleton: a clean null and an instrument
+PAPER.md              main paper: public HS6 data cannot answer substance-level displacement questions
+PAPER-testability.md  separate, unfinished piece: the audit protocol and Case 001
 decisions/            one file per methodological decision (use /decide)
 falsification.md      what would refute each live claim (use /falsify)
 CLAUDE.md             standing rules for every session in this repo
