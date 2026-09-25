@@ -1,21 +1,17 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite the paper (preferred-citation) and, where you use the code or register, this repository."
+message: "If you use this software or analysis, please cite it as below."
 type: software
-title: "Displacement Observatory"
+title: "Public HS6 trade data cannot answer substance-level displacement questions: a detection-threshold analysis of EU pesticide restrictions"
 abstract: >-
   Register, trade panel, estimators, tests and decision log for testing whether EU restrictions on pesticides
   relocate trade to unrestricted destinations, and the arithmetic showing that public HS6 trade data cannot
   answer that question at the level of a single substance.
 authors:
   - given-names: "Aya"
-    # PLACEHOLDER, not a real value: family-names is a required sub-field once given-names is used, so this
-    # string stands in for it. It is schema-valid (family-names has no format constraint) but not a name.
-    # Replace with the real family name before publishing; do not invent one.
-    family-names: "TBD-FAMILY-NAME-PENDING"
+    family-names: "Emssaad"
 date-released: "2026-09-20"
-# repository-code intentionally omitted (it is optional in the CFF schema): no placeholder string satisfies
-# the schema's URI pattern (a bare "REPLACE-ME"-style value fails cffconvert's validator), and inventing a
-# real-looking URL risks being mistaken for one. Add it, as a genuine https URL, once the repo is pushed.
+repository-code: "https://github.com/fennaya/regulatory-displacement"
+license: MIT
 keywords:
   - trade
   - pesticides
@@ -27,6 +23,6 @@ preferred-citation:
   title: "Public HS6 trade data cannot answer substance-level displacement questions: a detection-threshold analysis of EU pesticide restrictions"
   authors:
     - given-names: "Aya"
-      family-names: "TBD-FAMILY-NAME-PENDING"  # same placeholder, see note above
+      family-names: "Emssaad"
   year: 2026
   notes: "Unpublished draft, PAPER.md in the repository. Not peer reviewed."
