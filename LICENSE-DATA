@@ -1,0 +1,44 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Aya (family name to be added — see CITATION.cff)
+
+This licence applies to the analysis text and the register in this
+repository: `README.md`, `PAPER.md`, `PAPER-testability.md`, `METHODS.md`,
+`CLAUDE.md`, everything under `decisions/`, `falsification.md`, everything
+under `reviews/` and `review/` (including `review/hs6-mapping-review.md` and
+`review/evidence/`), everything under `testability/` EXCEPT the exclusion
+below, the event register and HS6 mappings under `data/register/`, and the
+forward-watchlist forecasts under `data/watchlist/`.
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+You are free to share and adapt this material for any purpose, even
+commercially, under the following terms: give appropriate credit, provide a
+link to the licence, and indicate if changes were made. See `CITATION.cff`
+for the preferred citation.
+
+---
+
+EXCLUSIONS — the following are NOT relicensed under CC BY 4.0 and are not
+covered by the grant above:
+
+1. `testability/sources/*.txt`. These files hold short, quoted excerpts from
+   third-party pages (Corporate Europe Observatory, PAN Europe, Unearthed,
+   CropLife Europe), retrieved for verification and audit purposes, each
+   with the source URL, retrieval date and a SHA-256 of the page fetched.
+   The excerpts remain the copyright of their original publishers. Nothing
+   in this repository grants any licence to reproduce, redistribute or reuse
+   that third-party text beyond the excerpts already quoted here; if you
+   want the material itself, go to the cited URL.
+
+2. The CEPII BACI trade data (downloaded separately, gitignored under
+   `data/raw/` and `data/processed/`, not tracked in this repository) is
+   NOT relicensed by CC BY 4.0 or by anything in this repository. It
+   remains subject to CEPII's own licence and citation terms as stated on
+   https://www.cepii.fr/CEPII/en/bdd_modele/presentation.asp?id=37 . If you
+   reproduce this project's panel, you must obtain BACI yourself and cite
+   it per CEPII's own requirements, independently of this repository's
+   licensing.
+
+Software (code) in this repository is licensed separately, under MIT — see
+`LICENSE`.

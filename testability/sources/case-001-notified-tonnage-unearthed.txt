@@ -1,10 +1,12 @@
-SOURCE RECORD (not the original document)
+SOURCE RECORD (passages only; not the original document)
 Publisher: Unearthed (Greenpeace UK), "EU banned pesticide trade expands despite promises to end it"
 URL:       https://unearthed.greenpeace.org/2025/09/23/eu-banned-pesticide-trade-expands-despite-promises/
 Date:      22.09.2025 (as returned by the fetch tool; the URL path carries 2025/09/23)
-Retrieved: 2026-09-19, through a page-fetch tool that returned the excerpts below.
+Retrieved: 2026-09-19 through a page-fetch tool; RE-FETCHED 2026-09-20 as raw HTTP (93,394 bytes) and every passage below matched in it.
+SHA-256 (raw HTTP body of the 2026-09-20 fetch): b8c4a9c8c9b7a6d0b24c1d3cd8f0b9031d8b5f51335ee619f28a575b560a3046
 Data source named: export notifications under the Rotterdam Convention / PIC procedure, obtained by freedom-of-information requests to ECHA and national governments.
 What is NOT verified: the original notification records; the tonnages are tonnes of MIXTURES containing banned chemicals (the article says "mixtures containing banned chemicals, not the banned chemicals alone"), and are NOTIFIED (intended) exports, not recorded shipments.
+Only the passages quoted by the analysis are stored here, not the page. The full page is third-party copyrighted text and is not republished. To check a passage, open the URL; the SHA-256 identifies the exact bytes retrieved (the page may have changed since).
 ------------------------------------------------------------------------
 "Last year, EU companies issued plans to export 122,000 tonnes of banned pesticides"
 "in 2018 EU companies had issued export notifications for around 81,600 tonnes of banned pesticides"
