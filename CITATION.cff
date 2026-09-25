@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the paper (preferred-citation) and, where you use the code or register, this repository."
+type: software
+title: "Displacement Observatory"
+abstract: >-
+  Register, trade panel, estimators, tests and decision log for testing whether EU restrictions on pesticides
+  relocate trade to unrestricted destinations, and the arithmetic showing that public HS6 trade data cannot
+  answer that question at the level of a single substance.
+authors:
+  - given-names: "Aya"
+    # PLACEHOLDER, not a real value: family-names is a required sub-field once given-names is used, so this
+    # string stands in for it. It is schema-valid (family-names has no format constraint) but not a name.
+    # Replace with the real family name before publishing; do not invent one.
+    family-names: "TBD-FAMILY-NAME-PENDING"
+date-released: "2026-09-20"
+# repository-code intentionally omitted (it is optional in the CFF schema): no placeholder string satisfies
+# the schema's URI pattern (a bare "REPLACE-ME"-style value fails cffconvert's validator), and inventing a
+# real-looking URL risks being mistaken for one. Add it, as a genuine https URL, once the repo is pushed.
+keywords:
+  - trade
+  - pesticides
+  - regulatory displacement
+  - statistical power
+  - difference-in-differences
+preferred-citation:
+  type: unpublished
+  title: "Public HS6 trade data cannot answer substance-level displacement questions: a detection-threshold analysis of EU pesticide restrictions"
+  authors:
+    - given-names: "Aya"
+      family-names: "TBD-FAMILY-NAME-PENDING"  # same placeholder, see note above
+  year: 2026
+  notes: "Unpublished draft, PAPER.md in the repository. Not peer reviewed."

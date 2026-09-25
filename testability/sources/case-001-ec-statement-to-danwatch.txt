@@ -1,13 +1,19 @@
-SOURCE RECORD (not the original document)
+SOURCE RECORD (passages only; not the original document)
 Publisher of the page:   Corporate Europe Observatory, "European Commission backtracks on promise to end EU exports of banned and dangerous pesticides"
 Page URL:                https://corporateeurope.org/en/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous-pesticides
 Page date:               29.06.2026
-Corroborating release:   PAN Europe, https://www.pan-europe.info/press-releases/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous  (29 June 2026; also cites Danwatch)
-Retrieved:               2026-09-19, through a page-fetch tool, which returned the text below as the page's "Full written statement by the EC to Danwatch".
-What is NOT verified:    the original Danwatch article and the Commission's own document were not retrieved; this is a secondary transcription by an NGO. The statement's own date is not given; it opens "As already answered to you on 13 May", so it post-dates 13 May 2026 (year taken from the corroborating release) and precedes 29 June 2026. Re-verify against the live page and the Danwatch original before publishing.
+Corroborating release:   PAN Europe, https://www.pan-europe.info/press-releases/2026/06/european-commission-backtracks-promise-end-eu-exports-banned-and-dangerous  (29 June 2026; also cites Danwatch); see case-001-pan-europe.txt
+Retrieved:               2026-09-19 through a page-fetch tool; RE-FETCHED 2026-09-20 as raw HTTP (51,471 bytes) and every passage below matched in it.
+SHA-256 (raw HTTP body of the 2026-09-20 fetch): b5ac44968f87f926cdafcaaaab1629dedcbd3c930d3242be239ddf01aa7fbc8b
+What is NOT verified:    the original Danwatch article and the Commission's own document were not retrieved; this is a secondary transcription by an NGO of a written Commission statement ("Full written statement by the EC to Danwatch" on that page). The statement's own date is not given; it opens "As already answered to you on 13 May", so it post-dates 13 May 2026 (year taken from the corroborating release) and precedes 29 June 2026.
+Only the passages quoted by the analysis are stored here, not the page. The full page is third-party copyrighted text and is not republished. To check a passage, open the URL; the SHA-256 identifies the exact bytes retrieved (the page may have changed since).
 ------------------------------------------------------------------------
-"As already answered to you on 13 May, the Commission is aware of and shares the concerns regarding the exports to third countries of EU-banned pesticides. The Commission is committed to addressing this important issue. And, as stated in its Vision for Agriculture and Food, the Commission is assessing the issue of the export of hazardous chemicals, including pesticides, that are banned in the EU. Ensuring a high level of protection for people and the environment, both within the EU and globally, is paramount.
+"As already answered to you on 13 May, ..."
 
-However, a unilateral production and export ban in the EU would not guarantee an improvement in health and environmental protection in affected countries, as it may push these countries to buy the same or worse chemical pesticides from companies outside of the EU. Consequently, this would only penalise the EU chemical industry that is already suffering in the current economic climate.
+"... The Commission is committed to addressing this important issue. ..."
 
-Therefore, the Commission will work bilaterally with importing countries in the context of the Rotterdam, Stockholm and other relevant UN Conventions, as well as working towards improving the enforcement of the Prior Informed Consent (PIC), REACH and Persistent Organic Pollutants (POPs) Regulations. The Commission's goal remains to help third countries transition to safer chemicals and to ensure that they receive only those hazardous chemicals that they wish to receive. Such measures will also improve the level playing field for EU farmers and further reduce the risk that EU consumers are exposed to hazardous chemicals through food. These efforts will build on the work that the Commission has already announced in the Vision for Agriculture and Food."
+"... Ensuring a high level of protection for people and the environment, both within the EU and globally, is paramount."
+
+"However, a unilateral production and export ban in the EU would not guarantee an improvement in health and environmental protection in affected countries, as it may push these countries to buy the same or worse chemical pesticides from companies outside of the EU. Consequently, this would only penalise the EU chemical industry that is already suffering in the current economic climate."
+
+"... Such measures will also improve the level playing field for EU farmers and further reduce the risk that EU consumers are exposed to hazardous chemicals through food. ..."

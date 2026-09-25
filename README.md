@@ -1,30 +1,50 @@
 # Displacement Observatory
 
-**This repository contains a testability audit protocol, and its first
-application is regulatory displacement in hazardous pesticides.**
+**Does restricting a pesticide in the EU push its trade to countries that have no such restriction? This repository tests that, and finds that public trade data cannot answer the question at the level of a single substance. It gives the arithmetic for why.**
 
-Institutions justify decisions with empirical claims (*it would just move
-elsewhere; it would harm competitiveness; it would be circumvented*) and
-almost nobody asks whether those claims can be checked at all. The protocol
-in [`testability/METHOD.md`](testability/METHOD.md) does: quote the claim
-verbatim, specify the test, inventory the evidence, run the power
-arithmetic, name the disclosure that would make it testable, and return one
-of four verdicts. It can return "the institution's claim is probably
-correct"; the code enforces that it can, so it is a method and not
-advocacy. **Case 001**
-([`testability/cases/case-001.md`](testability/cases/case-001.md)) audits the
-European Commission's stated reason for not proposing an export ban on
-EU-banned pesticides. Verdict: **untestable with public data** (even total
-elimination of the banned-substance trade is about 5 to 13 times below what
-public HS6 trade data can detect), with the feasibility premise supported
-and a concrete data request attached. The displacement analysis below is
-the work that produced that arithmetic, and is the reason the protocol
-exists: it tried to test the claim and found it cannot be tested at the
-granularity available to the public. The main paper, on the detection-
-threshold arithmetic, is `PAPER.md`; the protocol and Case 001 write-up is a
-separate, unfinished piece, `PAPER-testability.md`. Case 001 rests on two
-secondary transcriptions of the Commission's statement; the primary is
-unretrieved.
+Public trade statistics report goods in six-digit categories, and a
+restricted pesticide shares its category with every other product of the
+same kind. Under the assumptions stated in the paper, the restricted
+substance would have to be **more than half of its six-digit trade
+category, and fully displaced, before the statistical test used here could
+see it.** Every pre-specified test in this repository came out null, and
+the null is not evidence that no displacement happened: the instrument
+could not have seen an effect of plausible size. The argument, the limits
+that come before the results, and the detection thresholds are in
+[`PAPER.md`](PAPER.md).
+
+The repository contains: a register of nine cited restrictions (six
+independent treatment packages, five testable); a 30-year bilateral trade
+panel (CEPII BACI, chapters 28, 29 and 38, held in DuckDB); the estimators
+(event study, PPML, staggered difference-in-differences, triple difference,
+matched controls, placebo-based standard errors) and the power arithmetic;
+a test suite; a decision log (`decisions/`, one file per methodological
+choice); a falsification register (`falsification.md`, what would refute
+each live claim); a hostile-review folder (`reviews/`); a citation audit;
+a dashboard; and two pending forward forecasts, appended before their
+outcomes are known and never edited (`data/watchlist/`, resolving on
+2026-12-10 and 2026-12-31).
+
+An unfinished offshoot, a general protocol for asking whether an
+institution's empirical justification can be tested at all, is described
+lower down (see "An offshoot in progress: the testability protocol").
+
+## How to check this work
+
+If you want to verify rather than read:
+
+1. Run the tests: `uv run pytest -q`. One failure is expected and marked
+   as such: the HS6 mappings await the project owner's sign-off
+   (`tests/test_mapping_provenance.py`, `review/hs6-mapping-review.md`).
+2. Read `decisions/`, one file per methodological choice, each with what
+   would make it wrong, including the ones that were amended or reversed.
+3. Read `falsification.md`: each live claim, what would falsify it, and its
+   current status. Few claims have a status better than "untested".
+4. Read the limitations below before any result, and the `/statecheck`
+   report (`.claude/commands/statecheck.md` describes it) for the split
+   between what is established, provisional, assumed and blocked.
+5. Every figure in `PAPER.md` has a pointer to the file that produced it;
+   no statistic was produced by a language model.
 
 ## The displacement study
 
@@ -305,6 +325,33 @@ Register browser.
 Run: `uv run python scripts/run_dashboard.py` → http://127.0.0.1:8420
 (pipeline computation on startup takes roughly 90 seconds — it runs six
 estimators per testable package.)
+
+## An offshoot in progress: the testability protocol
+
+**Status: an unfinished draft with one worked case.** The displacement work
+raised a more general question: institutions justify decisions with
+empirical claims (*it would just move elsewhere; it would harm
+competitiveness*), and rarely ask whether the claim can be checked at all.
+The protocol in [`testability/METHOD.md`](testability/METHOD.md) quotes the
+claim verbatim, specifies the test, inventories the evidence, runs the
+power arithmetic, names the disclosure that would make it testable, and
+returns one of four verdicts, including "the institution's claim is
+probably correct" (the code enforces that it can). The write-up is
+[`PAPER-testability.md`](PAPER-testability.md); the code and data are in
+[`testability/`](testability/).
+
+**Case 001** ([`testability/cases/case-001.md`](testability/cases/case-001.md))
+applies it to the European Commission's stated reason for not proposing an
+export ban on EU-banned pesticides. Verdict: **untestable with public
+data** (even total elimination of the banned-substance trade is about 5 to
+13 times below what public HS6 trade data can detect); testable in
+principle, and the feasibility premise is supported. **Caveats attached to
+that verdict:** the case rests on two secondary transcriptions of the
+Commission's statement (Corporate Europe Observatory and PAN Europe), and
+the primary is unretrieved; it is one case, with no second institution;
+and the displacement study tested a different claim from the one the
+Commission's wording implies, so its null must not be cited for or against
+the Commission.
 
 ## Running it
 
