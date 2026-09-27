@@ -1,4 +1,5 @@
 # Displacement Observatory
+[![DOI](https://zenodo.org/badge/1388197666.svg)](https://doi.org/10.5281/zenodo.22984611)
 
 **Does restricting a pesticide in the EU push its trade to countries that have no such restriction? This repository tests that, and finds that public trade data cannot answer the question at the level of a single substance. It gives the arithmetic for why.**
 
