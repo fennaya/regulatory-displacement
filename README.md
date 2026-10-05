@@ -3,6 +3,8 @@
 
 **Does restricting a pesticide in the EU push its trade to countries that have no such restriction? This repository tests that, and finds that public trade data cannot answer the question at the level of a single substance. It gives the arithmetic for why.**
 
+Testing whether EU pesticide bans push trade to unrestricted countries (15.4M trade rows, 1995 to 2024), the headline effect of +0.66 log points collapsed to -0.12 once I controlled for global market growth; the design cannot detect displacement at this level of aggregation.
+
 Public trade statistics report goods in six-digit categories, and a
 restricted pesticide shares its category with every other product of the
 same kind. Under the assumptions stated in the paper, the restricted
